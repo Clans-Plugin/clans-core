@@ -6,7 +6,7 @@ public final class Clans extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        
+
 
     }
 
