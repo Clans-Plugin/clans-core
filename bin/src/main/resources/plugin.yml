@@ -1,0 +1,3 @@
+name: Clans
+version: ${project.version}
+main: main.clans.Clans
