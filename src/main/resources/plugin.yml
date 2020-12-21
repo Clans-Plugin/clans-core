@@ -1,3 +1,3 @@
 name: Clans
-version: ${project.version}
-main: main.clans.Clans
+version: 1.0
+main: com.trophy.clans.main.Clans
