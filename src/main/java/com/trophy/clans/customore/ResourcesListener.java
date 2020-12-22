@@ -21,6 +21,8 @@ public class ResourcesListener implements Listener {
         return ChatColor.translateAlternateColorCodes('&', string);
     }
 
+    private Integer multiplier;
+
 
     //Respawn the ore in x time and put ore in inventory
     // material: ore broken, time: respawn time of ore, item: Itemstack to put in inventory, e: event
@@ -48,26 +50,37 @@ public class ResourcesListener implements Listener {
 
             e.setCancelled(true);
 
+            if (p.hasPermission("clan.donor")) {
+
+                multiplier = 2;
+
+            } else {
+
+                multiplier = 1;
+
+            }
+
             if (e.getBlock().getType() == Material.STONE) {
 
 
-                respawnBlock(Material.STONE, 120, i.getStone(2), e);
+                respawnBlock(Material.STONE, 120, i.getStone(2 * multiplier), e);
+
 
             } else if (e.getBlock().getType() == Material.COAL_ORE) {
 
-                respawnBlock(Material.COAL_ORE, 240, i.getFuel(2), e);
+                respawnBlock(Material.COAL_ORE, 240, i.getFuel(2 * multiplier), e);
 
             } else if (e.getBlock().getType() == Material.IRON_ORE) {
 
-                respawnBlock(Material.IRON_ORE, 240, i.getIron(2), e);
+                respawnBlock(Material.IRON_ORE, 240, i.getIron(2 * multiplier), e);
 
             } else if (e.getBlock().getType() == Material.GOLD_ORE) {
 
-                respawnBlock(Material.GOLD_ORE, 480, i.getSulfur(2), e);
+                respawnBlock(Material.GOLD_ORE, 480, i.getSulfur(2 * multiplier), e);
 
             } else if (e.getBlock().getType() == Material.LOG) {
 
-                respawnBlock(Material.LOG, 120, i.getWood(2), e);
+                respawnBlock(Material.LOG, 120, i.getWood(2 * multiplier), e);
 
             } else {
 

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ClansCore">
+    <output-path>$USER_HOME$/Desktop/clansx</output-path>
+    <root id="archive" name="ClansCore.jar">
+      <element id="module-output" name="TrophyCore" />
+    </root>
+  </artifact>
+</component>

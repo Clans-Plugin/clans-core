@@ -1,5 +1,6 @@
 package com.trophy.clans.main;
 
+import com.trophy.clans.customarmour.ArmourListener;
 import com.trophy.clans.customore.ResourcesListener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
@@ -39,6 +40,7 @@ public class Clans extends JavaPlugin
         PluginManager plm = org.bukkit.Bukkit.getPluginManager();
 
         plm.registerEvents(new ResourcesListener(), this);
+        plm.registerEvents(new ArmourListener(), this);
     }
 
 }
