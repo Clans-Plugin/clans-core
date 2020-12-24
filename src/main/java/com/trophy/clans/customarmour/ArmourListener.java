@@ -1,9 +1,15 @@
 package com.trophy.clans.customarmour;
 
 import javafx.event.EventType;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.event.EventHandler;
+import org.bukkit.Effect;
+import org.bukkit.Material;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryInteractEvent;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 public class ArmourListener implements Listener {
 
@@ -11,6 +17,13 @@ public class ArmourListener implements Listener {
 		return ChatColor.translateAlternateColorCodes('&', string);
 	}
 
-	//GET ARMOUR SLOTS AND CHECK WHAT PLAYER IS WEARING
+	public void armourEvent(InventoryInteractEvent x) {
+
+		HumanEntity p = x.getWhoClicked();
+
+		//NOT DONE
+
+
+	}
 
 }
