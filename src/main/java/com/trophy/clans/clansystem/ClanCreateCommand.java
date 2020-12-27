@@ -9,6 +9,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import com.trophy.clans.database.Data;
+
 public class ClanCreateCommand implements CommandExecutor {
 
 	private String color(String string) {
@@ -20,6 +22,24 @@ public class ClanCreateCommand implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
 		Player p = (Player) sender;
+		
+		if(args.length == 2)
+		{
+			String clanname = args[1];
+			if(Data.existsClan(clanname))
+			{
+				p.sendMessage("§cThis Clanname already exists! Please choose another Name!");
+			}
+			else
+			{
+				return false;
+				//Data.init_clan(clanname, p, coreblockloc, homeloc);
+			}
+		}
+		else
+		{
+			return false;
+		}
 
 		ItemStack CoreBlock = new ItemStack(Material.BEACON);
 		ItemMeta CoreBlockMeta = CoreBlock.getItemMeta();
