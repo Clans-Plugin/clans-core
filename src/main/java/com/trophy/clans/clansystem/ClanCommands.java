@@ -57,8 +57,25 @@ public class ClanCommands implements CommandExecutor {
 				Player owner = p;
 				Location home = p.getLocation();
 
-				//ADD check if player is already in a clan
-				//ADD check if clan with that name exists
+				//ADD check if player is already in a clan //DONE
+				//ADD check if clan with that name exists //DONE
+				
+				try {
+					if(!Data.getClanName(owner).equals("player_not_in_clan"))
+					{
+						owner.sendMessage("§cYou are already in a Clan!");
+						return false;
+					}
+				} catch (IOException e1)
+				{
+					e1.printStackTrace();
+				}
+				
+				if(Data.existsClan(clanName))
+				{
+					owner.sendMessage("§cThis Clanname is already given!");
+					return false;
+				}
 
 				if (args[1].length() < 12 && args[1].length() > 3) {
 

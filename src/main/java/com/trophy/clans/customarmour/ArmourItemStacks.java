@@ -50,6 +50,52 @@ public class ArmourItemStacks {
 
 		return TierOneBoots;
 	}
+	
+	public ItemStack getTierTwoHelmet() {
+
+
+		return null;
+	}
+
+	public ItemStack getTierTwoChestplate() {
+
+
+		return null;
+	}
+
+	public ItemStack getTierTwoLeggings() {
+
+
+		return null;
+	}
+
+	public ItemStack getTierTwoBoots() {
+
+		return null;
+	}
+	
+	public ItemStack getTierThreeHelmet() {
+
+
+		return null;
+	}
+
+	public ItemStack getTierThreeChestplate() {
+
+
+		return null;
+	}
+
+	public ItemStack getTierThreeLeggings() {
+
+
+		return null;
+	}
+
+	public ItemStack getTierThreeBoots() {
+
+		return null;
+	}
 
 
 }

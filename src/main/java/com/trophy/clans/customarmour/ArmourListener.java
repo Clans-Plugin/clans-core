@@ -1,5 +1,7 @@
 package com.trophy.clans.customarmour;
 
+import java.util.ArrayList;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Effect;
@@ -8,11 +10,15 @@ import org.bukkit.entity.HumanEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryInteractEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 public class ArmourListener implements Listener {
 
+	
+	private ArmourItemStacks ais = new ArmourItemStacks();
+	
 	private String color(String string) {
 		return ChatColor.translateAlternateColorCodes('&', string);
 	}
@@ -21,6 +27,115 @@ public class ArmourListener implements Listener {
 	public void armourEvent(InventoryInteractEvent x) {
 
 		HumanEntity p = x.getWhoClicked();
+		
+		ArrayList<ItemStack> player_armor = new ArrayList<ItemStack>();
+		
+		player_armor.add(p.getInventory().getHelmet());
+		player_armor.add(p.getInventory().getChestplate());
+		player_armor.add(p.getInventory().getLeggings());
+		player_armor.add(p.getInventory().getBoots());
+		
+		int amount = 0;
+		
+		for(ItemStack item: player_armor)
+		{
+			if(item != null)
+			{
+				amount++;
+			}
+		}
+		
+		int tier1 = 0;
+		int tier2 = 0;
+		int tier3 = 0;
+		
+		if(amount == 4)
+		{
+			for(ItemStack item: player_armor)
+			{
+				if(item.equals(p.getInventory().getHelmet()))
+				{
+					if(item.equals(ais.getTierOneHelmet()))
+					{
+						tier1++;
+					}
+					else if(item.equals(ais.getTierTwoHelmet()))
+					{
+						tier2++;
+					}
+					else
+					{
+						tier3++;
+					}
+				}				
+				else if(item.equals(p.getInventory().getChestplate()))
+				{
+					if(item.equals(ais.getTierOneChestplate()))
+					{
+						tier1++;
+					}
+					else if(item.equals(ais.getTierTwoChestplate()))
+					{
+						tier2++;
+					}
+					else
+					{
+						tier3++;
+					}
+				}	
+				else if(item.equals(p.getInventory().getLeggings()))
+				{
+					if(item.equals(ais.getTierOneLeggings()))
+					{
+						tier1++;
+					}
+					else if(item.equals(ais.getTierTwoLeggings()))
+					{
+						tier2++;
+					}
+					else
+					{
+						tier3++;
+					}
+				}
+				else
+				{
+					if(item.equals(ais.getTierOneBoots()))
+					{
+						tier1++;
+					}
+					else if(item.equals(ais.getTierTwoBoots()))
+					{
+						tier2++;
+					}
+					else
+					{
+						tier3++;
+					}
+				}
+			}
+		}
+		
+		if(tier1 == 4)
+		{
+			//ADD PotionEffect for tier1
+		}
+		else if(tier2 == 4)
+		{
+			//ADD PotionEffect for tier2
+		}
+		else if(tier3 == 4)
+		{
+			//ADD PotionEffect for tier3
+		}
+		else
+		{
+			//Different armor, dont add potioneffect.
+			return;
+		}
+		
+		
+
 
 		//NOT DONE
 
