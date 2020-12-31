@@ -1,6 +1,6 @@
 package com.trophy.clans.main;
 
-import com.trophy.clans.clansystem.ClanCreateCommand;
+import com.trophy.clans.clansystem.ClanCommands;
 import com.trophy.clans.clansystem.CoreBlockListener;
 import com.trophy.clans.customarmour.ArmourListener;
 import com.trophy.clans.customore.ResourcesListener;
@@ -35,7 +35,7 @@ public class Clans extends JavaPlugin
 
     private void registerCMD() {
 
-        getCommand("clan create").setExecutor(new ClanCreateCommand());
+		getCommand("clan").setExecutor(new ClanCommands());
 
     }
 

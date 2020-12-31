@@ -16,18 +16,27 @@ import java.util.TreeMap;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 public class Data 
 {
+	private static String color(String string) {
+		return ChatColor.translateAlternateColorCodes('&', string);
+	}
+
+
 	public static void init_clan(String clanname, Player owner,Location homeloc) throws IOException
 	{
 		String path = "data/" + clanname + ".conf";
 		File file = new File(path);
 		file.getParentFile().mkdirs();
 		file.createNewFile();
-		System.out.println("INITIALIZED CLAN FILE!!!!");
+		System.out.println("Initialized Clan file!");
 			
 		BufferedWriter output;
 		output = new BufferedWriter(new FileWriter(path, true));
@@ -442,6 +451,16 @@ public class Data
 		}
 		
 		return -1;
+	}
+
+	public static void giveCoreBlock(Player player, String clanname) {
+
+		ItemStack CoreBlock = new ItemStack(Material.BEACON);
+		ItemMeta CoreBlockMeta = CoreBlock.getItemMeta();
+		CoreBlockMeta.setDisplayName(color("&c&lCore Block - " + clanname));
+		CoreBlock.setItemMeta(CoreBlockMeta);
+
+
 	}
 	
 
