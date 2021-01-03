@@ -54,42 +54,90 @@ public class ArmourListener{
 								{
 									if(checkFullTierOneArmour(p))
 									{
-										p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1));
+										Bukkit.getScheduler().runTask(Clans.getInstance(), new Runnable()
+										{
+											@Override
+											public void run()
+											{
+												p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1));
+											}
+									
+										});
 									}
 									else
 									{
-										if(p.hasPotionEffect(PotionEffectType.SPEED))
+										Bukkit.getScheduler().runTask(Clans.getInstance(), new Runnable()
 										{
-											p.removePotionEffect(PotionEffectType.SPEED);
-										}
+											@Override
+											public void run()
+											{
+												if(p.hasPotionEffect(PotionEffectType.SPEED))
+												{
+													p.removePotionEffect(PotionEffectType.SPEED);
+												}
+											}
+											
+										});
 									}
 								}
 								else if(helmet.equals(ais.getTierTwoHelmet()))
 								{
 									if(checkFullTierTwoArmour(p))
 									{
-										p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1));
+										Bukkit.getScheduler().runTask(Clans.getInstance(), new Runnable()
+												{
+													@Override
+													public void run()
+													{
+														p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1));
+													}
+											
+												});
 									}
 									else
 									{
-										if(p.hasPotionEffect(PotionEffectType.SPEED))
-										{
-											p.removePotionEffect(PotionEffectType.SPEED);
-										}
+										Bukkit.getScheduler().runTask(Clans.getInstance(), new Runnable()
+												{
+													@Override
+													public void run()
+													{
+														if(p.hasPotionEffect(PotionEffectType.SPEED))
+														{
+															p.removePotionEffect(PotionEffectType.SPEED);
+														}
+													}
+													
+												});
 									}
 								}
 								else if(helmet.equals(ais.getTierThreeHelmet()))
 								{
 									if(checkFullTierThreeArmour(p))
 									{
-										p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1));
+										Bukkit.getScheduler().runTask(Clans.getInstance(), new Runnable()
+										{
+											@Override
+											public void run()
+											{
+												p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1));
+											}
+									
+										});
 									}
 									else
 									{
-										if(p.hasPotionEffect(PotionEffectType.SPEED))
+										Bukkit.getScheduler().runTask(Clans.getInstance(), new Runnable()
 										{
-											p.removePotionEffect(PotionEffectType.SPEED);
-										}
+											@Override
+											public void run()
+											{
+												if(p.hasPotionEffect(PotionEffectType.SPEED))
+												{
+													p.removePotionEffect(PotionEffectType.SPEED);
+												}
+											}
+											
+										});
 									}
 								}
 							}
