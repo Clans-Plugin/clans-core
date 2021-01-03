@@ -17,8 +17,9 @@ public class Clans extends JavaPlugin
     public void onEnable() {
         plugin = this;
         instance = this;
-        registerCMD();
-        registerListeners();
+        this.registerCMD();
+        this.registerListeners();
+        this.registerTasks();
 
     }
 
@@ -43,8 +44,13 @@ public class Clans extends JavaPlugin
         PluginManager plm = org.bukkit.Bukkit.getPluginManager();
 
         plm.registerEvents(new ResourcesListener(), this);
-        plm.registerEvents(new ArmourListener(), this);
         plm.registerEvents(new CoreBlockListener(), this);
+    }
+    
+    private void registerTasks() {
+    	ArmourListener al = new ArmourListener();
+    	al.startTask();
+    	
     }
 
 }
