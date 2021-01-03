@@ -1,5 +1,6 @@
 package com.trophy.clans.clansystem;
 
+import com.trophy.clans.customarmour.ArmourItemStacks;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -20,6 +21,7 @@ public class ClanCommands implements CommandExecutor {
 		return ChatColor.translateAlternateColorCodes('&', string);
 	}
 
+	private ArmourItemStacks ais = new ArmourItemStacks();
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -124,6 +126,20 @@ public class ClanCommands implements CommandExecutor {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
+
+			} else if (args[0].equalsIgnoreCase("give")) {
+
+				if (args[1].equalsIgnoreCase("armourtier1")) {
+
+					p.getInventory().addItem(ais.getTierOneBoots());
+					p.getInventory().addItem(ais.getTierOneLeggings());
+					p.getInventory().addItem(ais.getTierOneChestplate());
+					p.getInventory().addItem(ais.getTierOneHelmet());
+
+					p.sendMessage(color("&cGave you Tier I armour!"));
+
+				}
+
 
 			}
 

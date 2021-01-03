@@ -7,6 +7,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Effect;
 import org.bukkit.Material;
 import org.bukkit.entity.HumanEntity;
+import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryInteractEvent;
@@ -26,22 +27,27 @@ public class ArmourListener implements Listener {
 	@EventHandler
 	public void armourEvent(InventoryInteractEvent x) {
 
+
 		HumanEntity p = x.getWhoClicked();
-		
+		x.setResult(Event.Result.DENY);
+
 		ArrayList<ItemStack> player_armor = new ArrayList<ItemStack>();
 		
 		player_armor.add(p.getInventory().getHelmet());
 		player_armor.add(p.getInventory().getChestplate());
 		player_armor.add(p.getInventory().getLeggings());
 		player_armor.add(p.getInventory().getBoots());
+
+		ItemStack air = new ItemStack(Material.AIR);
 		
 		int amount = 0;
 		
 		for(ItemStack item: player_armor)
 		{
-			if(item != null)
+			if (!item.equals(air))
 			{
 				amount++;
+				p.sendMessage("full armour: " + amount);
 			}
 		}
 		
@@ -58,14 +64,17 @@ public class ArmourListener implements Listener {
 					if(item.equals(ais.getTierOneHelmet()))
 					{
 						tier1++;
+						p.sendMessage("tier1: " + tier1);
 					}
 					else if(item.equals(ais.getTierTwoHelmet()))
 					{
 						tier2++;
+						p.sendMessage("tier2: " + tier2);
 					}
 					else
 					{
 						tier3++;
+						p.sendMessage("tier3: " + tier3);
 					}
 				}				
 				else if(item.equals(p.getInventory().getChestplate()))
@@ -118,19 +127,22 @@ public class ArmourListener implements Listener {
 		
 		if(tier1 == 4)
 		{
-			//ADD PotionEffect for tier1
+			p.addPotionEffect(PotionEffectType.SPEED.createEffect(400, 2));
+			p.sendMessage("t1fuck");
 		}
 		else if(tier2 == 4)
 		{
+			p.sendMessage("t2fuck");
 			//ADD PotionEffect for tier2
 		}
 		else if(tier3 == 4)
 		{
-			//ADD PotionEffect for tier3
+			p.sendMessage("t3fuck");
 		}
 		else
 		{
 			//Different armor, dont add potioneffect.
+			p.sendMessage("differentfuck");
 			return;
 		}
 		
