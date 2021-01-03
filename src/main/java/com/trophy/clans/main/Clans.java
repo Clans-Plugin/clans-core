@@ -48,11 +48,11 @@ public class Clans extends JavaPlugin
         plm.registerEvents(new CoreBlockListener(), this);
         plm.registerEvents(new CraftingListener(), this);
     }
-    
+
     private void registerTasks() {
-    	ArmourListener al = new ArmourListener();
-    	al.startTask();
-    	
+        ArmourListener al = new ArmourListener();
+        al.startTask();
+
     }
 
 }

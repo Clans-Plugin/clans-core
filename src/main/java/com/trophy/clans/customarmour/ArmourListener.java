@@ -1,6 +1,8 @@
 package com.trophy.clans.customarmour;
 
 import java.util.ArrayList;
+
+import com.trophy.clans.customitemstacks.Items;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Effect;
@@ -20,8 +22,8 @@ import com.trophy.clans.main.Clans;
 
 public class ArmourListener{
 
-	
-	private static ArmourItemStacks ais = new ArmourItemStacks();
+	private static Items ais = new Items();
+
 	
 	private String color(String string) {
 		return ChatColor.translateAlternateColorCodes('&', string);
