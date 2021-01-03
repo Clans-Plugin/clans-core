@@ -1,5 +1,6 @@
 package com.trophy.clans.clansystem;
 
+import com.trophy.clans.customitemstacks.Items;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
@@ -17,7 +18,7 @@ public class ClanCommands implements CommandExecutor {
 		return ChatColor.translateAlternateColorCodes('&', string);
 	}
 
-	private ArmourItemStacks ais = new ArmourItemStacks();
+	private Items ais = new Items();
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
