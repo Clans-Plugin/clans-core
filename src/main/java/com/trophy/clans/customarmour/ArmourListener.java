@@ -34,6 +34,7 @@ public class ArmourListener implements Listener {
 	public void onMove(InventoryInteractEvent event)
 	{
 		Player p = (Player) event.getWhoClicked();
+		p.sendMessage("INTERACTED!!!!");
 		
 		ItemStack helmet = p.getInventory().getHelmet();
 		ItemStack chest = p.getInventory().getChestplate();
