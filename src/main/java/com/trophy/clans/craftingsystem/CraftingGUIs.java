@@ -1,6 +1,6 @@
 package com.trophy.clans.craftingsystem;
 
-import com.trophy.clans.customitemstacks.Items;
+import com.trophy.clans.utility.Items;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;

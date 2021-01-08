@@ -1,7 +1,9 @@
-package com.trophy.clans.customitemstacks;
+package com.trophy.clans.utility;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.entity.Item;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -27,6 +29,71 @@ public class Items {
 
 		return c4;
 	}
+
+	public ItemStack getTier1Wall() {
+
+		ItemStack t1 = new ItemStack(Material.WOOD, 64);
+		ItemMeta t1Meta = t1.getItemMeta();
+		t1Meta.setDisplayName(color("&6&lTier I Wall"));
+		t1.setItemMeta(t1Meta);
+
+
+		return t1;
+	}
+
+	public ItemStack getTier2Wall() {
+
+
+		ItemStack t2 = new ItemStack(Material.BRICK, 64);
+		ItemMeta t2Meta = t2.getItemMeta();
+		t2Meta.setDisplayName(color("&6&lTier 2 Wall"));
+		t2.setItemMeta(t2Meta);
+
+		return t2;
+	}
+
+	public ItemStack getTier3Wall() {
+
+
+		ItemStack t3 = new ItemStack(Material.OBSIDIAN, 64);
+		ItemMeta t3Meta = t3.getItemMeta();
+		t3Meta.setDisplayName(color("&6&lTier 3 Wall"));
+		t3.setItemMeta(t3Meta);
+
+		return t3;
+	}
+
+	public ItemStack getDoorT1() {
+
+		ItemStack door = new ItemStack(Material.WOOD_DOOR);
+		ItemMeta doorMeta = door.getItemMeta();
+		doorMeta.setDisplayName(color("&6&lTier 1 Door"));
+		door.setItemMeta(doorMeta);
+
+		return door;
+	}
+
+	public ItemStack getDoorT2() {
+
+		ItemStack door2 = new ItemStack(Material.IRON_DOOR);
+		ItemMeta door2Meta = door2.getItemMeta();
+		door2Meta.setDisplayName(color("&6&lTier 2 Door"));
+		door2.setItemMeta(door2Meta);
+
+		return door2;
+	}
+
+	public ItemStack getChest() {
+
+		ItemStack chest = new ItemStack(Material.CHEST, 4);
+		ItemMeta chestMeta = chest.getItemMeta();
+		chestMeta.setDisplayName(color("&6&lChest"));
+		chest.setItemMeta(chestMeta);
+
+		return chest;
+	}
+
+
 
 
 	//
@@ -166,6 +233,17 @@ public class Items {
 
 		ItemStack sulfur = new ItemStack(Material.GOLD_ORE, 1);
 		ItemMeta sulfurMeta = sulfur.getItemMeta();
+		sulfurMeta.setDisplayName(color("&e&lSulfur Ore"));
+		sulfur.setItemMeta(sulfurMeta);
+
+		return sulfur;
+	}
+
+	public ItemStack getCookedSulfur() {
+
+
+		ItemStack sulfur = new ItemStack(Material.GOLD_INGOT, 1);
+		ItemMeta sulfurMeta = sulfur.getItemMeta();
 		sulfurMeta.setDisplayName(color("&e&lSulfur"));
 		sulfur.setItemMeta(sulfurMeta);
 
@@ -217,50 +295,104 @@ public class Items {
 
 	public ItemStack getTierTwoHelmet() {
 
+		ItemStack TierTwoHelmet = new ItemStack(Material.CHAINMAIL_HELMET);
+		ItemMeta TierTwoHelmetMeta = TierTwoHelmet.getItemMeta();
+		TierTwoHelmetMeta.setDisplayName(color("&f&lHelmet - Tier II"));
+		TierTwoHelmet.setItemMeta(TierTwoHelmetMeta);
 
-		return null;
+		return TierTwoHelmet;
 	}
 
 	public ItemStack getTierTwoChestplate() {
 
 
-		return null;
+		ItemStack TierTwoChestplate = new ItemStack(Material.CHAINMAIL_CHESTPLATE);
+		ItemMeta TierTwoChestplateMeta = TierTwoChestplate.getItemMeta();
+		TierTwoChestplateMeta.setDisplayName(color("&f&lChestplate - Tier II"));
+		TierTwoChestplate.setItemMeta(TierTwoChestplateMeta);
+
+		return TierTwoChestplate;
 	}
 
 	public ItemStack getTierTwoLeggings() {
 
 
-		return null;
+		ItemStack TierTwoLeggings = new ItemStack(Material.CHAINMAIL_LEGGINGS);
+		ItemMeta TierTwoLeggingsMeta = TierTwoLeggings.getItemMeta();
+		TierTwoLeggingsMeta.setDisplayName(color("&f&lLeggings - Tier II"));
+		TierTwoLeggings.setItemMeta(TierTwoLeggingsMeta);
+
+		return TierTwoLeggings;
 	}
 
 	public ItemStack getTierTwoBoots() {
 
-		return null;
+		ItemStack TierTwoBoots = new ItemStack(Material.CHAINMAIL_BOOTS);
+		ItemMeta TierTwoBootsMeta = TierTwoBoots.getItemMeta();
+		TierTwoBootsMeta.setDisplayName(color("&f&lBoots - Tier II"));
+		TierTwoBoots.setItemMeta(TierTwoBootsMeta);
+
+		return TierTwoBoots;
 	}
 
 	public ItemStack getTierThreeHelmet() {
 
 
-		return null;
+		ItemStack TierThreeHelmet = new ItemStack(Material.DIAMOND_HELMET);
+		ItemMeta TierThreeHelmetMeta = TierThreeHelmet.getItemMeta();
+		TierThreeHelmetMeta.setDisplayName(color("&f&lHelmet - Tier III"));
+		TierThreeHelmet.setItemMeta(TierThreeHelmetMeta);
+
+		return TierThreeHelmet;
 	}
 
 	public ItemStack getTierThreeChestplate() {
 
 
-		return null;
+		ItemStack TierThreeChestplate = new ItemStack(Material.DIAMOND_CHESTPLATE);
+		ItemMeta TierThreeChestplateMeta = TierThreeChestplate.getItemMeta();
+		TierThreeChestplateMeta.setDisplayName(color("&f&lChestplate - Tier III"));
+		TierThreeChestplate.setItemMeta(TierThreeChestplateMeta);
+
+		return TierThreeChestplate;
 	}
 
 	public ItemStack getTierThreeLeggings() {
 
 
-		return null;
+		ItemStack TierThreeLeggings = new ItemStack(Material.DIAMOND_LEGGINGS);
+		ItemMeta TierThreeLeggingsMeta = TierThreeLeggings.getItemMeta();
+		TierThreeLeggingsMeta.setDisplayName(color("&f&lLeggings - Tier III"));
+		TierThreeLeggings.setItemMeta(TierThreeLeggingsMeta);
+
+		return TierThreeLeggings;
 	}
 
 	public ItemStack getTierThreeBoots() {
 
-		return null;
+		ItemStack TierThreeBoots = new ItemStack(Material.DIAMOND_BOOTS);
+		ItemMeta TierThreeBootsMeta = TierThreeBoots.getItemMeta();
+		TierThreeBootsMeta.setDisplayName(color("&f&lBoots - Tier III"));
+		TierThreeBoots.setItemMeta(TierThreeBootsMeta);
+
+		return TierThreeBoots;
 	}
 
+	//
+	//
+	//
+	//  GIVE ITEM METHOD
+	//
+	//
+	//
 
+
+	public void giveCustomItem(Player target, ItemStack item) {
+
+		target.getInventory().addItem(item);
+		target.sendMessage(color(item.getAmount() + "x " + item.getItemMeta().getDisplayName() + " &chas been added to your inventory!"));
+
+
+	}
 
 }

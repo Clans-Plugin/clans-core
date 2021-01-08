@@ -1,6 +1,6 @@
 package com.trophy.clans.clansystem;
 
-import com.trophy.clans.customitemstacks.Items;
+import com.trophy.clans.utility.Items;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
@@ -42,13 +42,29 @@ public class ClanCommands implements CommandExecutor {
 			p.sendMessage(color("&c/clan home"));
 			p.sendMessage(color("&c/clan top"));
 
-		} else if (args.length == 1) {
+		} else
+
+			//ARGS length 2 commands
+
+			if (args.length == 1) {
+
+				if (args[0].equalsIgnoreCase("give")) {
+
+					p.sendMessage(color("               &c&lList of available items"));
+					p.sendMessage(color("&cRaiding & Base blocks: &fc4, wallt1, wallt2, wallt3, doort1, doort2, chest"));
+					p.sendMessage(color("&cTools: &fupgradetool, pickt1, pickt2, pickt3, axet1, axet2, axet3"));
+					p.sendMessage(color("&cResources: &fwood, stone, iron, fuel, sulfur"));
+					p.sendMessage(color("&cArmour sets: &farmourt1, armourt2, armourt3"));
+
+				}
 
 
-			//ARGS 1 commands
+			} else
+
+				//ARGS length 2 commands
 
 
-		} else if (args.length == 2) {
+				if (args.length == 2) {
 
 			if (args[0].equalsIgnoreCase("create")) {
 
@@ -126,17 +142,104 @@ public class ClanCommands implements CommandExecutor {
 
 			} else if (args[0].equalsIgnoreCase("give")) {
 
-				if (args[1].equalsIgnoreCase("armourtier1")) {
+				if (args[1].equalsIgnoreCase("c4")) {
 
-					p.getInventory().addItem(ais.getTierOneBoots());
-					p.getInventory().addItem(ais.getTierOneLeggings());
-					p.getInventory().addItem(ais.getTierOneChestplate());
-					p.getInventory().addItem(ais.getTierOneHelmet());
+					ais.giveCustomItem(p, ais.getExplosive());
 
-					p.sendMessage(color("&cGave you Tier I armour!"));
+				} else if (args[1].equalsIgnoreCase("wallt1")) {
+
+					ais.giveCustomItem(p, ais.getTier1Wall());
+
+				} else if (args[1].equalsIgnoreCase("wallt2")) {
+
+					ais.giveCustomItem(p, ais.getTier2Wall());
+
+				} else if (args[1].equalsIgnoreCase("wallt3")) {
+
+					ais.giveCustomItem(p, ais.getTier3Wall());
+
+				} else if (args[1].equalsIgnoreCase("doort1")) {
+
+					ais.giveCustomItem(p, ais.getDoorT1());
+
+				} else if (args[1].equalsIgnoreCase("doort2")) {
+
+					ais.giveCustomItem(p, ais.getDoorT2());
+
+				} else if (args[1].equalsIgnoreCase("chest")) {
+
+					ais.giveCustomItem(p, ais.getChest());
+
+				} else if (args[1].equalsIgnoreCase("upgradetool")) {
+
+					ais.giveCustomItem(p, ais.getUpgradeTool());
+
+				} else if (args[1].equalsIgnoreCase("pickt1")) {
+
+					ais.giveCustomItem(p, ais.getTier1PickAxe());
+
+				} else if (args[1].equalsIgnoreCase("pickt2")) {
+
+					ais.giveCustomItem(p, ais.getTier2PickAxe());
+
+				} else if (args[1].equalsIgnoreCase("pickt3")) {
+
+					ais.giveCustomItem(p, ais.getTier3PickAxe());
+
+				} else if (args[1].equalsIgnoreCase("axet1")) {
+
+					ais.giveCustomItem(p, ais.getTier1Axe());
+
+				} else if (args[1].equalsIgnoreCase("axet2")) {
+
+					ais.giveCustomItem(p, ais.getTier2Axe());
+
+				} else if (args[1].equalsIgnoreCase("axet3")) {
+
+					ais.giveCustomItem(p, ais.getTier3Axe());
+
+				} else if (args[1].equalsIgnoreCase("wood")) {
+
+					ais.giveCustomItem(p, ais.getWood());
+
+				} else if (args[1].equalsIgnoreCase("stone")) {
+
+					ais.giveCustomItem(p, ais.getStone());
+
+				} else if (args[1].equalsIgnoreCase("iron")) {
+
+					ais.giveCustomItem(p, ais.getIron());
+
+				} else if (args[1].equalsIgnoreCase("fuel")) {
+
+					ais.giveCustomItem(p, ais.getFuel());
+
+				} else if (args[1].equalsIgnoreCase("sulfur")) {
+
+					ais.giveCustomItem(p, ais.getSulfur());
+
+				} else if (args[1].equalsIgnoreCase("armourt1")) {
+
+					ais.giveCustomItem(p, ais.getTierOneHelmet());
+					ais.giveCustomItem(p, ais.getTierOneChestplate());
+					ais.giveCustomItem(p, ais.getTierOneLeggings());
+					ais.giveCustomItem(p, ais.getTierOneBoots());
+
+				} else if (args[1].equalsIgnoreCase("armourt2")) {
+
+					ais.giveCustomItem(p, ais.getTierTwoHelmet());
+					ais.giveCustomItem(p, ais.getTierTwoChestplate());
+					ais.giveCustomItem(p, ais.getTierTwoLeggings());
+					ais.giveCustomItem(p, ais.getTierTwoBoots());
+
+				} else if (args[1].equalsIgnoreCase("armourt3")) {
+
+					ais.giveCustomItem(p, ais.getTierThreeHelmet());
+					ais.giveCustomItem(p, ais.getTierThreeChestplate());
+					ais.giveCustomItem(p, ais.getTierThreeLeggings());
+					ais.giveCustomItem(p, ais.getTierThreeBoots());
 
 				}
-
 
 			}
 
