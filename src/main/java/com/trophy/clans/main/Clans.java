@@ -2,6 +2,7 @@ package com.trophy.clans.main;
 
 import com.trophy.clans.clansystem.ClanCommands;
 import com.trophy.clans.clansystem.CoreBlockListener;
+import com.trophy.clans.clansystem.ExplosiveListener;
 import com.trophy.clans.craftingsystem.CraftingListener;
 import com.trophy.clans.customarmour.ArmourListener;
 import com.trophy.clans.customore.ResourcesListener;
@@ -47,6 +48,7 @@ public class Clans extends JavaPlugin
         plm.registerEvents(new CoreBlockListener(), this);
         plm.registerEvents(new CraftingListener(), this);
         plm.registerEvents(new ArmourListener(), this);
+        plm.registerEvents(new ExplosiveListener(), this);
     }
 
 
