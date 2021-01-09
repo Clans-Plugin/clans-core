@@ -2,9 +2,11 @@ package com.trophy.clans.customarmour;
 
 import com.trophy.clans.utility.Items;
 import org.bukkit.ChatColor;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryInteractEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
@@ -20,8 +22,9 @@ public class ArmourListener implements Listener {
 	}
 	
 	@EventHandler
-	public void onMove(PlayerInteractEvent event) {
-		Player p = event.getPlayer();
+	public void onMove(InventoryInteractEvent event)
+	{
+		Player p = (Player) event.getWhoClicked();
 		p.sendMessage("INTERACTED!!!!");
 		
 		ItemStack helmet = p.getInventory().getHelmet();
