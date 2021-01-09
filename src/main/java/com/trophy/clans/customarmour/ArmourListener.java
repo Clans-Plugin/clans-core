@@ -138,6 +138,21 @@ public class ArmourListener implements Listener {
 									}
 								}
 							}
+							else
+							{
+								if(p.hasPotionEffect(PotionEffectType.SPEED))
+								{
+									Bukkit.getScheduler().runTaskLater(Clans.getInstance(), new Runnable()
+									{
+										@Override
+										public void run()
+										{
+											p.removePotionEffect(PotionEffectType.SPEED);
+										}
+								
+									}, 1L);
+								}
+							}
 						}
 					}
 				}, 0L, 2L);
