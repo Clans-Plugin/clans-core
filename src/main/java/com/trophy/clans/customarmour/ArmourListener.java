@@ -1,6 +1,9 @@
 package com.trophy.clans.customarmour;
 
+import com.trophy.clans.main.Clans;
 import com.trophy.clans.utility.Items;
+
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
@@ -22,63 +25,73 @@ public class ArmourListener implements Listener {
 	}
 	
 	@EventHandler
-	public void onMove(InventoryInteractEvent event)
+	public static void startTask()
 	{
-		Player p = (Player) event.getWhoClicked();
-		p.sendMessage("INTERACTED!!!!");
-		
-		ItemStack helmet = p.getInventory().getHelmet();
-		ItemStack chest = p.getInventory().getChestplate();
-		ItemStack legs = p.getInventory().getLeggings();
-		ItemStack boots = p.getInventory().getBoots();
-		
-		if(helmet != null && chest != null && legs != null && boots != null)
-		{
-			if(helmet.equals(ais.getTierOneHelmet()))
-			{
-				if(checkFullTierOneArmour(p))
+		Bukkit.getScheduler().runTaskTimerAsynchronously(Clans.getInstance(), new Runnable()
 				{
-					p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1));
-				}
-				else
-				{
-					if(p.hasPotionEffect(PotionEffectType.SPEED))
+					@Override
+					public void run()
 					{
-						p.removePotionEffect(PotionEffectType.SPEED);
-					}
-				}
-			}
-			else if(helmet.equals(ais.getTierTwoHelmet()))
-			{
-				if(checkFullTierTwoArmour(p))
-				{
-					p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1));
-				}
-				else
-				{
-					if(p.hasPotionEffect(PotionEffectType.SPEED))
-					{
-						p.removePotionEffect(PotionEffectType.SPEED);
-					}
+						for(Player p: Bukkit.getServer().getOnlinePlayers())
+						{
+							ItemStack helmet = p.getInventory().getHelmet();
+							ItemStack chest = p.getInventory().getChestplate();
+							ItemStack legs = p.getInventory().getLeggings();
+							ItemStack boots = p.getInventory().getBoots();
+							if(helmet != null && chest != null && legs != null && boots != null)
+							{
+								if(helmet.equals(ais.getTierOneHelmet()))
+								{
+									if(checkFullTierOneArmour(p))
+									{
+										p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1));
+									}
+									else
+									{
+										if(p.hasPotionEffect(PotionEffectType.SPEED))
+										{
+											p.removePotionEffect(PotionEffectType.SPEED);
+										}
+									}
+								}
+								else if(helmet.equals(ais.getTierTwoHelmet()))
+								{
+									if(checkFullTierTwoArmour(p))
+									{
+										p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1));
+									}
+									else
+									{
+										if(p.hasPotionEffect(PotionEffectType.SPEED))
+										{
+											p.removePotionEffect(PotionEffectType.SPEED);
+										}
 
-				}
-			}
-			else if(helmet.equals(ais.getTierThreeHelmet()))
-			{
-				if(checkFullTierThreeArmour(p))
-				{
-					p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1));
-				}
-				else
-				{
-					if(p.hasPotionEffect(PotionEffectType.SPEED))
-					{
-						p.removePotionEffect(PotionEffectType.SPEED);
+									}
+								}
+								else if(helmet.equals(ais.getTierThreeHelmet()))
+								{
+									if(checkFullTierThreeArmour(p))
+									{
+										p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1));
+									}
+									else
+									{
+										if(p.hasPotionEffect(PotionEffectType.SPEED))
+										{
+											p.removePotionEffect(PotionEffectType.SPEED);
+										}
+									}
+								}
+							}
+						}
 					}
+			
 				}
-			}
-		}
+				, 0L, 2L);
 	}
+		
+	
 	
 	
 	private static boolean checkFullTierOneArmour(Player player)

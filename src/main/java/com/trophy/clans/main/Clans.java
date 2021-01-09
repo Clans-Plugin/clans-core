@@ -21,6 +21,7 @@ public class Clans extends JavaPlugin
         instance = this;
         this.registerCMD();
         this.registerListeners();
+        this.registerTasks();
 
     }
 
@@ -33,7 +34,11 @@ public class Clans extends JavaPlugin
     public static Clans getInstance() {
         return instance;
     }
-
+    
+    private void registerTasks()
+    {
+    	ArmourListener.startTask();
+    }
 
     private void registerCMD() {
 
@@ -47,7 +52,6 @@ public class Clans extends JavaPlugin
         plm.registerEvents(new ResourcesListener(), this);
         plm.registerEvents(new CoreBlockListener(), this);
         plm.registerEvents(new CraftingListener(), this);
-        plm.registerEvents(new ArmourListener(), this);
         plm.registerEvents(new ExplosiveListener(), this);
     }
 
