@@ -38,57 +38,52 @@ public class ArmourListener implements Listener {
 							ItemStack chest = p.getInventory().getChestplate();
 							ItemStack legs = p.getInventory().getLeggings();
 							ItemStack boots = p.getInventory().getBoots();
-							if(helmet != null && chest != null && legs != null && boots != null)
+							if(helmet.equals(ais.getTierOneHelmet()))
 							{
-								if(helmet.equals(ais.getTierOneHelmet()))
+								if(checkFullTierOneArmour(p))
 								{
-									if(checkFullTierOneArmour(p))
+									p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1));
+								}
+								else
+								{
+									if(p.hasPotionEffect(PotionEffectType.SPEED))
 									{
-										p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1));
-									}
-									else
-									{
-										if(p.hasPotionEffect(PotionEffectType.SPEED))
-										{
-											p.removePotionEffect(PotionEffectType.SPEED);
-										}
+										p.removePotionEffect(PotionEffectType.SPEED);
 									}
 								}
-								else if(helmet.equals(ais.getTierTwoHelmet()))
+							}
+							else if(helmet.equals(ais.getTierTwoHelmet()))
+							{
+								if(checkFullTierTwoArmour(p))
 								{
-									if(checkFullTierTwoArmour(p))
+									p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1));
+								}
+								else
+								{
+									if(p.hasPotionEffect(PotionEffectType.SPEED))
 									{
-										p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1));
+										p.removePotionEffect(PotionEffectType.SPEED);
 									}
-									else
-									{
-										if(p.hasPotionEffect(PotionEffectType.SPEED))
-										{
-											p.removePotionEffect(PotionEffectType.SPEED);
-										}
 
-									}
 								}
-								else if(helmet.equals(ais.getTierThreeHelmet()))
+							}
+							else if(helmet.equals(ais.getTierThreeHelmet()))
+							{
+								if(checkFullTierThreeArmour(p))
 								{
-									if(checkFullTierThreeArmour(p))
+									p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1));
+								}
+								else
+								{
+									if(p.hasPotionEffect(PotionEffectType.SPEED))
 									{
-										p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1));
-									}
-									else
-									{
-										if(p.hasPotionEffect(PotionEffectType.SPEED))
-										{
-											p.removePotionEffect(PotionEffectType.SPEED);
-										}
+										p.removePotionEffect(PotionEffectType.SPEED);
 									}
 								}
 							}
 						}
 					}
-			
-				}
-				, 0L, 2L);
+				}, 0L, 2L);
 	}
 		
 	
