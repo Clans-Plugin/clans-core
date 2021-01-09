@@ -40,8 +40,10 @@ public class ArmourListener implements Listener {
 							ItemStack boots = p.getInventory().getBoots();
 							if(helmet.equals(ais.getTierOneHelmet()))
 							{
+								p.sendMessage("tier 1 helmet true");
 								if(checkFullTierOneArmour(p))
 								{
+									p.sendMessage("tier 1 equip");
 									p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1));
 								}
 								else
@@ -54,8 +56,10 @@ public class ArmourListener implements Listener {
 							}
 							else if(helmet.equals(ais.getTierTwoHelmet()))
 							{
+								p.sendMessage("tier 2 helmet true");
 								if(checkFullTierTwoArmour(p))
 								{
+									p.sendMessage("tier 2 equip");
 									p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1));
 								}
 								else
@@ -69,8 +73,10 @@ public class ArmourListener implements Listener {
 							}
 							else if(helmet.equals(ais.getTierThreeHelmet()))
 							{
+								p.sendMessage("tier 3 helmet true");
 								if(checkFullTierThreeArmour(p))
 								{
+									p.sendMessage("tier 3 equip");
 									p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1));
 								}
 								else
