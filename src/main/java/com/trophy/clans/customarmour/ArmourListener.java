@@ -52,8 +52,6 @@ public class ArmourListener implements Listener {
 												}
 										
 											}, 1L);
-									p.sendMessage("tier 1 equip");
-									p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1));
 								}
 								else
 								{
@@ -85,23 +83,21 @@ public class ArmourListener implements Listener {
 										}
 								
 									}, 1L);
-									p.sendMessage("tier 2 equip");
-									p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1));
 								}
 								else
 								{
-									if(p.hasPotionEffect(PotionEffectType.SPEED))
-									{
 										Bukkit.getScheduler().runTaskLater(Clans.getInstance(), new Runnable()
 										{
 											@Override
 											public void run()
 											{
-												p.removePotionEffect(PotionEffectType.SPEED);
+												if(p.hasPotionEffect(PotionEffectType.SPEED))
+												{
+													p.removePotionEffect(PotionEffectType.SPEED);
+												}
 											}
 									
 										}, 1L);
-									}
 
 								}
 							}
@@ -119,8 +115,6 @@ public class ArmourListener implements Listener {
 										}
 								
 									}, 1L);
-									p.sendMessage("tier 3 equip");
-									p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1));
 								}
 								else
 								{
@@ -131,7 +125,10 @@ public class ArmourListener implements Listener {
 											@Override
 											public void run()
 											{
-												p.removePotionEffect(PotionEffectType.SPEED);
+												if(p.hasPotionEffect(PotionEffectType.SPEED))
+												{
+													p.removePotionEffect(PotionEffectType.SPEED);
+												}
 											}
 									
 										}, 1L);
@@ -140,18 +137,18 @@ public class ArmourListener implements Listener {
 							}
 							else
 							{
-								if(p.hasPotionEffect(PotionEffectType.SPEED))
-								{
-									Bukkit.getScheduler().runTaskLater(Clans.getInstance(), new Runnable()
+								Bukkit.getScheduler().runTaskLater(Clans.getInstance(), new Runnable()
 									{
 										@Override
 										public void run()
 										{
-											p.removePotionEffect(PotionEffectType.SPEED);
+											if(p.hasPotionEffect(PotionEffectType.SPEED))
+											{
+												p.removePotionEffect(PotionEffectType.SPEED);
+											}
 										}
 								
 									}, 1L);
-								}
 							}
 						}
 					}
