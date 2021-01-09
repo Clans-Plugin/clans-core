@@ -42,13 +42,29 @@ public class ArmourListener implements Listener {
 							{
 								if(checkFullTierOneArmour(p))
 								{
-									p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1));
+									Bukkit.getScheduler().runTaskLater(Clans.getInstance(), new Runnable()
+											{
+												@Override
+												public void run()
+												{
+													p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1));
+												}
+										
+											}, 1L);
 								}
 								else
 								{
 									if(p.hasPotionEffect(PotionEffectType.SPEED))
 									{
-										p.removePotionEffect(PotionEffectType.SPEED);
+										Bukkit.getScheduler().runTaskLater(Clans.getInstance(), new Runnable()
+										{
+											@Override
+											public void run()
+											{
+												p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1));
+											}
+									
+										}, 1L);
 									}
 								}
 							}
@@ -56,13 +72,29 @@ public class ArmourListener implements Listener {
 							{
 								if(checkFullTierTwoArmour(p))
 								{
-									p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1));
+									Bukkit.getScheduler().runTaskLater(Clans.getInstance(), new Runnable()
+									{
+										@Override
+										public void run()
+										{
+											p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1));
+										}
+								
+									}, 1L);
 								}
 								else
 								{
 									if(p.hasPotionEffect(PotionEffectType.SPEED))
 									{
-										p.removePotionEffect(PotionEffectType.SPEED);
+										Bukkit.getScheduler().runTaskLater(Clans.getInstance(), new Runnable()
+										{
+											@Override
+											public void run()
+											{
+												p.removePotionEffect(PotionEffectType.SPEED);
+											}
+									
+										}, 1L);
 									}
 
 								}
@@ -71,13 +103,29 @@ public class ArmourListener implements Listener {
 							{
 								if(checkFullTierThreeArmour(p))
 								{
-									p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1));
+									Bukkit.getScheduler().runTaskLater(Clans.getInstance(), new Runnable()
+									{
+										@Override
+										public void run()
+										{
+											p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1));
+										}
+								
+									}, 1L);
 								}
 								else
 								{
 									if(p.hasPotionEffect(PotionEffectType.SPEED))
 									{
-										p.removePotionEffect(PotionEffectType.SPEED);
+										Bukkit.getScheduler().runTaskLater(Clans.getInstance(), new Runnable()
+										{
+											@Override
+											public void run()
+											{
+												p.removePotionEffect(PotionEffectType.SPEED);
+											}
+									
+										}, 1L);
 									}
 								}
 							}
