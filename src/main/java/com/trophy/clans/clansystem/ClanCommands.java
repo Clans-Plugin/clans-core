@@ -53,7 +53,7 @@ public class ClanCommands implements CommandExecutor {
 					p.sendMessage(color("               &c&lList of available items"));
 					p.sendMessage(color("&cRaiding & Base blocks: &fc4, wallt1, wallt2, wallt3, doort1, doort2, chest"));
 					p.sendMessage(color("&cTools: &fupgradetool, pickt1, pickt2, pickt3, axet1, axet2, axet3"));
-					p.sendMessage(color("&cResources: &fwood, stone, iron, fuel, sulfur"));
+					p.sendMessage(color("&cResources: &fwood, stone, iron, fuel, sulfur, cookedsulfur"));
 					p.sendMessage(color("&cArmour sets: &farmourt1, armourt2, armourt3"));
 
 				}
@@ -144,19 +144,21 @@ public class ClanCommands implements CommandExecutor {
 
 				if (args[1].equalsIgnoreCase("c4")) {
 
-					ais.giveCustomItem(p, ais.getExplosive());
+					ais.giveCustomItem(p, ais.getExplosive(4));
+					p.sendMessage(ais.getCraftTime(ais.getTierOneBoots(), 2).toString());
+
 
 				} else if (args[1].equalsIgnoreCase("wallt1")) {
 
-					ais.giveCustomItem(p, ais.getTier1Wall());
+					ais.giveCustomItem(p, ais.getTier1Wall(64));
 
 				} else if (args[1].equalsIgnoreCase("wallt2")) {
 
-					ais.giveCustomItem(p, ais.getTier2Wall());
+					ais.giveCustomItem(p, ais.getTier2Wall(64));
 
 				} else if (args[1].equalsIgnoreCase("wallt3")) {
 
-					ais.giveCustomItem(p, ais.getTier3Wall());
+					ais.giveCustomItem(p, ais.getTier3Wall(64));
 
 				} else if (args[1].equalsIgnoreCase("doort1")) {
 
@@ -168,7 +170,7 @@ public class ClanCommands implements CommandExecutor {
 
 				} else if (args[1].equalsIgnoreCase("chest")) {
 
-					ais.giveCustomItem(p, ais.getChest());
+					ais.giveCustomItem(p, ais.getChest(4));
 
 				} else if (args[1].equalsIgnoreCase("upgradetool")) {
 
@@ -200,23 +202,27 @@ public class ClanCommands implements CommandExecutor {
 
 				} else if (args[1].equalsIgnoreCase("wood")) {
 
-					ais.giveCustomItem(p, ais.getWood());
+					ais.giveCustomItem(p, ais.getWood(64));
 
 				} else if (args[1].equalsIgnoreCase("stone")) {
 
-					ais.giveCustomItem(p, ais.getStone());
+					ais.giveCustomItem(p, ais.getStone(64));
 
 				} else if (args[1].equalsIgnoreCase("iron")) {
 
-					ais.giveCustomItem(p, ais.getIron());
+					ais.giveCustomItem(p, ais.getIron(64));
 
 				} else if (args[1].equalsIgnoreCase("fuel")) {
 
-					ais.giveCustomItem(p, ais.getFuel());
+					ais.giveCustomItem(p, ais.getFuel(64));
 
 				} else if (args[1].equalsIgnoreCase("sulfur")) {
 
-					ais.giveCustomItem(p, ais.getSulfur());
+					ais.giveCustomItem(p, ais.getSulfur(64));
+
+				} else if (args[1].equalsIgnoreCase("cookedsulfur")) {
+
+					ais.giveCustomItem(p, ais.getCookedSulfur(64));
 
 				} else if (args[1].equalsIgnoreCase("armourt1")) {
 

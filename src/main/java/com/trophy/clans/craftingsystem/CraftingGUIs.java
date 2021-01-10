@@ -54,7 +54,20 @@ public class CraftingGUIs {
 		Inventory inv = Bukkit.createInventory(null, 9, "Raiding");
 
 
-		inv.setItem(4, i.getExplosive());
+		inv.setItem(4, i.getExplosive(1));
+
+		p.openInventory(inv);
+
+
+	}
+
+	public static void openBaseGui(Player p) {
+
+
+		Inventory inv = Bukkit.createInventory(null, 27, "Base blocks");
+
+
+		inv.setItem(4, i.getExplosive(1));
 
 		p.openInventory(inv);
 

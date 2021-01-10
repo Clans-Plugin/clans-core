@@ -20,9 +20,9 @@ public class Items {
 	//  BASES
 	//
 
-	public ItemStack getExplosive() {
+	public ItemStack getExplosive(Integer amount) {
 
-		ItemStack c4 = new ItemStack(Material.TNT, 1);
+		ItemStack c4 = new ItemStack(Material.TNT, amount);
 		ItemMeta c4Meta = c4.getItemMeta();
 		c4Meta.setDisplayName(color("&c&lC4"));
 		c4.setItemMeta(c4Meta);
@@ -30,9 +30,9 @@ public class Items {
 		return c4;
 	}
 
-	public ItemStack getTier1Wall() {
+	public ItemStack getTier1Wall(Integer amount) {
 
-		ItemStack t1 = new ItemStack(Material.WOOD, 64);
+		ItemStack t1 = new ItemStack(Material.WOOD, amount);
 		ItemMeta t1Meta = t1.getItemMeta();
 		t1Meta.setDisplayName(color("&6&lTier I Wall"));
 		t1.setItemMeta(t1Meta);
@@ -41,10 +41,10 @@ public class Items {
 		return t1;
 	}
 
-	public ItemStack getTier2Wall() {
+	public ItemStack getTier2Wall(Integer amount) {
 
 
-		ItemStack t2 = new ItemStack(Material.BRICK, 64);
+		ItemStack t2 = new ItemStack(Material.BRICK, amount);
 		ItemMeta t2Meta = t2.getItemMeta();
 		t2Meta.setDisplayName(color("&6&lTier 2 Wall"));
 		t2.setItemMeta(t2Meta);
@@ -52,10 +52,10 @@ public class Items {
 		return t2;
 	}
 
-	public ItemStack getTier3Wall() {
+	public ItemStack getTier3Wall(Integer amount) {
 
 
-		ItemStack t3 = new ItemStack(Material.OBSIDIAN, 64);
+		ItemStack t3 = new ItemStack(Material.OBSIDIAN, amount);
 		ItemMeta t3Meta = t3.getItemMeta();
 		t3Meta.setDisplayName(color("&6&lTier 3 Wall"));
 		t3.setItemMeta(t3Meta);
@@ -65,7 +65,7 @@ public class Items {
 
 	public ItemStack getDoorT1() {
 
-		ItemStack door = new ItemStack(Material.WOOD_DOOR);
+		ItemStack door = new ItemStack(Material.WOOD_DOOR, 1);
 		ItemMeta doorMeta = door.getItemMeta();
 		doorMeta.setDisplayName(color("&6&lTier 1 Door"));
 		door.setItemMeta(doorMeta);
@@ -75,7 +75,7 @@ public class Items {
 
 	public ItemStack getDoorT2() {
 
-		ItemStack door2 = new ItemStack(Material.IRON_DOOR);
+		ItemStack door2 = new ItemStack(Material.IRON_DOOR, 1);
 		ItemMeta door2Meta = door2.getItemMeta();
 		door2Meta.setDisplayName(color("&6&lTier 2 Door"));
 		door2.setItemMeta(door2Meta);
@@ -83,9 +83,9 @@ public class Items {
 		return door2;
 	}
 
-	public ItemStack getChest() {
+	public ItemStack getChest(Integer amount) {
 
-		ItemStack chest = new ItemStack(Material.CHEST, 4);
+		ItemStack chest = new ItemStack(Material.CHEST, amount);
 		ItemMeta chestMeta = chest.getItemMeta();
 		chestMeta.setDisplayName(color("&6&lChest"));
 		chest.setItemMeta(chestMeta);
@@ -107,6 +107,7 @@ public class Items {
 		ItemMeta UpgradeToolMeta = UpgradeTool.getItemMeta();
 		UpgradeToolMeta.setDisplayName(color("&c&lUpgrade Tool"));
 		UpgradeTool.setItemMeta(UpgradeToolMeta);
+
 
 		return UpgradeTool;
 	}
@@ -182,9 +183,9 @@ public class Items {
 	//  ORES
 	//
 
-	public ItemStack getWood() {
+	public ItemStack getWood(Integer amount) {
 
-		ItemStack wood = new ItemStack(Material.LOG, 2);
+		ItemStack wood = new ItemStack(Material.LOG, amount);
 		ItemMeta woodMeta = wood.getItemMeta();
 		woodMeta.setDisplayName(color("&8&lWood"));
 		wood.setItemMeta(woodMeta);
@@ -193,9 +194,9 @@ public class Items {
 	}
 
 
-	public ItemStack getStone() {
+	public ItemStack getStone(Integer amount) {
 
-		ItemStack stone = new ItemStack(Material.STONE, 2);
+		ItemStack stone = new ItemStack(Material.STONE, amount);
 		ItemMeta stoneMeta = stone.getItemMeta();
 		stoneMeta.setDisplayName(color("&7&lStone"));
 		stone.setItemMeta(stoneMeta);
@@ -204,10 +205,10 @@ public class Items {
 	}
 
 
-	public ItemStack getIron() {
+	public ItemStack getIron(Integer amount) {
 
 
-		ItemStack iron = new ItemStack(Material.IRON_INGOT, 2);
+		ItemStack iron = new ItemStack(Material.IRON_INGOT, amount);
 		ItemMeta ironMeta = iron.getItemMeta();
 		ironMeta.setDisplayName(color("&f&lIron"));
 		iron.setItemMeta(ironMeta);
@@ -216,10 +217,10 @@ public class Items {
 	}
 
 
-	public ItemStack getFuel() {
+	public ItemStack getFuel(Integer amount) {
 
 
-		ItemStack fuel = new ItemStack(Material.COAL, 2);
+		ItemStack fuel = new ItemStack(Material.COAL, amount);
 		ItemMeta fuelMeta = fuel.getItemMeta();
 		fuelMeta.setDisplayName(color("&c&lFuel"));
 		fuel.setItemMeta(fuelMeta);
@@ -228,10 +229,10 @@ public class Items {
 	}
 
 
-	public ItemStack getSulfur() {
+	public ItemStack getSulfur(Integer amount) {
 
 
-		ItemStack sulfur = new ItemStack(Material.GOLD_ORE, 1);
+		ItemStack sulfur = new ItemStack(Material.GOLD_ORE, amount);
 		ItemMeta sulfurMeta = sulfur.getItemMeta();
 		sulfurMeta.setDisplayName(color("&e&lSulfur Ore"));
 		sulfur.setItemMeta(sulfurMeta);
@@ -239,10 +240,10 @@ public class Items {
 		return sulfur;
 	}
 
-	public ItemStack getCookedSulfur() {
+	public ItemStack getCookedSulfur(Integer amount) {
 
 
-		ItemStack sulfur = new ItemStack(Material.GOLD_INGOT, 1);
+		ItemStack sulfur = new ItemStack(Material.GOLD_INGOT, amount);
 		ItemMeta sulfurMeta = sulfur.getItemMeta();
 		sulfurMeta.setDisplayName(color("&e&lSulfur"));
 		sulfur.setItemMeta(sulfurMeta);
@@ -255,7 +256,7 @@ public class Items {
 
 	public ItemStack getTierOneHelmet() {
 
-		ItemStack TierOneHelmet = new ItemStack(Material.IRON_HELMET);
+		ItemStack TierOneHelmet = new ItemStack(Material.IRON_HELMET, 1);
 		ItemMeta TierOneHelmetMeta = TierOneHelmet.getItemMeta();
 		TierOneHelmetMeta.setDisplayName(color("&f&lHelmet - Tier I"));
 		TierOneHelmet.setItemMeta(TierOneHelmetMeta);
@@ -265,7 +266,7 @@ public class Items {
 
 	public ItemStack getTierOneChestplate() {
 
-		ItemStack TierOneChestplate = new ItemStack(Material.IRON_CHESTPLATE);
+		ItemStack TierOneChestplate = new ItemStack(Material.IRON_CHESTPLATE, 1);
 		ItemMeta TierOneChestplateMeta = TierOneChestplate.getItemMeta();
 		TierOneChestplateMeta.setDisplayName(color("&f&lChestplate - Tier I"));
 		TierOneChestplate.setItemMeta(TierOneChestplateMeta);
@@ -275,7 +276,7 @@ public class Items {
 
 	public ItemStack getTierOneLeggings() {
 
-		ItemStack TierOneLeggings = new ItemStack(Material.IRON_LEGGINGS);
+		ItemStack TierOneLeggings = new ItemStack(Material.IRON_LEGGINGS, 1);
 		ItemMeta TierOneLeggingsMeta = TierOneLeggings.getItemMeta();
 		TierOneLeggingsMeta.setDisplayName(color("&f&lLeggings - Tier I"));
 		TierOneLeggings.setItemMeta(TierOneLeggingsMeta);
@@ -285,7 +286,7 @@ public class Items {
 
 	public ItemStack getTierOneBoots() {
 
-		ItemStack TierOneBoots = new ItemStack(Material.IRON_BOOTS);
+		ItemStack TierOneBoots = new ItemStack(Material.IRON_BOOTS, 1);
 		ItemMeta TierOneBootsMeta = TierOneBoots.getItemMeta();
 		TierOneBootsMeta.setDisplayName(color("&f&lBoots - Tier I"));
 		TierOneBoots.setItemMeta(TierOneBootsMeta);
@@ -295,7 +296,7 @@ public class Items {
 
 	public ItemStack getTierTwoHelmet() {
 
-		ItemStack TierTwoHelmet = new ItemStack(Material.CHAINMAIL_HELMET);
+		ItemStack TierTwoHelmet = new ItemStack(Material.CHAINMAIL_HELMET, 1);
 		ItemMeta TierTwoHelmetMeta = TierTwoHelmet.getItemMeta();
 		TierTwoHelmetMeta.setDisplayName(color("&f&lHelmet - Tier II"));
 		TierTwoHelmet.setItemMeta(TierTwoHelmetMeta);
@@ -306,7 +307,7 @@ public class Items {
 	public ItemStack getTierTwoChestplate() {
 
 
-		ItemStack TierTwoChestplate = new ItemStack(Material.CHAINMAIL_CHESTPLATE);
+		ItemStack TierTwoChestplate = new ItemStack(Material.CHAINMAIL_CHESTPLATE, 1);
 		ItemMeta TierTwoChestplateMeta = TierTwoChestplate.getItemMeta();
 		TierTwoChestplateMeta.setDisplayName(color("&f&lChestplate - Tier II"));
 		TierTwoChestplate.setItemMeta(TierTwoChestplateMeta);
@@ -317,7 +318,7 @@ public class Items {
 	public ItemStack getTierTwoLeggings() {
 
 
-		ItemStack TierTwoLeggings = new ItemStack(Material.CHAINMAIL_LEGGINGS);
+		ItemStack TierTwoLeggings = new ItemStack(Material.CHAINMAIL_LEGGINGS, 1);
 		ItemMeta TierTwoLeggingsMeta = TierTwoLeggings.getItemMeta();
 		TierTwoLeggingsMeta.setDisplayName(color("&f&lLeggings - Tier II"));
 		TierTwoLeggings.setItemMeta(TierTwoLeggingsMeta);
@@ -327,7 +328,7 @@ public class Items {
 
 	public ItemStack getTierTwoBoots() {
 
-		ItemStack TierTwoBoots = new ItemStack(Material.CHAINMAIL_BOOTS);
+		ItemStack TierTwoBoots = new ItemStack(Material.CHAINMAIL_BOOTS, 1);
 		ItemMeta TierTwoBootsMeta = TierTwoBoots.getItemMeta();
 		TierTwoBootsMeta.setDisplayName(color("&f&lBoots - Tier II"));
 		TierTwoBoots.setItemMeta(TierTwoBootsMeta);
@@ -338,7 +339,7 @@ public class Items {
 	public ItemStack getTierThreeHelmet() {
 
 
-		ItemStack TierThreeHelmet = new ItemStack(Material.DIAMOND_HELMET);
+		ItemStack TierThreeHelmet = new ItemStack(Material.DIAMOND_HELMET, 1);
 		ItemMeta TierThreeHelmetMeta = TierThreeHelmet.getItemMeta();
 		TierThreeHelmetMeta.setDisplayName(color("&f&lHelmet - Tier III"));
 		TierThreeHelmet.setItemMeta(TierThreeHelmetMeta);
@@ -349,7 +350,7 @@ public class Items {
 	public ItemStack getTierThreeChestplate() {
 
 
-		ItemStack TierThreeChestplate = new ItemStack(Material.DIAMOND_CHESTPLATE);
+		ItemStack TierThreeChestplate = new ItemStack(Material.DIAMOND_CHESTPLATE, 1);
 		ItemMeta TierThreeChestplateMeta = TierThreeChestplate.getItemMeta();
 		TierThreeChestplateMeta.setDisplayName(color("&f&lChestplate - Tier III"));
 		TierThreeChestplate.setItemMeta(TierThreeChestplateMeta);
@@ -360,7 +361,7 @@ public class Items {
 	public ItemStack getTierThreeLeggings() {
 
 
-		ItemStack TierThreeLeggings = new ItemStack(Material.DIAMOND_LEGGINGS);
+		ItemStack TierThreeLeggings = new ItemStack(Material.DIAMOND_LEGGINGS, 1);
 		ItemMeta TierThreeLeggingsMeta = TierThreeLeggings.getItemMeta();
 		TierThreeLeggingsMeta.setDisplayName(color("&f&lLeggings - Tier III"));
 		TierThreeLeggings.setItemMeta(TierThreeLeggingsMeta);
@@ -370,7 +371,7 @@ public class Items {
 
 	public ItemStack getTierThreeBoots() {
 
-		ItemStack TierThreeBoots = new ItemStack(Material.DIAMOND_BOOTS);
+		ItemStack TierThreeBoots = new ItemStack(Material.DIAMOND_BOOTS, 1);
 		ItemMeta TierThreeBootsMeta = TierThreeBoots.getItemMeta();
 		TierThreeBootsMeta.setDisplayName(color("&f&lBoots - Tier III"));
 		TierThreeBoots.setItemMeta(TierThreeBootsMeta);
@@ -393,6 +394,22 @@ public class Items {
 		target.sendMessage(color(item.getAmount() + "x " + item.getItemMeta().getDisplayName() + " &chas been added to your inventory!"));
 
 
+	}
+
+	//ALL TIMES IN SECONDS DUE TO COSMETIC REASONS --> CONVERT TO TICKS IN CLASS YOU ARE USING IT
+
+	public Integer getCraftTime(ItemStack item, Integer amount) {
+
+		Integer time = 0;
+
+		if (item.equals(getTierOneBoots())) {
+
+			time = 10;
+
+		}
+
+
+		return time * amount;
 	}
 
 }

@@ -1,6 +1,7 @@
 package com.trophy.clans.customore;
 
 import com.trophy.clans.main.Clans;
+import com.trophy.clans.utility.Items;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -12,8 +13,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class ResourcesListener implements Listener {
 
-
-    private OreItemStacks i = new OreItemStacks();
+	private Items it = new Items();
 
     private String color(String string) {
         return ChatColor.translateAlternateColorCodes('&', string);
@@ -33,7 +33,8 @@ public class ResourcesListener implements Listener {
 
         x.getPlayer().getInventory().addItem(item);
         String lore = item.getItemMeta().getDisplayName();
-        x.getPlayer().sendMessage(color("&2+ " + lore));
+		Integer amount = item.getAmount();
+		x.getPlayer().sendMessage(color("&2+ " + amount + " " + lore));
 
     }
 
@@ -52,6 +53,7 @@ public class ResourcesListener implements Listener {
 
                 multiplier = 2;
 
+
             } else {
 
                 multiplier = 1;
@@ -61,24 +63,25 @@ public class ResourcesListener implements Listener {
             if (e.getBlock().getType() == Material.STONE) {
 
 
-                respawnBlock(Material.STONE, 120, i.getStone(2 * multiplier), e);
+				respawnBlock(Material.STONE, 120, it.getStone(2 * multiplier), e);
 
 
             } else if (e.getBlock().getType() == Material.COAL_ORE) {
 
-                respawnBlock(Material.COAL_ORE, 240, i.getFuel(2 * multiplier), e);
+				respawnBlock(Material.COAL_ORE, 240, it.getFuel(2 * multiplier), e);
 
             } else if (e.getBlock().getType() == Material.IRON_ORE) {
 
-                respawnBlock(Material.IRON_ORE, 240, i.getIron(2 * multiplier), e);
+				respawnBlock(Material.IRON_ORE, 240, it.getIron(2 * multiplier), e);
 
             } else if (e.getBlock().getType() == Material.GOLD_ORE) {
 
-                respawnBlock(Material.GOLD_ORE, 480, i.getSulfur(2 * multiplier), e);
+				respawnBlock(Material.GOLD_ORE, 480, it.getSulfur(2 * multiplier), e);
 
             } else if (e.getBlock().getType() == Material.LOG) {
 
-                respawnBlock(Material.LOG, 120, i.getWood(2 * multiplier), e);
+				respawnBlock(Material.LOG, 120, it.getWood(2 * multiplier), e);
+
 
             } else {
 
