@@ -251,9 +251,9 @@ public class Items {
 		return sulfur;
 	}
 
-
-	//ARMOUR
-
+	//
+	//ARMOUR & WEAPONS
+	//
 	public ItemStack getTierOneHelmet() {
 
 		ItemStack TierOneHelmet = new ItemStack(Material.IRON_HELMET, 1);
@@ -377,6 +377,36 @@ public class Items {
 		TierThreeBoots.setItemMeta(TierThreeBootsMeta);
 
 		return TierThreeBoots;
+	}
+
+	public ItemStack getTierOneSword() {
+
+		ItemStack TierOneSword = new ItemStack(Material.STONE_SWORD, 1);
+		ItemMeta TierOneSwordMeta = TierOneSword.getItemMeta();
+		TierOneSwordMeta.setDisplayName(color("&c&lSword - Tier I"));
+		TierOneSword.setItemMeta(TierOneSwordMeta);
+
+		return TierOneSword;
+	}
+
+	public ItemStack getTierTwoSword() {
+
+		ItemStack TierTwoSword = new ItemStack(Material.IRON_SWORD, 1);
+		ItemMeta TierTwoSwordMeta = TierTwoSword.getItemMeta();
+		TierTwoSwordMeta.setDisplayName(color("&c&lSword - Tier II"));
+		TierTwoSword.setItemMeta(TierTwoSwordMeta);
+
+		return TierTwoSword;
+	}
+
+	public ItemStack getTierThreeSword() {
+
+		ItemStack TierThreeSword = new ItemStack(Material.DIAMOND_SWORD, 1);
+		ItemMeta TierThreeSwordMeta = TierThreeSword.getItemMeta();
+		TierThreeSwordMeta.setDisplayName(color("&c&lSword - Tier III"));
+		TierThreeSword.setItemMeta(TierThreeSwordMeta);
+
+		return TierThreeSword;
 	}
 
 	//

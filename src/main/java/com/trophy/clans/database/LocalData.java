@@ -23,7 +23,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class Data 
+public class LocalData
 {
 	private static String color(String string) {
 		return ChatColor.translateAlternateColorCodes('&', string);

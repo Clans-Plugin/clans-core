@@ -6,14 +6,26 @@ import com.trophy.clans.clansystem.ExplosiveListener;
 import com.trophy.clans.craftingsystem.CraftingListener;
 import com.trophy.clans.customarmour.ArmourListener;
 import com.trophy.clans.customore.ResourcesListener;
+import com.trophy.clans.lootbarrels.LootListner;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class Clans extends JavaPlugin
 {
     private static Clans instance;
     public static Plugin plugin;
+    private static Connection connection;
+    private String host, database, username, password;
+    private int port;
+
+    public static Connection getConnection() {
+        return connection;
+    }
 
     @Override
     public void onEnable() {
@@ -23,10 +35,19 @@ public class Clans extends JavaPlugin
         this.registerListeners();
         this.registerTasks();
 
-    }
+        host = "";
+        port = 3306;
+        username = "";
+        password = "";
+        database = "";
 
-    @Override
-    public void onDisable() {
+        try {
+            openConnection();
+            System.out.println("Connected to database: " + database);
+        } catch (
+                SQLException x) {
+            x.printStackTrace();
+        }
 
     }
 
@@ -53,6 +74,20 @@ public class Clans extends JavaPlugin
         plm.registerEvents(new CoreBlockListener(), this);
         plm.registerEvents(new CraftingListener(), this);
         plm.registerEvents(new ExplosiveListener(), this);
+        plm.registerEvents(new LootListner(), this);
+    }
+
+
+    private void openConnection() throws SQLException {
+
+        if (connection != null && !connection.isClosed()) {
+            return;
+        }
+
+        connection = DriverManager.getConnection("jdbc:mysql://"
+                        + this.host + ":" + this.port + "/" + this.database,
+                this.username, this.password);
+
     }
 
 

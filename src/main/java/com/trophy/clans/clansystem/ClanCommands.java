@@ -8,7 +8,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import com.trophy.clans.database.Data;
+import com.trophy.clans.database.LocalData;
 
 import java.io.IOException;
 
@@ -76,7 +76,7 @@ public class ClanCommands implements CommandExecutor {
 				//ADD check if clan with that name exists //DONE
 				
 				try {
-					if(!Data.getClanName(owner).equals("player_not_in_clan"))
+					if (!LocalData.getClanName(owner).equals("player_not_in_clan"))
 					{
 						owner.sendMessage("§cYou are already in a Clan!");
 						return false;
@@ -85,8 +85,8 @@ public class ClanCommands implements CommandExecutor {
 				{
 					e1.printStackTrace();
 				}
-				
-				if(Data.existsClan(clanName))
+
+				if (LocalData.existsClan(clanName))
 				{
 					owner.sendMessage("§cThis Clanname is already given!");
 					return false;
@@ -95,10 +95,10 @@ public class ClanCommands implements CommandExecutor {
 				if (args[1].length() < 12 && args[1].length() > 3) {
 
 					try {
-						Data.init_clan(clanName, owner, home);
+						LocalData.init_clan(clanName, owner, home);
 						p.sendMessage(color("&cClan &f&l" + clanName + "&c was created successfully!"));
 						p.sendMessage(color("&cClan home has been set at your location!"));
-						Data.giveCoreBlock(p, clanName);
+						LocalData.giveCoreBlock(p, clanName);
 						p.sendMessage(color("&cPlace your core block to claim a chunk!"));
 					} catch (IOException e) {
 						e.printStackTrace();
@@ -135,7 +135,7 @@ public class ClanCommands implements CommandExecutor {
 			} else if (args[0].equalsIgnoreCase("top")) {
 
 				try {
-					p.sendMessage(Data.getTopClans().toString());
+					p.sendMessage(LocalData.getTopClans().toString());
 				} catch (IOException e) {
 					e.printStackTrace();
 				}

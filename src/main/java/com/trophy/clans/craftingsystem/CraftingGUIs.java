@@ -67,7 +67,61 @@ public class CraftingGUIs {
 		Inventory inv = Bukkit.createInventory(null, 27, "Base blocks");
 
 
-		inv.setItem(4, i.getExplosive(1));
+		inv.setItem(10, i.getTier1Wall(1));
+		inv.setItem(11, i.getTier2Wall(1));
+		inv.setItem(12, i.getTier3Wall(1));
+		inv.setItem(14, i.getDoorT1());
+		inv.setItem(15, i.getDoorT2());
+		inv.setItem(16, i.getChest(1));
+
+		p.openInventory(inv);
+
+
+	}
+
+
+	public static void openToolsGui(Player p) {
+
+
+		Inventory inv = Bukkit.createInventory(null, 27, "Tools");
+
+
+		inv.setItem(10, i.getTier1PickAxe());
+		inv.setItem(11, i.getTier2PickAxe());
+		inv.setItem(12, i.getTier3PickAxe());
+		inv.setItem(13, i.getUpgradeTool());
+		inv.setItem(14, i.getTier1Axe());
+		inv.setItem(15, i.getTier2Axe());
+		inv.setItem(16, i.getTier3Axe());
+
+		p.openInventory(inv);
+
+
+	}
+
+	public static void openWeaponArmourGui(Player p) {
+
+
+		Inventory inv = Bukkit.createInventory(null, 27, "Weapons & Armour");
+
+
+		inv.setItem(1, i.getTierOneHelmet());
+		inv.setItem(2, i.getTierOneChestplate());
+		inv.setItem(3, i.getTierOneLeggings());
+		inv.setItem(4, i.getTierOneBoots());
+		inv.setItem(6, i.getTierOneSword());
+
+		inv.setItem(10, i.getTierTwoHelmet());
+		inv.setItem(11, i.getTierTwoChestplate());
+		inv.setItem(12, i.getTierTwoLeggings());
+		inv.setItem(13, i.getTierTwoBoots());
+		inv.setItem(15, i.getTierTwoSword());
+
+		inv.setItem(19, i.getTierThreeHelmet());
+		inv.setItem(20, i.getTierThreeChestplate());
+		inv.setItem(21, i.getTierThreeLeggings());
+		inv.setItem(22, i.getTierThreeBoots());
+		inv.setItem(24, i.getTierThreeSword());
 
 		p.openInventory(inv);
 

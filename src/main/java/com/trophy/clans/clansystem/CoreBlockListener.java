@@ -1,6 +1,6 @@
 package com.trophy.clans.clansystem;
 
-import com.trophy.clans.database.Data;
+import com.trophy.clans.database.LocalData;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -30,9 +30,9 @@ public class CoreBlockListener implements Listener {
 			p.sendMessage(color("&cCore block placed, protect it!"));
 
 			Location loc = e.getBlockPlaced().getLocation();
-			String clanName = Data.getClanName(p);
+			String clanName = LocalData.getClanName(p);
 
-			Data.setCoreBlockLocation(clanName, loc);
+			LocalData.setCoreBlockLocation(clanName, loc);
 
 		}
 
@@ -45,8 +45,8 @@ public class CoreBlockListener implements Listener {
 
 			Player p = e.getPlayer();
 			Location loc = e.getBlock().getLocation();
-			String playerClan = Data.getClanName(p);
-			String coreOwner = Data.getCoreBlockClan(loc);
+			String playerClan = LocalData.getClanName(p);
+			String coreOwner = LocalData.getCoreBlockClan(loc);
 
 			if (playerClan.equalsIgnoreCase(coreOwner)) {
 

@@ -70,7 +70,7 @@ public class CraftingListener implements Listener {
 			//BASE
 			if (x.getSlot() == 11) {
 
-				p.closeInventory();
+				CraftingGUIs.openBaseGui(pl);
 
 
 			}
@@ -78,7 +78,7 @@ public class CraftingListener implements Listener {
 			//TOOLS
 			else if (x.getSlot() == 15) {
 
-				p.closeInventory();
+				CraftingGUIs.openToolsGui(pl);
 
 
 			}
@@ -87,7 +87,7 @@ public class CraftingListener implements Listener {
 			else if (x.getSlot() == 29) {
 
 
-				p.closeInventory();
+				CraftingGUIs.openToolsGui(pl);
 
 
 			}
