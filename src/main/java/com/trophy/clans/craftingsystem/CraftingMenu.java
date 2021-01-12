@@ -1,5 +1,6 @@
 package com.trophy.clans.craftingsystem;
 
+import com.trophy.clans.utility.Items;
 import com.trophy.clans.utility.PlayerMenu;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -14,6 +15,11 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class CraftingMenu implements Listener, PlayerMenu {
 
 	private final Inventory craftingInventory = Bukkit.createInventory(this, 45, "Crafting");
+	private final Items items;
+
+	public CraftingMenu(final Items items) {
+		this.items = items;
+	}
 
 	@Override
 	public Inventory getInventory() {
@@ -22,6 +28,21 @@ public class CraftingMenu implements Listener, PlayerMenu {
 
 	@Override
 	public boolean onClick(final Player player, final int slot, final ClickType type, final ItemStack currentItem) {
+
+		switch (slot) {
+			case 11:
+				player.openInventory(new BaseMenu(items).getInventory());
+				break;
+			case 15:
+				player.openInventory(new ToolsMenu(items).getInventory());
+				break;
+			case 29:
+				player.openInventory(new WeaponsArmorMenu(items).getInventory());
+				break;
+			case 33:
+				player.openInventory(new RaidMenu(items).getInventory());
+				break;
+		}
 		return true;
 	}
 

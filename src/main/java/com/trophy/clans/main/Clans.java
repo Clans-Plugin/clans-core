@@ -17,6 +17,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Clans extends JavaPlugin {
+	
 	private static Connection connection;
 	private String host, database, username, password;
 	private int port;
@@ -55,9 +56,7 @@ public class Clans extends JavaPlugin {
 	}
 
 	private void registerCMD() {
-
 		getCommand("clan").setExecutor(new ClanCommands(items));
-
 	}
 
 	private void registerListeners() {
@@ -66,7 +65,7 @@ public class Clans extends JavaPlugin {
 
 		plm.registerEvents(new ResourcesListener(this, items), this);
 		plm.registerEvents(new CoreBlockListener(), this);
-		plm.registerEvents(new CraftingListener(), this);
+		plm.registerEvents(new CraftingListener(items), this);
 		plm.registerEvents(new ExplosiveListener(), this);
 		plm.registerEvents(new LootListner(items), this);
 		plm.registerEvents(new MenuListener(), this);

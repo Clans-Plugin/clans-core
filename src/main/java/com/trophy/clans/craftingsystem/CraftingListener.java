@@ -1,5 +1,6 @@
 package com.trophy.clans.craftingsystem;
 
+import com.trophy.clans.utility.Items;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -9,6 +10,12 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
 public class CraftingListener implements Listener {
+
+	private final Items items;
+
+	public CraftingListener(final Items items) {
+		this.items = items;
+	}
 
 	@EventHandler
 	private void preventCrafting(final PrepareItemCraftEvent event) {
@@ -24,7 +31,7 @@ public class CraftingListener implements Listener {
 		if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
 			if (event.getClickedBlock().getType() == Material.WORKBENCH) {
 
-				event.getPlayer().openInventory(new CraftingMenu().getInventory());
+				event.getPlayer().openInventory(new CraftingMenu(items).getInventory());
 				event.setCancelled(true);
 			}
 		}
