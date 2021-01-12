@@ -8,7 +8,7 @@ import com.trophy.clans.customarmour.ArmourListener;
 import com.trophy.clans.customore.ResourcesListener;
 import com.trophy.clans.lootbarrels.LootListner;
 import com.trophy.clans.utility.Items;
-import org.bukkit.plugin.Plugin;
+import com.trophy.clans.utility.MenuListener;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -17,8 +17,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Clans extends JavaPlugin {
-	private static Clans instance;
-	public static Plugin plugin;
 	private static Connection connection;
 	private String host, database, username, password;
 	private int port;
@@ -30,8 +28,6 @@ public class Clans extends JavaPlugin {
 
 	@Override
 	public void onEnable() {
-		plugin = this;
-		instance = this;
 		this.registerCMD();
 		this.registerListeners();
 		this.registerTasks();
@@ -54,11 +50,6 @@ public class Clans extends JavaPlugin {
 
 	}
 
-
-	public static Clans getInstance() {
-		return instance;
-	}
-
 	private void registerTasks() {
 		ArmourListener.startTask();
 	}
@@ -70,6 +61,7 @@ public class Clans extends JavaPlugin {
 	}
 
 	private void registerListeners() {
+		
 		final PluginManager plm = org.bukkit.Bukkit.getPluginManager();
 
 		plm.registerEvents(new ResourcesListener(this, items), this);
@@ -77,6 +69,7 @@ public class Clans extends JavaPlugin {
 		plm.registerEvents(new CraftingListener(), this);
 		plm.registerEvents(new ExplosiveListener(), this);
 		plm.registerEvents(new LootListner(items), this);
+		plm.registerEvents(new MenuListener(), this);
 	}
 
 
@@ -91,6 +84,5 @@ public class Clans extends JavaPlugin {
 				this.username, this.password);
 
 	}
-
 
 }

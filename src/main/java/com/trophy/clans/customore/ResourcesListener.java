@@ -49,7 +49,6 @@ public class ResourcesListener implements Listener {
 				case IRON_ORE:
 					respawnBlock(material, 240, event);
 					items.addItemToInventory(player, items.getIron(), 2 * multiplier);
-					items.giveCustomItem(player, items.getIron(), 2 * multiplier);
 					break;
 				case GOLD_ORE:
 					respawnBlock(material, 480, event);
