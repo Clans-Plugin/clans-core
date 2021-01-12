@@ -11,30 +11,29 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class CraftingGUIs {
 
-	private static Items i = new Items();
+	private static final Items i = new Items();
 
-	public static void openMainGui(Player p) {
+	public static void openMainGui(final Player p) {
 
+		final Inventory inv = Bukkit.createInventory(null, 45, "Crafting");
 
-		Inventory inv = Bukkit.createInventory(null, 45, "Crafting");
-
-		ItemStack raiding = new ItemStack(Material.TNT);
-		ItemMeta raid = raiding.getItemMeta();
+		final ItemStack raiding = new ItemStack(Material.TNT);
+		final ItemMeta raid = raiding.getItemMeta();
 		raid.setDisplayName(ChatColor.DARK_RED + "Raiding");
 		raiding.setItemMeta(raid);
 
-		ItemStack baseing = new ItemStack(Material.WOOD);
-		ItemMeta base = baseing.getItemMeta();
+		final ItemStack baseing = new ItemStack(Material.WOOD);
+		final ItemMeta base = baseing.getItemMeta();
 		base.setDisplayName(ChatColor.DARK_RED + "Base blocks");
 		baseing.setItemMeta(base);
 
-		ItemStack tooling = new ItemStack(Material.DIAMOND_PICKAXE);
-		ItemMeta tool = tooling.getItemMeta();
+		final ItemStack tooling = new ItemStack(Material.DIAMOND_PICKAXE);
+		final ItemMeta tool = tooling.getItemMeta();
 		tool.setDisplayName(ChatColor.DARK_RED + "Tools & Resources");
 		tooling.setItemMeta(tool);
 
-		ItemStack weaponing = new ItemStack(Material.DIAMOND_SWORD);
-		ItemMeta weapon = weaponing.getItemMeta();
+		final ItemStack weaponing = new ItemStack(Material.DIAMOND_SWORD);
+		final ItemMeta weapon = weaponing.getItemMeta();
 		weapon.setDisplayName(ChatColor.DARK_RED + "Weapons & Armour");
 		weaponing.setItemMeta(weapon);
 
@@ -48,10 +47,10 @@ public class CraftingGUIs {
 
 	}
 
-	public static void openRaidGui(Player p) {
+	public static void openRaidGui(final Player p) {
 
 
-		Inventory inv = Bukkit.createInventory(null, 9, "Raiding");
+		final Inventory inv = Bukkit.createInventory(null, 9, "Raiding");
 
 
 		inv.setItem(4, i.getExplosive(1));
@@ -61,10 +60,10 @@ public class CraftingGUIs {
 
 	}
 
-	public static void openBaseGui(Player p) {
+	public static void openBaseGui(final Player p) {
 
 
-		Inventory inv = Bukkit.createInventory(null, 27, "Base blocks");
+		final Inventory inv = Bukkit.createInventory(null, 27, "Base blocks");
 
 
 		inv.setItem(10, i.getTier1Wall(1));
@@ -80,10 +79,10 @@ public class CraftingGUIs {
 	}
 
 
-	public static void openToolsGui(Player p) {
+	public static void openToolsGui(final Player p) {
 
 
-		Inventory inv = Bukkit.createInventory(null, 27, "Tools");
+		final Inventory inv = Bukkit.createInventory(null, 27, "Tools");
 
 
 		inv.setItem(10, i.getTier1PickAxe());
@@ -99,10 +98,10 @@ public class CraftingGUIs {
 
 	}
 
-	public static void openWeaponArmourGui(Player p) {
+	public static void openWeaponArmourGui(final Player p) {
 
 
-		Inventory inv = Bukkit.createInventory(null, 27, "Weapons & Armour");
+		final Inventory inv = Bukkit.createInventory(null, 27, "Weapons & Armour");
 
 
 		inv.setItem(1, i.getTierOneHelmet());

@@ -1,7 +1,6 @@
 package com.trophy.clans.lootbarrels;
 
 import com.trophy.clans.utility.Items;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -11,24 +10,24 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 public class LootListner implements Listener {
 
-	private Items i = new Items();
+	private final Items items;
 
-	private static String color(String string) {
-		return ChatColor.translateAlternateColorCodes('&', string);
+	public LootListner(final Items items) {
+		this.items = items;
 	}
 
 	@EventHandler
-	public void onLootInteract(PlayerInteractEvent x) {
+	public void onLootInteract(final PlayerInteractEvent event) {
 
-		Player p = x.getPlayer();
-		Block target = x.getClickedBlock();
+		final Player player = event.getPlayer();
+		final Block target = event.getClickedBlock();
 
 		if (target.getType().equals(Material.EMERALD_BLOCK)) {
 
-			p.sendMessage(color("&cYou opened a &fLoot Barrel"));
+			player.sendMessage("§cYou opened a §fLoot Barrel");
 			target.setType(Material.AIR);
 
-			i.giveCustomItem(p, i.getCookedSulfur(10));
+			items.giveCustomItem(player, items.getCookedsulfur(), 10);
 
 		}
 

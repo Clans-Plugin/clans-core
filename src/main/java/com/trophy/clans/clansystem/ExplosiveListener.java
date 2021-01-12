@@ -1,6 +1,9 @@
 package com.trophy.clans.clansystem;
 
-import org.bukkit.*;
+import org.bukkit.Effect;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -9,38 +12,34 @@ import org.bukkit.event.block.BlockPlaceEvent;
 
 public class ExplosiveListener implements Listener {
 
-
 	@EventHandler
-	public void onExplosivePlaceEvent(BlockPlaceEvent e) {
+	public void onExplosivePlaceEvent(final BlockPlaceEvent event) {
 
-		Player p = e.getPlayer();
+		final Player player = event.getPlayer();
 
-		if (e.getBlock().getType() == Material.TNT) {
+		if (event.getBlock().getType() == Material.TNT) {
 
-			e.setCancelled(true);
+			event.setCancelled(true);
 
-			Location target = e.getBlockAgainst().getLocation();
+			final Location target = event.getBlockAgainst().getLocation();
 
+			player.getWorld().spigot().playEffect(target, Effect.EXPLOSION, 0, 1, 0, 0, 0, 1, 30, 5);
 
-			p.getLocation().getWorld().spigot().playEffect(target, Effect.EXPLOSION, 0, 1, 0, 0, 0, 1, 30, 5);
+			final int targetX = target.getBlockX() - 2;
+			final int targetY = target.getBlockY() - 1;
+			final int targetZ = target.getBlockZ() - 2;
 
+			final int targetEndX = target.getBlockX() + 3;
+			final int targetEndY = target.getBlockY() + 2;
+			final int targetEndZ = target.getBlockZ() + 3;
 
-			int targetX = target.getBlockX() - 2;
-			int targetY = target.getBlockY() - 1;
-			int targetZ = target.getBlockZ() - 2;
-
-			int targetEndX = target.getBlockX() + 3;
-			int targetEndY = target.getBlockY() + 2;
-			int targetEndZ = target.getBlockZ() + 3;
-
-			World world = Bukkit.getServer().getWorld("World");
+			final World world = player.getWorld();
 
 			for (int x = targetX; x < targetEndX; x++) {
 				for (int z = targetZ; z < targetEndZ; z++) {
 					for (int y = targetY; y < targetEndY; y++) {
 
-
-						Block block = world.getBlockAt(x, y, z);
+						final Block block = world.getBlockAt(x, y, z);
 						if (block.getType() == Material.OBSIDIAN) {
 							block.setType(Material.BRICK);
 						} else if (block.getType() == Material.BRICK) {

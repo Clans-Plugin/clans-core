@@ -1,445 +1,401 @@
 package com.trophy.clans.utility;
 
-import org.bukkit.ChatColor;
+import lombok.Getter;
 import org.bukkit.Material;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-
 import java.util.Arrays;
+import java.util.Collections;
 
+@Getter
 public class Items {
 
-	private static String color(String string) {
-		return ChatColor.translateAlternateColorCodes('&', string);
-	}
+	private final ItemStack c4;
+	private final ItemStack tier1Wall;
+	private final ItemStack tier2Wall;
+	private final ItemStack tier3Wall;
+	private final ItemStack tier1Door;
+	private final ItemStack tier2Door;
+	private final ItemStack chest;
+	private final ItemStack upgradeTool;
+	private final ItemStack tier1Axe;
+	private final ItemStack tier2Axe;
+	private final ItemStack tier3Axe;
+	private final ItemStack tier1Pickaxe;
+	private final ItemStack tier2Pickaxe;
+	private final ItemStack tier3Pickaxe;
+	private final ItemStack wood;
+	private final ItemStack stone;
+	private final ItemStack iron;
+	private final ItemStack fuel;
+	private final ItemStack sulfur;
+	private final ItemStack cookedsulfur;
+	private final ItemStack tier1Helmet;
+	private final ItemStack tier1Chestplate;
+	private final ItemStack tier1Leggings;
+	private final ItemStack tier1Boots;
+	private final ItemStack tier2Helmet;
+	private final ItemStack tier2Chestplate;
+	private final ItemStack tier2Leggings;
+	private final ItemStack tier2Boots;
+	private final ItemStack tier3Helmet;
+	private final ItemStack tier3Chestplate;
+	private final ItemStack tier3Leggings;
+	private final ItemStack tier3Boots;
+	private final ItemStack tier1Sword;
+	private final ItemStack tier2Sword;
+	private final ItemStack tier3Sword;
 
-	//
-	//  BASES
-	//
+	public Items() {
 
-	public ItemStack getExplosive(Integer amount) {
+		// C4
 
-		ItemStack c4 = new ItemStack(Material.TNT, amount);
-		ItemMeta c4Meta = c4.getItemMeta();
-		c4Meta.setDisplayName(color("&c&lC4"));
+		final ItemStack c4 = new ItemStack(Material.TNT);
+		final ItemMeta c4Meta = c4.getItemMeta();
+		c4Meta.setDisplayName("§c§lC4");
 		c4.setItemMeta(c4Meta);
 
-		return c4;
-	}
+		this.c4 = c4;
 
-	public ItemStack getTier1Wall(Integer amount) {
+		// Tier 1 Wall
 
-		ItemStack t1 = new ItemStack(Material.WOOD, amount);
-		ItemMeta t1Meta = t1.getItemMeta();
-		t1Meta.setDisplayName(color("&6&lTier I Wall"));
+		final ItemStack t1 = new ItemStack(Material.WOOD);
+		final ItemMeta t1Meta = t1.getItemMeta();
+		t1Meta.setDisplayName("§6§lTier I Wall");
 		t1.setItemMeta(t1Meta);
 
+		this.tier1Wall = t1;
 
-		return t1;
-	}
+		// Tier 2 Wall
 
-	public ItemStack getTier2Wall(Integer amount) {
-
-
-		ItemStack t2 = new ItemStack(Material.BRICK, amount);
-		ItemMeta t2Meta = t2.getItemMeta();
-		t2Meta.setDisplayName(color("&6&lTier 2 Wall"));
+		final ItemStack t2 = new ItemStack(Material.BRICK);
+		final ItemMeta t2Meta = t2.getItemMeta();
+		t2Meta.setDisplayName("§6§lTier 2 Wall");
 		t2.setItemMeta(t2Meta);
 
-		return t2;
-	}
+		this.tier2Wall = t2;
 
-	public ItemStack getTier3Wall(Integer amount) {
+		// Tier 3 Wall
 
-
-		ItemStack t3 = new ItemStack(Material.OBSIDIAN, amount);
-		ItemMeta t3Meta = t3.getItemMeta();
-		t3Meta.setDisplayName(color("&6&lTier 3 Wall"));
+		final ItemStack t3 = new ItemStack(Material.OBSIDIAN);
+		final ItemMeta t3Meta = t3.getItemMeta();
+		t3Meta.setDisplayName("§6§lTier 3 Wall");
 		t3.setItemMeta(t3Meta);
 
-		return t3;
-	}
+		this.tier3Wall = t3;
 
-	public ItemStack getDoorT1() {
+		// Tier 1 Door
 
-		ItemStack door = new ItemStack(Material.WOOD_DOOR, 1);
-		ItemMeta doorMeta = door.getItemMeta();
-		doorMeta.setDisplayName(color("&6&lTier 1 Door"));
+		final ItemStack door = new ItemStack(Material.WOOD_DOOR);
+		final ItemMeta doorMeta = door.getItemMeta();
+		doorMeta.setDisplayName("§6§lTier 1 Door");
 		door.setItemMeta(doorMeta);
 
-		return door;
-	}
+		this.tier1Door = door;
 
-	public ItemStack getDoorT2() {
+		// Tier 2 Door
 
-		ItemStack door2 = new ItemStack(Material.IRON_DOOR, 1);
-		ItemMeta door2Meta = door2.getItemMeta();
-		door2Meta.setDisplayName(color("&6&lTier 2 Door"));
+		final ItemStack door2 = new ItemStack(Material.IRON_DOOR);
+		final ItemMeta door2Meta = door2.getItemMeta();
+		door2Meta.setDisplayName("§6§lTier 2 Door");
 		door2.setItemMeta(door2Meta);
 
-		return door2;
-	}
+		this.tier2Door = door2;
 
-	public ItemStack getChest(Integer amount) {
+		// Chest
 
-		ItemStack chest = new ItemStack(Material.CHEST, amount);
-		ItemMeta chestMeta = chest.getItemMeta();
-		chestMeta.setDisplayName(color("&6&lChest"));
+		final ItemStack chest = new ItemStack(Material.CHEST);
+		final ItemMeta chestMeta = chest.getItemMeta();
+		chestMeta.setDisplayName("§6§lChest");
 		chest.setItemMeta(chestMeta);
 
-		return chest;
-	}
+		this.chest = chest;
 
+		// Upgrade Tool
 
-
-
-	//
-	//  TOOLS
-	//
-
-
-	public ItemStack getUpgradeTool() {
-
-		ItemStack UpgradeTool = new ItemStack(Material.GOLD_AXE, 1);
-		ItemMeta UpgradeToolMeta = UpgradeTool.getItemMeta();
-		UpgradeToolMeta.setDisplayName(color("&c&lUpgrade Tool"));
+		final ItemStack UpgradeTool = new ItemStack(Material.GOLD_AXE);
+		final ItemMeta UpgradeToolMeta = UpgradeTool.getItemMeta();
+		UpgradeToolMeta.setDisplayName("§c§lUpgrade Tool");
 		UpgradeTool.setItemMeta(UpgradeToolMeta);
 
+		this.upgradeTool = UpgradeTool;
 
-		return UpgradeTool;
-	}
+		// Tier 1 Axe
 
-	public ItemStack getTier1Axe() {
-
-		ItemStack tier1axe = new ItemStack(Material.WOOD_AXE, 1);
-		ItemMeta tier1axeMeta = tier1axe.getItemMeta();
-		tier1axeMeta.setDisplayName(color("&6&lTier 1 Axe"));
-		tier1axeMeta.setLore(Arrays.asList(color("&6Speed 1")));
+		final ItemStack tier1axe = new ItemStack(Material.WOOD_AXE);
+		final ItemMeta tier1axeMeta = tier1axe.getItemMeta();
+		tier1axeMeta.setDisplayName("§6§lTier 1 Axe");
+		tier1axeMeta.setLore(Collections.singletonList("§6Speed 1"));
 		tier1axe.setItemMeta(tier1axeMeta);
 
-		return tier1axe;
-	}
+		this.tier1Axe = tier1axe;
 
-	public ItemStack getTier2Axe() {
+		// Tier 2 Axe
 
-		ItemStack tier2axe = new ItemStack(Material.STONE_AXE, 1);
-		ItemMeta tier2axeMeta = tier2axe.getItemMeta();
-		tier2axeMeta.setDisplayName(color("&6&lTier 2 Axe"));
-		tier2axeMeta.setLore(Arrays.asList(color("&6Speed 2")));
+		final ItemStack tier2axe = new ItemStack(Material.STONE_AXE);
+		final ItemMeta tier2axeMeta = tier2axe.getItemMeta();
+		tier2axeMeta.setDisplayName("§6§lTier 2 Axe");
+		tier2axeMeta.setLore(Collections.singletonList("§6Speed 2"));
 		tier2axe.setItemMeta(tier2axeMeta);
 
-		return tier2axe;
-	}
+		this.tier2Axe = tier2axe;
 
-	public ItemStack getTier3Axe() {
+		// Tier 3 Axe
 
-		ItemStack tier3axe = new ItemStack(Material.IRON_AXE, 1);
-		ItemMeta tier3axeMeta = tier3axe.getItemMeta();
-		tier3axeMeta.setDisplayName(color("&6&lTier 3 Axe"));
-		tier3axeMeta.setLore(Arrays.asList(color("&6Speed 3")));
+		final ItemStack tier3axe = new ItemStack(Material.IRON_AXE);
+		final ItemMeta tier3axeMeta = tier3axe.getItemMeta();
+		tier3axeMeta.setDisplayName("§6§lTier 3 Axe");
+		tier3axeMeta.setLore(Collections.singletonList("§6Speed 3"));
 		tier3axe.setItemMeta(tier3axeMeta);
 
-		return tier3axe;
-	}
+		this.tier3Axe = tier3axe;
 
-	public ItemStack getTier1PickAxe() {
+		// Tier 1 Pickaxe
 
-		ItemStack tier1pickaxe = new ItemStack(Material.WOOD_PICKAXE, 1);
-		ItemMeta tier1pickaxeMeta = tier1pickaxe.getItemMeta();
-		tier1pickaxeMeta.setDisplayName(color("&6&lTier 1 PickAxe"));
-		tier1pickaxeMeta.setLore(Arrays.asList(color("&6Speed 1")));
+		final ItemStack tier1pickaxe = new ItemStack(Material.WOOD_PICKAXE, 1);
+		final ItemMeta tier1pickaxeMeta = tier1pickaxe.getItemMeta();
+		tier1pickaxeMeta.setDisplayName("§6§lTier 1 PickAxe");
+		tier1pickaxeMeta.setLore(Collections.singletonList("§6Speed 1"));
 		tier1pickaxe.setItemMeta(tier1pickaxeMeta);
 
-		return tier1pickaxe;
-	}
+		this.tier1Pickaxe = tier1pickaxe;
 
-	public ItemStack getTier2PickAxe() {
+		// Tier 2 Pickaxe
 
-		ItemStack tier2pickaxe = new ItemStack(Material.STONE_PICKAXE, 1);
-		ItemMeta tier2pickaxeMeta = tier2pickaxe.getItemMeta();
-		tier2pickaxeMeta.setDisplayName(color("&6&lTier 2 PickAxe"));
-		tier2pickaxeMeta.setLore(Arrays.asList(color("&6Speed 2")));
+		final ItemStack tier2pickaxe = new ItemStack(Material.STONE_PICKAXE, 1);
+		final ItemMeta tier2pickaxeMeta = tier2pickaxe.getItemMeta();
+		tier2pickaxeMeta.setDisplayName("§6§lTier 2 PickAxe");
+		tier2pickaxeMeta.setLore(Arrays.asList("§6Speed 2"));
 		tier2pickaxe.setItemMeta(tier2pickaxeMeta);
 
-		return tier2pickaxe;
-	}
+		this.tier2Pickaxe = tier2pickaxe;
 
-	public ItemStack getTier3PickAxe() {
+		// Tier 3 Pickaxe
 
-		ItemStack tier3pickaxe = new ItemStack(Material.IRON_PICKAXE, 1);
-		ItemMeta tier3pickaxeMeta = tier3pickaxe.getItemMeta();
-		tier3pickaxeMeta.setDisplayName(color("&6&lTier 3 PickAxe"));
-		tier3pickaxeMeta.setLore(Arrays.asList(color("&6Speed 3")));
+		final ItemStack tier3pickaxe = new ItemStack(Material.IRON_PICKAXE, 1);
+		final ItemMeta tier3pickaxeMeta = tier3pickaxe.getItemMeta();
+		tier3pickaxeMeta.setDisplayName("§6§lTier 3 PickAxe");
+		tier3pickaxeMeta.setLore(Arrays.asList("§6Speed 3"));
 		tier3pickaxe.setItemMeta(tier3pickaxeMeta);
 
-		return tier3pickaxe;
-	}
+		this.tier3Pickaxe = tier3pickaxe;
 
+		// Wood
 
-	//
-	//  ORES
-	//
-
-	public ItemStack getWood(Integer amount) {
-
-		ItemStack wood = new ItemStack(Material.LOG, amount);
-		ItemMeta woodMeta = wood.getItemMeta();
-		woodMeta.setDisplayName(color("&8&lWood"));
+		final ItemStack wood = new ItemStack(Material.LOG);
+		final ItemMeta woodMeta = wood.getItemMeta();
+		woodMeta.setDisplayName("§8§lWood");
 		wood.setItemMeta(woodMeta);
 
-		return wood;
-	}
+		this.wood = wood;
 
+		// Stone
 
-	public ItemStack getStone(Integer amount) {
-
-		ItemStack stone = new ItemStack(Material.STONE, amount);
-		ItemMeta stoneMeta = stone.getItemMeta();
-		stoneMeta.setDisplayName(color("&7&lStone"));
+		final ItemStack stone = new ItemStack(Material.STONE);
+		final ItemMeta stoneMeta = stone.getItemMeta();
+		stoneMeta.setDisplayName("§7§lStone");
 		stone.setItemMeta(stoneMeta);
 
-		return stone;
-	}
+		this.stone = stone;
 
+		// Iron
 
-	public ItemStack getIron(Integer amount) {
-
-
-		ItemStack iron = new ItemStack(Material.IRON_INGOT, amount);
-		ItemMeta ironMeta = iron.getItemMeta();
-		ironMeta.setDisplayName(color("&f&lIron"));
+		final ItemStack iron = new ItemStack(Material.IRON_INGOT);
+		final ItemMeta ironMeta = iron.getItemMeta();
+		ironMeta.setDisplayName("§f§lIron");
 		iron.setItemMeta(ironMeta);
 
-		return iron;
-	}
+		this.iron = iron;
 
+		// Fuel
 
-	public ItemStack getFuel(Integer amount) {
-
-
-		ItemStack fuel = new ItemStack(Material.COAL, amount);
-		ItemMeta fuelMeta = fuel.getItemMeta();
-		fuelMeta.setDisplayName(color("&c&lFuel"));
+		final ItemStack fuel = new ItemStack(Material.COAL);
+		final ItemMeta fuelMeta = fuel.getItemMeta();
+		fuelMeta.setDisplayName("§c§lFuel");
 		fuel.setItemMeta(fuelMeta);
 
-		return fuel;
-	}
+		this.fuel = fuel;
 
+		// Sulfur
 
-	public ItemStack getSulfur(Integer amount) {
-
-
-		ItemStack sulfur = new ItemStack(Material.GOLD_ORE, amount);
-		ItemMeta sulfurMeta = sulfur.getItemMeta();
-		sulfurMeta.setDisplayName(color("&e&lSulfur Ore"));
+		final ItemStack sulfur = new ItemStack(Material.GOLD_ORE);
+		final ItemMeta sulfurMeta = sulfur.getItemMeta();
+		sulfurMeta.setDisplayName("§e§lSulfur Ore");
 		sulfur.setItemMeta(sulfurMeta);
 
-		return sulfur;
-	}
+		this.sulfur = sulfur;
 
-	public ItemStack getCookedSulfur(Integer amount) {
+		// Cooked Sulfur
 
+		final ItemStack cookedsulfur = new ItemStack(Material.GOLD_INGOT);
+		final ItemMeta cookedsulfurMeta = cookedsulfur.getItemMeta();
+		cookedsulfurMeta.setDisplayName("§e§lSulfur");
+		cookedsulfur.setItemMeta(cookedsulfurMeta);
 
-		ItemStack sulfur = new ItemStack(Material.GOLD_INGOT, amount);
-		ItemMeta sulfurMeta = sulfur.getItemMeta();
-		sulfurMeta.setDisplayName(color("&e&lSulfur"));
-		sulfur.setItemMeta(sulfurMeta);
+		this.cookedsulfur = cookedsulfur;
 
-		return sulfur;
-	}
+		// Tier 1 Helmet
 
-	//
-	//ARMOUR & WEAPONS
-	//
-	public ItemStack getTierOneHelmet() {
-
-		ItemStack TierOneHelmet = new ItemStack(Material.IRON_HELMET, 1);
-		ItemMeta TierOneHelmetMeta = TierOneHelmet.getItemMeta();
-		TierOneHelmetMeta.setDisplayName(color("&f&lHelmet - Tier I"));
+		final ItemStack TierOneHelmet = new ItemStack(Material.IRON_HELMET);
+		final ItemMeta TierOneHelmetMeta = TierOneHelmet.getItemMeta();
+		TierOneHelmetMeta.setDisplayName("§f§lHelmet - Tier I");
 		TierOneHelmet.setItemMeta(TierOneHelmetMeta);
 
-		return TierOneHelmet;
-	}
+		this.tier1Helmet = TierOneHelmet;
 
-	public ItemStack getTierOneChestplate() {
+		// Tier 1 ChestPlate
 
-		ItemStack TierOneChestplate = new ItemStack(Material.IRON_CHESTPLATE, 1);
-		ItemMeta TierOneChestplateMeta = TierOneChestplate.getItemMeta();
-		TierOneChestplateMeta.setDisplayName(color("&f&lChestplate - Tier I"));
+		final ItemStack TierOneChestplate = new ItemStack(Material.IRON_CHESTPLATE);
+		final ItemMeta TierOneChestplateMeta = TierOneChestplate.getItemMeta();
+		TierOneChestplateMeta.setDisplayName("§f§lChestplate - Tier I");
 		TierOneChestplate.setItemMeta(TierOneChestplateMeta);
 
-		return TierOneChestplate;
-	}
+		this.tier1Chestplate = TierOneChestplate;
 
-	public ItemStack getTierOneLeggings() {
+		// Tier 1 Leggings
 
-		ItemStack TierOneLeggings = new ItemStack(Material.IRON_LEGGINGS, 1);
-		ItemMeta TierOneLeggingsMeta = TierOneLeggings.getItemMeta();
-		TierOneLeggingsMeta.setDisplayName(color("&f&lLeggings - Tier I"));
+		final ItemStack TierOneLeggings = new ItemStack(Material.IRON_LEGGINGS);
+		final ItemMeta TierOneLeggingsMeta = TierOneLeggings.getItemMeta();
+		TierOneLeggingsMeta.setDisplayName("§f§lLeggings - Tier I");
 		TierOneLeggings.setItemMeta(TierOneLeggingsMeta);
 
-		return TierOneLeggings;
-	}
+		this.tier1Leggings = TierOneLeggings;
 
-	public ItemStack getTierOneBoots() {
+		// Tier 1 Boots
 
-		ItemStack TierOneBoots = new ItemStack(Material.IRON_BOOTS, 1);
-		ItemMeta TierOneBootsMeta = TierOneBoots.getItemMeta();
-		TierOneBootsMeta.setDisplayName(color("&f&lBoots - Tier I"));
+		final ItemStack TierOneBoots = new ItemStack(Material.IRON_BOOTS);
+		final ItemMeta TierOneBootsMeta = TierOneBoots.getItemMeta();
+		TierOneBootsMeta.setDisplayName("§f§lBoots - Tier I");
 		TierOneBoots.setItemMeta(TierOneBootsMeta);
 
-		return TierOneBoots;
-	}
+		this.tier1Boots = TierOneBoots;
 
-	public ItemStack getTierTwoHelmet() {
+		// Tier 2 Helmet
 
-		ItemStack TierTwoHelmet = new ItemStack(Material.CHAINMAIL_HELMET, 1);
-		ItemMeta TierTwoHelmetMeta = TierTwoHelmet.getItemMeta();
-		TierTwoHelmetMeta.setDisplayName(color("&f&lHelmet - Tier II"));
+		final ItemStack TierTwoHelmet = new ItemStack(Material.CHAINMAIL_HELMET);
+		final ItemMeta TierTwoHelmetMeta = TierTwoHelmet.getItemMeta();
+		TierTwoHelmetMeta.setDisplayName("§f§lHelmet - Tier II");
 		TierTwoHelmet.setItemMeta(TierTwoHelmetMeta);
 
-		return TierTwoHelmet;
-	}
+		this.tier2Helmet = TierTwoHelmet;
 
-	public ItemStack getTierTwoChestplate() {
+		// Tier 2 Chestplate
 
-
-		ItemStack TierTwoChestplate = new ItemStack(Material.CHAINMAIL_CHESTPLATE, 1);
-		ItemMeta TierTwoChestplateMeta = TierTwoChestplate.getItemMeta();
-		TierTwoChestplateMeta.setDisplayName(color("&f&lChestplate - Tier II"));
+		final ItemStack TierTwoChestplate = new ItemStack(Material.CHAINMAIL_CHESTPLATE);
+		final ItemMeta TierTwoChestplateMeta = TierTwoChestplate.getItemMeta();
+		TierTwoChestplateMeta.setDisplayName("§f§lChestplate - Tier II");
 		TierTwoChestplate.setItemMeta(TierTwoChestplateMeta);
 
-		return TierTwoChestplate;
-	}
+		this.tier2Chestplate = TierTwoChestplate;
 
-	public ItemStack getTierTwoLeggings() {
+		// Tier 2 Leggings
 
-
-		ItemStack TierTwoLeggings = new ItemStack(Material.CHAINMAIL_LEGGINGS, 1);
-		ItemMeta TierTwoLeggingsMeta = TierTwoLeggings.getItemMeta();
-		TierTwoLeggingsMeta.setDisplayName(color("&f&lLeggings - Tier II"));
+		final ItemStack TierTwoLeggings = new ItemStack(Material.CHAINMAIL_LEGGINGS);
+		final ItemMeta TierTwoLeggingsMeta = TierTwoLeggings.getItemMeta();
+		TierTwoLeggingsMeta.setDisplayName("§f§lLeggings - Tier II");
 		TierTwoLeggings.setItemMeta(TierTwoLeggingsMeta);
 
-		return TierTwoLeggings;
-	}
+		this.tier2Leggings = TierTwoLeggings;
 
-	public ItemStack getTierTwoBoots() {
+		// Tier 2 Boots
 
-		ItemStack TierTwoBoots = new ItemStack(Material.CHAINMAIL_BOOTS, 1);
-		ItemMeta TierTwoBootsMeta = TierTwoBoots.getItemMeta();
-		TierTwoBootsMeta.setDisplayName(color("&f&lBoots - Tier II"));
+		final ItemStack TierTwoBoots = new ItemStack(Material.CHAINMAIL_BOOTS);
+		final ItemMeta TierTwoBootsMeta = TierTwoBoots.getItemMeta();
+		TierTwoBootsMeta.setDisplayName("§f§lBoots - Tier II");
 		TierTwoBoots.setItemMeta(TierTwoBootsMeta);
 
-		return TierTwoBoots;
-	}
+		this.tier2Boots = TierTwoBoots;
 
-	public ItemStack getTierThreeHelmet() {
+		// Tier 3 Helmet
 
-
-		ItemStack TierThreeHelmet = new ItemStack(Material.DIAMOND_HELMET, 1);
-		ItemMeta TierThreeHelmetMeta = TierThreeHelmet.getItemMeta();
-		TierThreeHelmetMeta.setDisplayName(color("&f&lHelmet - Tier III"));
+		final ItemStack TierThreeHelmet = new ItemStack(Material.DIAMOND_HELMET);
+		final ItemMeta TierThreeHelmetMeta = TierThreeHelmet.getItemMeta();
+		TierThreeHelmetMeta.setDisplayName("§f§lHelmet - Tier III");
 		TierThreeHelmet.setItemMeta(TierThreeHelmetMeta);
 
-		return TierThreeHelmet;
-	}
+		this.tier3Helmet = TierThreeHelmet;
 
-	public ItemStack getTierThreeChestplate() {
+		// Tier 3 Chestplate
 
-
-		ItemStack TierThreeChestplate = new ItemStack(Material.DIAMOND_CHESTPLATE, 1);
-		ItemMeta TierThreeChestplateMeta = TierThreeChestplate.getItemMeta();
-		TierThreeChestplateMeta.setDisplayName(color("&f&lChestplate - Tier III"));
+		final ItemStack TierThreeChestplate = new ItemStack(Material.DIAMOND_CHESTPLATE);
+		final ItemMeta TierThreeChestplateMeta = TierThreeChestplate.getItemMeta();
+		TierThreeChestplateMeta.setDisplayName("§f§lChestplate - Tier III");
 		TierThreeChestplate.setItemMeta(TierThreeChestplateMeta);
 
-		return TierThreeChestplate;
-	}
+		this.tier3Chestplate = TierThreeChestplate;
 
-	public ItemStack getTierThreeLeggings() {
+		// Tier 3 Leggings
 
-
-		ItemStack TierThreeLeggings = new ItemStack(Material.DIAMOND_LEGGINGS, 1);
-		ItemMeta TierThreeLeggingsMeta = TierThreeLeggings.getItemMeta();
-		TierThreeLeggingsMeta.setDisplayName(color("&f&lLeggings - Tier III"));
+		final ItemStack TierThreeLeggings = new ItemStack(Material.DIAMOND_LEGGINGS);
+		final ItemMeta TierThreeLeggingsMeta = TierThreeLeggings.getItemMeta();
+		TierThreeLeggingsMeta.setDisplayName("§f§lLeggings - Tier III");
 		TierThreeLeggings.setItemMeta(TierThreeLeggingsMeta);
 
-		return TierThreeLeggings;
-	}
+		this.tier3Leggings = TierThreeLeggings;
 
-	public ItemStack getTierThreeBoots() {
+		// Tier 3 Boots
 
-		ItemStack TierThreeBoots = new ItemStack(Material.DIAMOND_BOOTS, 1);
-		ItemMeta TierThreeBootsMeta = TierThreeBoots.getItemMeta();
-		TierThreeBootsMeta.setDisplayName(color("&f&lBoots - Tier III"));
+		final ItemStack TierThreeBoots = new ItemStack(Material.DIAMOND_BOOTS);
+		final ItemMeta TierThreeBootsMeta = TierThreeBoots.getItemMeta();
+		TierThreeBootsMeta.setDisplayName("§f§lBoots - Tier III");
 		TierThreeBoots.setItemMeta(TierThreeBootsMeta);
 
-		return TierThreeBoots;
-	}
+		this.tier3Boots = TierThreeBoots;
 
-	public ItemStack getTierOneSword() {
+		// Tier 1 Sword
 
-		ItemStack TierOneSword = new ItemStack(Material.STONE_SWORD, 1);
-		ItemMeta TierOneSwordMeta = TierOneSword.getItemMeta();
-		TierOneSwordMeta.setDisplayName(color("&c&lSword - Tier I"));
+		final ItemStack TierOneSword = new ItemStack(Material.STONE_SWORD);
+		final ItemMeta TierOneSwordMeta = TierOneSword.getItemMeta();
+		TierOneSwordMeta.setDisplayName("§c§lSword - Tier I");
 		TierOneSword.setItemMeta(TierOneSwordMeta);
 
-		return TierOneSword;
-	}
+		this.tier1Sword = TierOneSword;
 
-	public ItemStack getTierTwoSword() {
+		// Tier 2 Sword
 
-		ItemStack TierTwoSword = new ItemStack(Material.IRON_SWORD, 1);
-		ItemMeta TierTwoSwordMeta = TierTwoSword.getItemMeta();
-		TierTwoSwordMeta.setDisplayName(color("&c&lSword - Tier II"));
+		final ItemStack TierTwoSword = new ItemStack(Material.IRON_SWORD);
+		final ItemMeta TierTwoSwordMeta = TierTwoSword.getItemMeta();
+		TierTwoSwordMeta.setDisplayName("§c§lSword - Tier II");
 		TierTwoSword.setItemMeta(TierTwoSwordMeta);
 
-		return TierTwoSword;
-	}
+		this.tier2Sword = TierTwoSword;
 
-	public ItemStack getTierThreeSword() {
+		// Tier 3 Sword
 
-		ItemStack TierThreeSword = new ItemStack(Material.DIAMOND_SWORD, 1);
-		ItemMeta TierThreeSwordMeta = TierThreeSword.getItemMeta();
-		TierThreeSwordMeta.setDisplayName(color("&c&lSword - Tier III"));
+		final ItemStack TierThreeSword = new ItemStack(Material.DIAMOND_SWORD);
+		final ItemMeta TierThreeSwordMeta = TierThreeSword.getItemMeta();
+		TierThreeSwordMeta.setDisplayName("§c§lSword - Tier III");
 		TierThreeSword.setItemMeta(TierThreeSwordMeta);
 
-		return TierThreeSword;
+		this.tier3Sword = TierThreeSword;
+
 	}
 
-	//
-	//
-	//
-	//  GIVE ITEM METHOD
-	//
-	//
-	//
+	public void giveCustomItem(final Player target, final ItemStack item, final int amount) {
 
-
-	public void giveCustomItem(Player target, ItemStack item) {
-
+		item.setAmount(amount);
 		target.getInventory().addItem(item);
-		target.sendMessage(color(item.getAmount() + "x " + item.getItemMeta().getDisplayName() + " &chas been added to your inventory!"));
+		target.sendMessage(item.getAmount() + "x " + item.getItemMeta().getDisplayName() + " §chas been added to your inventory!");
 
+	}
+
+	public void addItemToInventory(final Player player, final ItemStack item, final int amount) {
+
+		item.setAmount(amount);
+		player.getInventory().addItem(item);
+		player.sendMessage("§2+ " + item.getAmount() + " " + item.getItemMeta().getDisplayName());
 
 	}
 
 	//ALL TIMES IN SECONDS DUE TO COSMETIC REASONS --> CONVERT TO TICKS IN CLASS YOU ARE USING IT
 
-	public Integer getCraftTime(ItemStack item, Integer amount) {
+	public Integer getCraftTime(final ItemStack item, final int amount) {
 
-		Integer time = 0;
+		final int time = 0;
 
-		if (item.equals(getTierOneBoots())) {
-
-			time = 10;
-
-		}
-
-
-		return time * amount;
+		return 0;
 	}
 
 }
