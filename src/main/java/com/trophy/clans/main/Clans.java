@@ -51,7 +51,7 @@ public class Clans extends JavaPlugin {
 	}
 
 	private void registerTasks() {
-		ArmourListener.startTask();
+		new ArmourListener(items, this);
 	}
 
 	private void registerCMD() {
@@ -61,7 +61,7 @@ public class Clans extends JavaPlugin {
 	}
 
 	private void registerListeners() {
-		
+
 		final PluginManager plm = org.bukkit.Bukkit.getPluginManager();
 
 		plm.registerEvents(new ResourcesListener(this, items), this);
