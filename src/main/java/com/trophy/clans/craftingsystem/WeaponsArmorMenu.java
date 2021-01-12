@@ -11,7 +11,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class WeaponsArmorMenu implements Listener, PlayerMenu {
 
-	private final Inventory weaponArmorInventory = Bukkit.createInventory(null, 27, "Weapons & Armour");
+	private final Inventory weaponArmorInventory = Bukkit.createInventory(this, 27, "Weapons & Armour");
 	private final Items items;
 
 	public WeaponsArmorMenu(final Items items) {
@@ -21,7 +21,7 @@ public class WeaponsArmorMenu implements Listener, PlayerMenu {
 
 	@Override
 	public Inventory getInventory() {
-		return null;
+		return weaponArmorInventory;
 	}
 
 	@Override

@@ -11,7 +11,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class ToolsMenu implements Listener, PlayerMenu {
 
-	private final Inventory toolsInventory = Bukkit.createInventory(null, 27, "Tools");
+	private final Inventory toolsInventory = Bukkit.createInventory(this, 27, "Tools");
 	private final Items items;
 
 	public ToolsMenu(final Items items) {
