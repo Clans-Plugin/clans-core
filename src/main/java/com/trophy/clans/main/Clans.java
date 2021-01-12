@@ -17,7 +17,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Clans extends JavaPlugin {
-	
+
 	private static Connection connection;
 	private String host, database, username, password;
 	private int port;
@@ -29,12 +29,12 @@ public class Clans extends JavaPlugin {
 
 	@Override
 	public void onEnable() {
+		this.items = new Items();
+
 		this.registerCMD();
 		this.registerListeners();
 		this.registerTasks();
-
-		this.items = new Items();
-
+		
 		host = "";
 		port = 3306;
 		username = "";

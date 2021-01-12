@@ -22,6 +22,18 @@ public class ArmourListener {
 	private void startTask() {
 		Bukkit.getScheduler().runTaskTimer(plugin, () -> {
 			for (final Player player : Bukkit.getServer().getOnlinePlayers()) {
+				if (player.getInventory().getHelmet() == null) {
+					return;
+				}
+				if (player.getInventory().getChestplate() == null) {
+					return;
+				}
+				if (player.getInventory().getLeggings() == null) {
+					return;
+				}
+				if (player.getInventory().getBoots() == null) {
+					return;
+				}
 				final ItemStack helmet = player.getInventory().getHelmet();
 				final ItemStack chest = player.getInventory().getChestplate();
 				final ItemStack legs = player.getInventory().getLeggings();

@@ -30,9 +30,7 @@ public class RaidMenu implements Listener, PlayerMenu {
 
 	@Override
 	public void onOpen(final Player player) {
-
 		raidingInventory.setItem(4, items.getC4());
-
 	}
 
 	@Override
