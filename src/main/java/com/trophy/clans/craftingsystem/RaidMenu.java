@@ -12,10 +12,12 @@ import org.bukkit.inventory.ItemStack;
 public class RaidMenu implements Listener, PlayerMenu {
 
 	private final Inventory raidingInventory = Bukkit.createInventory(this, 9, "Raiding");
+	private final CraftingTaskHandler taskHandler;
 	private final Items items;
 
-	public RaidMenu(final Items items) {
+	public RaidMenu(final Items items, final CraftingTaskHandler taskHandler) {
 		this.items = items;
+		this.taskHandler = taskHandler;
 	}
 
 	@Override
@@ -26,7 +28,7 @@ public class RaidMenu implements Listener, PlayerMenu {
 	@Override
 	public boolean onClick(final Player player, final int slot, final ClickType type, final ItemStack currentItem) {
 		if (slot == 4) {
-			new AmountSelectionMenu(currentItem);
+			new AmountSelectionMenu(currentItem, taskHandler);
 		}
 		return true;
 	}

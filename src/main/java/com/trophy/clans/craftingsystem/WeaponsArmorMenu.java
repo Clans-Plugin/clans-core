@@ -12,10 +12,12 @@ import org.bukkit.inventory.ItemStack;
 public class WeaponsArmorMenu implements Listener, PlayerMenu {
 
 	private final Inventory weaponArmorInventory = Bukkit.createInventory(this, 27, "Weapons & Armour");
+	private final CraftingTaskHandler taskHandler;
 	private final Items items;
 
-	public WeaponsArmorMenu(final Items items) {
+	public WeaponsArmorMenu(final Items items, final CraftingTaskHandler taskHandler) {
 		this.items = items;
+		this.taskHandler = taskHandler;
 	}
 
 

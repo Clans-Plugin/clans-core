@@ -15,10 +15,12 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class CraftingMenu implements Listener, PlayerMenu {
 
 	private final Inventory craftingInventory = Bukkit.createInventory(this, 45, "Crafting");
+	private final CraftingTaskHandler taskHandler;
 	private final Items items;
 
-	public CraftingMenu(final Items items) {
+	public CraftingMenu(final Items items, final CraftingTaskHandler taskHandler) {
 		this.items = items;
+		this.taskHandler = taskHandler;
 	}
 
 	@Override
@@ -31,16 +33,16 @@ public class CraftingMenu implements Listener, PlayerMenu {
 
 		switch (slot) {
 			case 11:
-				player.openInventory(new BaseMenu(items).getInventory());
+				player.openInventory(new BaseMenu(items, taskHandler).getInventory());
 				break;
 			case 15:
-				player.openInventory(new ToolsMenu(items).getInventory());
+				player.openInventory(new ToolsMenu(items, taskHandler).getInventory());
 				break;
 			case 29:
-				player.openInventory(new WeaponsArmorMenu(items).getInventory());
+				player.openInventory(new WeaponsArmorMenu(items, taskHandler).getInventory());
 				break;
 			case 33:
-				player.openInventory(new RaidMenu(items).getInventory());
+				player.openInventory(new RaidMenu(items, taskHandler).getInventory());
 				break;
 		}
 		return true;

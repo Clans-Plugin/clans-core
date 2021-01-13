@@ -12,9 +12,11 @@ import org.bukkit.inventory.ItemStack;
 public class CraftingListener implements Listener {
 
 	private final Items items;
+	private final CraftingTaskHandler taskHandler;
 
-	public CraftingListener(final Items items) {
+	public CraftingListener(final Items items, final CraftingTaskHandler taskHandler) {
 		this.items = items;
+		this.taskHandler = taskHandler;
 	}
 
 	@EventHandler
@@ -31,7 +33,7 @@ public class CraftingListener implements Listener {
 		if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
 			if (event.getClickedBlock().getType() == Material.WORKBENCH) {
 
-				event.getPlayer().openInventory(new CraftingMenu(items).getInventory());
+				event.getPlayer().openInventory(new CraftingMenu(items, taskHandler).getInventory());
 				event.setCancelled(true);
 			}
 		}

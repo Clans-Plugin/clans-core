@@ -15,11 +15,14 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class AmountSelectionMenu implements Listener, PlayerMenu {
 
 	private final Inventory amountSelectionInventory = Bukkit.createInventory(this, 36, "Select Amount");
+	private final CraftingTaskHandler taskHandler;
 	private final ItemStack currentItem;
+	private final int[] numberPadIndex = {24, 3, 4, 5, 12, 13, 14, 21, 22, 23};
 	private String amount = "";
 
-	public AmountSelectionMenu(final ItemStack currentItem) {
+	public AmountSelectionMenu(final ItemStack currentItem, final CraftingTaskHandler taskHandler) {
 		this.currentItem = currentItem;
+		this.taskHandler = taskHandler;
 	}
 
 
@@ -52,7 +55,8 @@ public class AmountSelectionMenu implements Listener, PlayerMenu {
 			amountSelectionInventory.setItem(31, quantity);
 
 		} else if (slot == 32) {
-			
+
+			taskHandler.getCraftingTasks().put(player.getUniqueId(), new PlayerCraftingTask(currentItem, Integer.parseInt(amount), items));
 
 		}
 		return true;
@@ -61,55 +65,13 @@ public class AmountSelectionMenu implements Listener, PlayerMenu {
 	@Override
 	public void onOpen(final Player player) {
 
-		final ItemStack number1 = new ItemStack(Material.STAINED_GLASS_PANE, 1);
-		final ItemMeta number1Meta = number1.getItemMeta();
-		number1Meta.setDisplayName(ChatColor.GREEN + "1");
-		number1.setItemMeta(number1Meta);
-
-		final ItemStack number2 = new ItemStack(Material.STAINED_GLASS_PANE, 2);
-		final ItemMeta number2Meta = number2.getItemMeta();
-		number2Meta.setDisplayName(ChatColor.GREEN + "2");
-		number2.setItemMeta(number2Meta);
-
-		final ItemStack number3 = new ItemStack(Material.STAINED_GLASS_PANE, 3);
-		final ItemMeta number3Meta = number3.getItemMeta();
-		number3Meta.setDisplayName(ChatColor.GREEN + "3");
-		number3.setItemMeta(number3Meta);
-
-		final ItemStack number4 = new ItemStack(Material.STAINED_GLASS_PANE, 4);
-		final ItemMeta number4Meta = number4.getItemMeta();
-		number4Meta.setDisplayName(ChatColor.GREEN + "4");
-		number4.setItemMeta(number4Meta);
-
-		final ItemStack number5 = new ItemStack(Material.STAINED_GLASS_PANE, 5);
-		final ItemMeta number5Meta = number5.getItemMeta();
-		number5Meta.setDisplayName(ChatColor.GREEN + "5");
-		number5.setItemMeta(number5Meta);
-
-		final ItemStack number6 = new ItemStack(Material.STAINED_GLASS_PANE, 6);
-		final ItemMeta number6Meta = number6.getItemMeta();
-		number6Meta.setDisplayName(ChatColor.GREEN + "6");
-		number6.setItemMeta(number6Meta);
-
-		final ItemStack number7 = new ItemStack(Material.STAINED_GLASS_PANE, 7);
-		final ItemMeta number7Meta = number7.getItemMeta();
-		number7Meta.setDisplayName(ChatColor.GREEN + "7");
-		number7.setItemMeta(number7Meta);
-
-		final ItemStack number8 = new ItemStack(Material.STAINED_GLASS_PANE, 8);
-		final ItemMeta number8Meta = number8.getItemMeta();
-		number8Meta.setDisplayName(ChatColor.GREEN + "8");
-		number8.setItemMeta(number8Meta);
-
-		final ItemStack number9 = new ItemStack(Material.STAINED_GLASS_PANE, 9);
-		final ItemMeta number9Meta = number9.getItemMeta();
-		number9Meta.setDisplayName(ChatColor.GREEN + "9");
-		number9.setItemMeta(number9Meta);
-
-		final ItemStack number0 = new ItemStack(Material.STAINED_GLASS_PANE, 0);
-		final ItemMeta number0Meta = number0.getItemMeta();
-		number0Meta.setDisplayName(ChatColor.GREEN + "0");
-		number0.setItemMeta(number0Meta);
+		for (int i = 0; i <= 9; i++) {
+			final ItemStack item = new ItemStack(Material.STAINED_GLASS_PANE, i);
+			final ItemMeta itemMeta = item.getItemMeta();
+			itemMeta.setDisplayName(ChatColor.GREEN + String.valueOf(i));
+			item.setItemMeta(itemMeta);
+			amountSelectionInventory.setItem(numberPadIndex[i], item);
+		}
 
 		final ItemStack quantity = new ItemStack(Material.GOLD_BLOCK);
 		final ItemMeta quantityItemMeta = quantity.getItemMeta();
@@ -125,19 +87,6 @@ public class AmountSelectionMenu implements Listener, PlayerMenu {
 		final ItemMeta craftItemMeta = craft.getItemMeta();
 		craftItemMeta.setDisplayName(ChatColor.GREEN + "Craft");
 		craft.setItemMeta(craftItemMeta);
-
-		amountSelectionInventory.setItem(3, number1);
-		amountSelectionInventory.setItem(4, number2);
-		amountSelectionInventory.setItem(5, number3);
-
-		amountSelectionInventory.setItem(12, number4);
-		amountSelectionInventory.setItem(13, number5);
-		amountSelectionInventory.setItem(14, number6);
-
-		amountSelectionInventory.setItem(21, number7);
-		amountSelectionInventory.setItem(22, number8);
-		amountSelectionInventory.setItem(23, number9);
-		amountSelectionInventory.setItem(24, number0);
 
 		amountSelectionInventory.setItem(30, reinsertquantity);
 		amountSelectionInventory.setItem(31, quantity);

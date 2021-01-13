@@ -12,10 +12,12 @@ import org.bukkit.inventory.ItemStack;
 public class BaseMenu implements Listener, PlayerMenu {
 
 	private final Inventory baseBlocksInventory = Bukkit.createInventory(this, 27, "Base blocks");
+	private final CraftingTaskHandler taskHandler;
 	private final Items items;
 
-	public BaseMenu(final Items items) {
+	public BaseMenu(final Items items, final CraftingTaskHandler taskHandler) {
 		this.items = items;
+		this.taskHandler = taskHandler;
 	}
 
 	@Override
