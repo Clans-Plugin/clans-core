@@ -5,18 +5,15 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-import java.util.List;
-
 public class FirstJoinListener implements Listener {
 
 	@EventHandler
+	public void firstJoinEvent(final PlayerJoinEvent e) {
 
-	public void firstJoinEvent(PlayerJoinEvent e) {
+		final Player p = e.getPlayer();
 
-		Player p = e.getPlayer();
-
-		String name = e.getPlayer().getName();
-		String uuid = e.getPlayer().getUniqueId().toString();
+		final String name = e.getPlayer().getName();
+		final String uuid = e.getPlayer().getUniqueId().toString();
 
 		if (!SQL.checkDatabaseExist(p.getUniqueId().toString())) {
 
