@@ -23,15 +23,19 @@ public class ArmourListener {
 		Bukkit.getScheduler().runTaskTimer(plugin, () -> {
 			for (final Player player : Bukkit.getServer().getOnlinePlayers()) {
 				if (player.getInventory().getHelmet() == null) {
+					removeAllEffects(player);
 					return;
 				}
 				if (player.getInventory().getChestplate() == null) {
+					removeAllEffects(player);
 					return;
 				}
 				if (player.getInventory().getLeggings() == null) {
+					removeAllEffects(player);
 					return;
 				}
 				if (player.getInventory().getBoots() == null) {
+					removeAllEffects(player);
 					return;
 				}
 				final ItemStack helmet = player.getInventory().getHelmet();
@@ -80,4 +84,9 @@ public class ArmourListener {
 		return chest.equals(items.getTier3Chestplate()) && legs.equals(items.getTier3Leggings()) && boots.equals(items.getTier3Boots());
 	}
 
+	private void removeAllEffects(final Player player) {
+		for (final PotionEffect effect : player.getActivePotionEffects()) {
+			player.removePotionEffect(effect.getType());
+		}
+	}
 }

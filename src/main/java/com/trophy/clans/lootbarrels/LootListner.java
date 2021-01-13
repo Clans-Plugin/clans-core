@@ -22,16 +22,14 @@ public class LootListner implements Listener {
 		final Player player = event.getPlayer();
 		final Block target = event.getClickedBlock();
 
-		if (target.getType().equals(Material.EMERALD_BLOCK)) {
+		if (target != null) {
+			if (target.getType().equals(Material.EMERALD_BLOCK)) {
 
-			player.sendMessage("§cYou opened a §fLoot Barrel");
-			target.setType(Material.AIR);
+				player.sendMessage("§cYou opened a §fLoot Barrel");
+				target.setType(Material.AIR);
 
-			items.giveCustomItem(player, items.getCookedsulfur(), 10);
-
+				items.giveCustomItem(player, items.getCookedsulfur(), 10);
+			}
 		}
-
-
 	}
-
 }
