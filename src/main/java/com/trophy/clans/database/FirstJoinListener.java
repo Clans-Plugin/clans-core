@@ -19,17 +19,7 @@ public class FirstJoinListener implements Listener {
 
 
 			p.sendMessage("First Join --> Added to Database");
-			SQL.firstJoin(p.getName(), p.getUniqueId().toString());
-
-		} else {
-
-			if (!SQL.checkDatabaseName(p.getUniqueId().toString()).equals(p.getName())) {
-
-
-				SQL.updateName(p.getUniqueId().toString(), p.getName());
-				p.sendMessage("Database --> New name assigned to UUID");
-
-			}
+			SQL.firstJoin(p.getUniqueId().toString());
 
 		}
 
