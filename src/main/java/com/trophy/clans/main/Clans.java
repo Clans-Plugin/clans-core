@@ -48,11 +48,11 @@ public class Clans extends JavaPlugin implements Listener {
 		this.registerListeners();
 		this.registerTasks();
 
-		host = "";
+		host = "eu01-sql.pebblehost.com";
 		port = 3306;
-		username = "";
-		password = "";
-		database = "";
+		username = "customer_154510_clans";
+		password = "wxzXyGDfigj$p36DK@rg";
+		database = "customer_154510_clans";
 
 		try {
 			openConnection();
