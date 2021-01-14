@@ -1,7 +1,10 @@
 package com.trophy.clans.craftingsystem;
 
 import com.trophy.clans.utility.Items;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.Sound;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
@@ -33,8 +36,16 @@ public class CraftingListener implements Listener {
 		if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
 			if (event.getClickedBlock().getType() == Material.WORKBENCH) {
 
-				event.getPlayer().openInventory(new CraftingMenu(items, taskHandler).getInventory());
 				event.setCancelled(true);
+
+				final Player player = event.getPlayer();
+
+				if (taskHandler.getCraftingTasks().containsKey(player.getUniqueId())) {
+					player.sendMessage(ChatColor.RED + "You are already crafting something!");
+					player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 10, 1);
+				} else {
+					event.getPlayer().openInventory(new CraftingMenu(items, taskHandler).getInventory());
+				}
 			}
 		}
 	}

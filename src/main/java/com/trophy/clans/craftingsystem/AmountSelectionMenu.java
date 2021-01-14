@@ -1,5 +1,6 @@
 package com.trophy.clans.craftingsystem;
 
+import com.trophy.clans.utility.Items;
 import com.trophy.clans.utility.PlayerMenu;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -12,17 +13,21 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.HashMap;
+
 public class AmountSelectionMenu implements Listener, PlayerMenu {
 
 	private final Inventory amountSelectionInventory = Bukkit.createInventory(this, 36, "Select Amount");
 	private final CraftingTaskHandler taskHandler;
 	private final ItemStack currentItem;
+	private final Items items;
 	private final int[] numberPadIndex = {24, 3, 4, 5, 12, 13, 14, 21, 22, 23};
 	private String amount = "";
 
-	public AmountSelectionMenu(final ItemStack currentItem, final CraftingTaskHandler taskHandler) {
+	public AmountSelectionMenu(final ItemStack currentItem, final CraftingTaskHandler taskHandler, final Items items) {
 		this.currentItem = currentItem;
 		this.taskHandler = taskHandler;
+		this.items = items;
 	}
 
 
@@ -43,6 +48,7 @@ public class AmountSelectionMenu implements Listener, PlayerMenu {
 				amountSelectionInventory.setItem(31, getNewAmount(amount));
 			} else {
 				player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 10, 1);
+				player.sendMessage(ChatColor.RED + "You can't craft more than 300 items at once!");
 			}
 		} else if (slot == 30) {
 
@@ -56,7 +62,25 @@ public class AmountSelectionMenu implements Listener, PlayerMenu {
 
 		} else if (slot == 32) {
 
-			taskHandler.getCraftingTasks().put(player.getUniqueId(), new PlayerCraftingTask(currentItem, Integer.parseInt(amount), items));
+			boolean resourceCheck = true;
+
+			final HashMap<ItemStack, Integer> costMap = taskHandler.getCost(currentItem);
+
+			for (final ItemStack item : costMap.keySet()) {
+
+				if (!player.getInventory().containsAtLeast(item, costMap.get(item) * Integer.parseInt(amount))) {
+					resourceCheck = false;
+				}
+			}
+
+			if (resourceCheck) {
+
+				taskHandler.getCraftingTasks().put(player.getUniqueId(), new PlayerCraftingTask(currentItem, Integer.parseInt(amount), items));
+
+			} else {
+				player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 10, 1);
+				player.sendMessage(ChatColor.RED + "You don't have enough resources! Reset your quantity.");
+			}
 
 		}
 		return true;

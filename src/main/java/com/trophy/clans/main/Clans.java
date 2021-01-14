@@ -31,10 +31,10 @@ public class Clans extends JavaPlugin implements Listener {
 	private static Connection connection;
 	private String host, database, username, password;
 	private int port;
-	private Items items;
+	private final Items items = new Items();
 
 	private final HashMap<UUID, PlayerData> playerCache = new HashMap<>();
-	private final CraftingTaskHandler taskHandler = new CraftingTaskHandler(this);
+	private final CraftingTaskHandler taskHandler = new CraftingTaskHandler(this, items);
 
 	public static Connection getConnection() {
 		return connection;
@@ -42,11 +42,9 @@ public class Clans extends JavaPlugin implements Listener {
 
 	@Override
 	public void onEnable() {
-		this.items = new Items();
-
-		this.registerCMD();
-		this.registerListeners();
-		this.registerTasks();
+		registerCMD();
+		registerListeners();
+		registerTasks();
 
 		host = "eu01-sql.pebblehost.com";
 		port = 3306;
@@ -96,7 +94,7 @@ public class Clans extends JavaPlugin implements Listener {
 
 	private void registerTasks() {
 		new ArmourListener(items, this);
-		new CraftingTaskHandler(this);
+
 	}
 
 	private void registerCMD() {

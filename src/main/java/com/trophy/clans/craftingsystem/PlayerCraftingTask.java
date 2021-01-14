@@ -5,8 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.HashMap;
-
 @Getter
 @Setter
 public class PlayerCraftingTask {
@@ -14,20 +12,18 @@ public class PlayerCraftingTask {
 	private final Items items;
 	private final ItemStack item;
 	private int currentAmount;
-	private final int intervalTime;
+	private final int taskIntervalTime;
 	private int currentTime;
 
 	public PlayerCraftingTask(final ItemStack item, final int totalAmount, final Items items) {
 		this.item = item;
 		this.currentAmount = totalAmount;
-		this.intervalTime = getIntervalTime();
-		this.currentTime = intervalTime;
+		this.taskIntervalTime = getIntervalTime();
+		this.currentTime = taskIntervalTime;
 		this.items = items;
 	}
 
-	public int getIntervalTime() {
-
-		// Return time in seconds
+	private int getIntervalTime() {
 
 		if (item.isSimilar(items.getC4())) {
 			return 600;
@@ -82,130 +78,6 @@ public class PlayerCraftingTask {
 		} else if (item.isSimilar(items.getTier3Boots())) {
 			return 120;
 		}
-
-
-		return 0;
-	}
-
-	public HashMap<ItemStack, Integer> getCost(final ItemStack item) {
-
-		final HashMap<ItemStack, Integer> costMap = new HashMap<>();
-
-		if (item.isSimilar(items.getC4())) {
-
-			costMap.put(items.getCookedsulfur(), 64);
-			costMap.put(items.getIron(), 32);
-
-		} else if (item.isSimilar(items.getTier1Wall())) {
-
-			costMap.put(items.getWood(), 20);
-
-		} else if (item.isSimilar(items.getTier2Wall())) {
-
-			costMap.put(items.getWood(), 20);
-			costMap.put(items.getStone(), 20);
-
-		} else if (item.isSimilar(items.getTier3Wall())) {
-
-			costMap.put(items.getWood(), 20);
-			costMap.put(items.getIron(), 20);
-
-		} else if (item.isSimilar(items.getTier1Door())) {
-
-			costMap.put(items.getWood(), 40);
-
-		} else if (item.isSimilar(items.getTier2Door())) {
-
-			costMap.put(items.getIron(), 40);
-
-
-		} else if (item.isSimilar(items.getChest())) {
-
-			costMap.put(items.getWood(), 64);
-
-		} else if (item.isSimilar(items.getUpgradeTool())) {
-
-			costMap.put(items.getStone(), 64);
-			costMap.put(items.getIron(), 64);
-
-		} else if (item.isSimilar(items.getTier1Axe())) {
-
-			costMap.put(items.getWood(), 20);
-
-		} else if (item.isSimilar(items.getTier2Axe())) {
-
-			costMap.put(items.getWood(), 20);
-			costMap.put(items.getStone(), 20);
-
-		} else if (item.isSimilar(items.getTier3Axe())) {
-
-			costMap.put(items.getStone(), 20);
-			costMap.put(items.getIron(), 20);
-
-		} else if (item.isSimilar(items.getTier1Pickaxe())) {
-
-			costMap.put(items.getWood(), 20);
-
-		} else if (item.isSimilar(items.getTier2Pickaxe())) {
-
-			costMap.put(items.getWood(), 20);
-			costMap.put(items.getStone(), 20);
-
-		} else if (item.isSimilar(items.getTier3Pickaxe())) {
-
-			costMap.put(items.getStone(), 20);
-			costMap.put(items.getIron(), 20);
-
-		} else if (item.isSimilar(items.getTier1Helmet())) {
-
-			costMap.put(items.getStone(), 30);
-
-		} else if (item.isSimilar(items.getTier1Chestplate())) {
-
-			costMap.put(items.getStone(), 30);
-
-		} else if (item.isSimilar(items.getTier1Leggings())) {
-
-			costMap.put(items.getStone(), 30);
-
-		} else if (item.isSimilar(items.getTier1Boots())) {
-
-			costMap.put(items.getStone(), 30);
-
-		} else if (item.isSimilar(items.getTier2Helmet())) {
-
-			costMap.put(items.getStone(), 60);
-
-		} else if (item.isSimilar(items.getTier2Chestplate())) {
-
-			costMap.put(items.getStone(), 60);
-
-		} else if (item.isSimilar(items.getTier2Leggings())) {
-
-			costMap.put(items.getStone(), 60);
-
-		} else if (item.isSimilar(items.getTier2Boots())) {
-
-			costMap.put(items.getStone(), 60);
-
-		} else if (item.isSimilar(items.getTier3Helmet())) {
-
-			costMap.put(items.getIron(), 30);
-
-		} else if (item.isSimilar(items.getTier3Chestplate())) {
-
-			costMap.put(items.getIron(), 30);
-
-		} else if (item.isSimilar(items.getTier3Leggings())) {
-
-			costMap.put(items.getIron(), 30);
-
-		} else if (item.isSimilar(items.getTier3Boots())) {
-
-			costMap.put(items.getIron(), 30);
-
-		}
-
-		return costMap;
+		return 10;
 	}
 }

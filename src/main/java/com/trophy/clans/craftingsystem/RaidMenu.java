@@ -28,7 +28,7 @@ public class RaidMenu implements Listener, PlayerMenu {
 	@Override
 	public boolean onClick(final Player player, final int slot, final ClickType type, final ItemStack currentItem) {
 		if (slot == 4) {
-			new AmountSelectionMenu(currentItem, taskHandler);
+			new AmountSelectionMenu(currentItem, taskHandler, items);
 		}
 		return true;
 	}

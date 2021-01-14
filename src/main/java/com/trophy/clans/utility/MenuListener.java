@@ -29,4 +29,5 @@ public class MenuListener implements Listener {
 		if (holder instanceof PlayerMenu) ((PlayerMenu) holder).onClose((Player) event.getPlayer());
 	}
 	
+
 }
