@@ -41,12 +41,14 @@ public class CraftingTaskHandler {
 
 						if (craftingTask.getCurrentAmount() <= 0) {
 							craftingTasks.remove(player.getUniqueId());
+							player.setLevel(0);
+							player.setExp(0f);
 							continue;
 						}
 					}
 					craftingTask.setCurrentTime(craftingTask.getCurrentTime() - 1);
 					player.setLevel(craftingTask.getCurrentAmount());
-					player.setExp((float) (craftingTask.getCurrentTime() / craftingTask.getTaskIntervalTime()));
+					player.setExp((float) craftingTask.getCurrentTime() / craftingTask.getTaskIntervalTime());
 				}
 			}
 		}, 0L, 20L);

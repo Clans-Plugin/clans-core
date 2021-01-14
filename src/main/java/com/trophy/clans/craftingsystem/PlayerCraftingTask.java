@@ -17,16 +17,16 @@ public class PlayerCraftingTask {
 
 	public PlayerCraftingTask(final ItemStack item, final int totalAmount, final Items items) {
 		this.item = item;
+		this.items = items;
 		this.currentAmount = totalAmount;
 		this.taskIntervalTime = getIntervalTime();
 		this.currentTime = taskIntervalTime;
-		this.items = items;
 	}
 
 	private int getIntervalTime() {
 
 		if (item.isSimilar(items.getC4())) {
-			return 600;
+			return 10;
 		} else if (item.isSimilar(items.getTier1Wall())) {
 			return 10;
 		} else if (item.isSimilar(items.getTier2Wall())) {

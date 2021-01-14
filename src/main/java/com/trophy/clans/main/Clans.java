@@ -34,7 +34,7 @@ public class Clans extends JavaPlugin implements Listener {
 	private final Items items = new Items();
 
 	private final HashMap<UUID, PlayerData> playerCache = new HashMap<>();
-	private final CraftingTaskHandler taskHandler = new CraftingTaskHandler(this, items);
+	private CraftingTaskHandler taskHandler;
 
 	public static Connection getConnection() {
 		return connection;
@@ -42,10 +42,13 @@ public class Clans extends JavaPlugin implements Listener {
 
 	@Override
 	public void onEnable() {
+
+		this.taskHandler = new CraftingTaskHandler(this, items);
+
+		registerTasks();
 		registerCMD();
 		registerListeners();
-		registerTasks();
-
+		
 		host = "eu01-sql.pebblehost.com";
 		port = 3306;
 		username = "customer_154510_clans";
@@ -59,11 +62,6 @@ public class Clans extends JavaPlugin implements Listener {
 				final SQLException x) {
 			x.printStackTrace();
 		}
-	}
-
-	@Override
-	public void onDisable() {
-
 	}
 
 	@EventHandler
@@ -94,7 +92,6 @@ public class Clans extends JavaPlugin implements Listener {
 
 	private void registerTasks() {
 		new ArmourListener(items, this);
-
 	}
 
 	private void registerCMD() {

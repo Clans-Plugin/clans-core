@@ -19,13 +19,13 @@ public class AmountSelectionMenu implements Listener, PlayerMenu {
 
 	private final Inventory amountSelectionInventory = Bukkit.createInventory(this, 36, "Select Amount");
 	private final CraftingTaskHandler taskHandler;
-	private final ItemStack currentItem;
+	private final ItemStack currentCraftItem;
 	private final Items items;
 	private final int[] numberPadIndex = {24, 3, 4, 5, 12, 13, 14, 21, 22, 23};
 	private String amount = "";
 
 	public AmountSelectionMenu(final ItemStack currentItem, final CraftingTaskHandler taskHandler, final Items items) {
-		this.currentItem = currentItem;
+		this.currentCraftItem = currentItem;
 		this.taskHandler = taskHandler;
 		this.items = items;
 	}
@@ -41,13 +41,21 @@ public class AmountSelectionMenu implements Listener, PlayerMenu {
 
 		if ((slot >= 3 && slot <= 5) || (slot >= 12 && slot <= 14) || (slot >= 21 && slot <= 24)) {
 
+			player.playSound(player.getLocation(), Sound.valueOf("ORB_PICKUP"), 1.0F, 1.0F);
+
 			final String displayNumber = ChatColor.stripColor(currentItem.getItemMeta().getDisplayName());
 
-			if (maxAmountCheck(amount.concat(displayNumber))) {
+			if (slot == 24) {
+				if (amount.isEmpty()) {
+					return true;
+				}
+			}
+
+			if (!maxAmountCheck(amount.concat(displayNumber))) {
 				amount = amount.concat(displayNumber);
 				amountSelectionInventory.setItem(31, getNewAmount(amount));
 			} else {
-				player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 10, 1);
+				player.playSound(player.getLocation(), Sound.valueOf("VILLAGER_NO"), 1.0F, 1.0F);
 				player.sendMessage(ChatColor.RED + "You can't craft more than 300 items at once!");
 			}
 		} else if (slot == 30) {
@@ -62,9 +70,14 @@ public class AmountSelectionMenu implements Listener, PlayerMenu {
 
 		} else if (slot == 32) {
 
+			if (amount.isEmpty()) {
+				return true;
+			}
+
+
 			boolean resourceCheck = true;
 
-			final HashMap<ItemStack, Integer> costMap = taskHandler.getCost(currentItem);
+			final HashMap<ItemStack, Integer> costMap = taskHandler.getCost(currentCraftItem);
 
 			for (final ItemStack item : costMap.keySet()) {
 
@@ -75,10 +88,12 @@ public class AmountSelectionMenu implements Listener, PlayerMenu {
 
 			if (resourceCheck) {
 
-				taskHandler.getCraftingTasks().put(player.getUniqueId(), new PlayerCraftingTask(currentItem, Integer.parseInt(amount), items));
+				taskHandler.getCraftingTasks().put(player.getUniqueId(), new PlayerCraftingTask(currentCraftItem, Integer.parseInt(amount), items));
+
+				player.closeInventory();
 
 			} else {
-				player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 10, 1);
+				player.playSound(player.getLocation(), Sound.valueOf("VILLAGER_NO"), 1.0F, 1.0F);
 				player.sendMessage(ChatColor.RED + "You don't have enough resources! Reset your quantity.");
 			}
 
@@ -104,7 +119,7 @@ public class AmountSelectionMenu implements Listener, PlayerMenu {
 
 		final ItemStack reinsertquantity = new ItemStack(Material.REDSTONE_BLOCK);
 		final ItemMeta reinsertquantityItemMeta = reinsertquantity.getItemMeta();
-		reinsertquantityItemMeta.setDisplayName(ChatColor.RED + "Reinsert reinsertquantity");
+		reinsertquantityItemMeta.setDisplayName(ChatColor.RED + "Reinsert Quantity");
 		reinsertquantity.setItemMeta(reinsertquantityItemMeta);
 
 		final ItemStack craft = new ItemStack(Material.EMERALD_BLOCK);
