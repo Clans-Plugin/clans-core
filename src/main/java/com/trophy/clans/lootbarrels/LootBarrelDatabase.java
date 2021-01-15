@@ -1,6 +1,8 @@
 package com.trophy.clans.lootbarrels;
 
 import com.trophy.clans.main.Clans;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -40,7 +42,7 @@ public class LootBarrelDatabase {
 
 	//Get loot barrel tier from location
 
-	public static Integer getLootBarrel(final String x, final String y, final String z) {
+	public static int getLootBarrel(final String x, final String y, final String z) {
 
 		try {
 			final PreparedStatement ps = Clans.getConnection().prepareStatement("SELECT tier FROM BarrelData WHERE (x,y,z) VALUES (?,?,?)");
@@ -59,32 +61,36 @@ public class LootBarrelDatabase {
 		} catch (final SQLException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return 0;
 	}
 
 
 	//GET ALL LOOTBARRELS
 
-	public static HashMap getAllLootBarrel() {
-
+	public static HashMap<Location, Integer> getAllLootBarrel() {
 
 		try {
 			final PreparedStatement ps = Clans.getConnection().prepareStatement("SELECT * FROM BarrelData");
 
 			final ResultSet rs = ps.executeQuery();
-			HashMap list = new HashMap();
+			final HashMap<Location, Integer> list = new HashMap<>();
 
 			while (rs.next()) {
 
-				????
+				final int x = rs.getInt("x");
+				final int y = rs.getInt("y");
+				final int z = rs.getInt("z");
+				final int tier = rs.getInt("tier");
 
-				return (list);
+				list.put(new Location(Bukkit.getWorld("world"), x, y, z), tier);
+
 			}
+
+			return list;
 
 		} catch (final SQLException e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
-
 }
