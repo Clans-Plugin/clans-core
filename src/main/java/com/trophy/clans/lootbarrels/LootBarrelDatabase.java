@@ -1,6 +1,8 @@
 package com.trophy.clans.lootbarrels;
 
 import com.trophy.clans.main.Clans;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -65,26 +67,31 @@ public class LootBarrelDatabase {
 
 	//GET ALL LOOTBARRELS
 
-	public static HashMap getAllLootBarrel() {
-
+	public static HashMap<Location, Integer> getAllLootBarrel() {
 
 		try {
 			final PreparedStatement ps = Clans.getConnection().prepareStatement("SELECT * FROM BarrelData");
 
 			final ResultSet rs = ps.executeQuery();
-			HashMap list = new HashMap();
+			final HashMap<Location, Integer> list = new HashMap<>();
 
 			while (rs.next()) {
 
-				????
+				final int x = rs.getInt("x");
+				final int y = rs.getInt("y");
+				final int z = rs.getInt("z");
+				final int tier = rs.getInt("tier");
 
-				return (list);
+				list.put(new Location(Bukkit.getWorld("world"), x, y, z), tier);
+
 			}
+
+			return list;
 
 		} catch (final SQLException e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
-
 }
+
