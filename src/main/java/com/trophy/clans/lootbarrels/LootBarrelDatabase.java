@@ -94,3 +94,4 @@ public class LootBarrelDatabase {
 		return null;
 	}
 }
+
