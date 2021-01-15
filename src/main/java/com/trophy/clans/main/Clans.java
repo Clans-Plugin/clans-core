@@ -20,9 +20,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -48,6 +46,7 @@ public class Clans extends JavaPlugin implements Listener {
 		registerTasks();
 		registerCMD();
 		registerListeners();
+		createTables();
 
 		host = "eu01-sql.pebblehost.com";
 		port = 3306;
@@ -96,6 +95,49 @@ public class Clans extends JavaPlugin implements Listener {
 
 	private void registerCMD() {
 		getCommand("clan").setExecutor(new ClanCommands(items));
+	}
+
+	private void createTables() {
+
+		try {
+			final PreparedStatement ps = Clans.getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS BarrelData (x varchar(20), y varchar(20), z varchar(20), tier int)");
+
+
+			final ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+
+				System.out.println("Created table: BarrelData");
+
+			} else {
+
+				System.out.println("Loaded BarrelData");
+
+			}
+
+		} catch (final SQLException e) {
+			e.printStackTrace();
+		}
+
+
+		try {
+			final PreparedStatement ps = Clans.getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS PlayerData (UUID varchar(64), Level int, XP int, Points int)");
+
+
+			final ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+
+				System.out.println("Created table: PlayerData");
+
+			} else {
+
+				System.out.println("Loaded PlayerData");
+
+			}
+
+		} catch (final SQLException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	private void registerListeners() {
