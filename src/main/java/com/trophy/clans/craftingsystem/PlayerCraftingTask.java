@@ -26,7 +26,7 @@ public class PlayerCraftingTask {
 	private int getIntervalTime() {
 
 		if (item.isSimilar(items.getC4())) {
-			return 10;
+			return 600;
 		} else if (item.isSimilar(items.getTier1Wall())) {
 			return 10;
 		} else if (item.isSimilar(items.getTier2Wall())) {

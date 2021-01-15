@@ -60,6 +60,8 @@ public class AmountSelectionMenu implements Listener, PlayerMenu {
 			}
 		} else if (slot == 30) {
 
+			player.playSound(player.getLocation(), Sound.valueOf("LEVEL_UP"), 1.0F, 1.0F);
+
 			amount = "";
 			final ItemStack quantity = new ItemStack(Material.GOLD_BLOCK);
 			final ItemMeta quantityItemMeta = quantity.getItemMeta();
@@ -74,7 +76,6 @@ public class AmountSelectionMenu implements Listener, PlayerMenu {
 				return true;
 			}
 
-
 			boolean resourceCheck = true;
 
 			final HashMap<ItemStack, Integer> costMap = taskHandler.getCost(currentCraftItem);
@@ -87,6 +88,16 @@ public class AmountSelectionMenu implements Listener, PlayerMenu {
 			}
 
 			if (resourceCheck) {
+
+				player.playSound(player.getLocation(), Sound.valueOf("ORB_PICKUP"), 1.0F, 1.0F);
+
+				for (final ItemStack item : costMap.keySet()) {
+
+					item.setAmount(costMap.get(item) * Integer.parseInt(amount));
+
+					player.getInventory().removeItem(item);
+
+				}
 
 				taskHandler.getCraftingTasks().put(player.getUniqueId(), new PlayerCraftingTask(currentCraftItem, Integer.parseInt(amount), items));
 

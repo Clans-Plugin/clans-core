@@ -3,6 +3,8 @@ package com.trophy.clans.craftingsystem;
 import com.trophy.clans.utility.Items;
 import com.trophy.clans.utility.PlayerMenu;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.ClickType;
@@ -28,6 +30,13 @@ public class WeaponsArmorMenu implements Listener, PlayerMenu {
 
 	@Override
 	public boolean onClick(final Player player, final int slot, final ClickType type, final ItemStack currentItem) {
+
+		if (currentItem != null) {
+			if (currentItem.getType() != Material.AIR) {
+				player.openInventory(new AmountSelectionMenu(currentItem, taskHandler, items).getInventory());
+				player.playSound(player.getLocation(), Sound.valueOf("ORB_PICKUP"), 1.0F, 1.0F);
+			}
+		}
 		return true;
 	}
 

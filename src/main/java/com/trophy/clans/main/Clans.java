@@ -48,7 +48,7 @@ public class Clans extends JavaPlugin implements Listener {
 		registerTasks();
 		registerCMD();
 		registerListeners();
-		
+
 		host = "eu01-sql.pebblehost.com";
 		port = 3306;
 		username = "customer_154510_clans";

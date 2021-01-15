@@ -42,7 +42,7 @@ public class CraftingListener implements Listener {
 
 				if (taskHandler.getCraftingTasks().containsKey(player.getUniqueId())) {
 					player.sendMessage(ChatColor.RED + "You are already crafting something!");
-					player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 10, 1);
+					player.playSound(player.getLocation(), Sound.valueOf("VILLAGER_NO"), 10, 1);
 				} else {
 					event.getPlayer().openInventory(new CraftingMenu(items, taskHandler).getInventory());
 				}

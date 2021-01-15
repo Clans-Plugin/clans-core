@@ -5,6 +5,7 @@ import com.trophy.clans.utility.PlayerMenu;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.ClickType;
@@ -34,15 +35,19 @@ public class CraftingMenu implements Listener, PlayerMenu {
 		switch (slot) {
 			case 11:
 				player.openInventory(new BaseMenu(items, taskHandler).getInventory());
+				player.playSound(player.getLocation(), Sound.valueOf("ORB_PICKUP"), 1.0F, 1.0F);
 				break;
 			case 15:
 				player.openInventory(new ToolsMenu(items, taskHandler).getInventory());
+				player.playSound(player.getLocation(), Sound.valueOf("ORB_PICKUP"), 1.0F, 1.0F);
 				break;
 			case 29:
 				player.openInventory(new WeaponsArmorMenu(items, taskHandler).getInventory());
+				player.playSound(player.getLocation(), Sound.valueOf("ORB_PICKUP"), 1.0F, 1.0F);
 				break;
 			case 33:
 				player.openInventory(new RaidMenu(items, taskHandler).getInventory());
+				player.playSound(player.getLocation(), Sound.valueOf("ORB_PICKUP"), 1.0F, 1.0F);
 				break;
 		}
 		return true;
