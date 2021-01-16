@@ -7,16 +7,11 @@ import com.trophy.clans.craftingsystem.CraftingListener;
 import com.trophy.clans.craftingsystem.CraftingTaskHandler;
 import com.trophy.clans.customarmour.ArmourListener;
 import com.trophy.clans.customore.ResourcesListener;
-import com.trophy.clans.database.SQL;
+import com.trophy.clans.database.FirstJoinListener;
 import com.trophy.clans.lootbarrels.LootListner;
 import com.trophy.clans.player.PlayerData;
 import com.trophy.clans.utility.Items;
 import com.trophy.clans.utility.MenuListener;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -27,7 +22,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.UUID;
 
-public class Clans extends JavaPlugin implements Listener {
+public class Clans extends JavaPlugin {
 
 	private static Connection connection;
 	private String host, database, username, password;
@@ -60,32 +55,6 @@ public class Clans extends JavaPlugin implements Listener {
 		connectDatabase();
 
 		createTables();
-	}
-
-	@EventHandler
-	public void onPlayerJoin(final PlayerJoinEvent event) {
-
-		final Player player = event.getPlayer();
-
-		final String uuid = player.getUniqueId().toString();
-
-		if (!SQL.checkDatabaseExist(uuid)) {
-
-			player.sendMessage("First Join --> Added to Database");
-			SQL.firstJoin(uuid);
-
-			playerCache.put(player.getUniqueId(), new PlayerData());
-
-		} else {
-			playerCache.put(player.getUniqueId(), new PlayerData(SQL.getPlayerLevel(uuid), SQL.getPlayerXP(uuid), SQL.getPlayerPoints(uuid)));
-		}
-	}
-
-	@EventHandler
-	public void onPlayerLeave(final PlayerQuitEvent event) {
-
-		playerCache.remove(event.getPlayer().getUniqueId());
-
 	}
 
 	private void registerTasks() {
@@ -151,6 +120,7 @@ public class Clans extends JavaPlugin implements Listener {
 		plm.registerEvents(new ExplosiveListener(), this);
 		plm.registerEvents(new LootListner(items, playerCache), this);
 		plm.registerEvents(new MenuListener(), this);
+		plm.registerEvents(new FirstJoinListener(playerCache), this);
 	}
 
 
