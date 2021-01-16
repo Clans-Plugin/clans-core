@@ -48,6 +48,10 @@ public class Items {
 	private final ItemStack tier2Sword;
 	private final ItemStack tier3Sword;
 
+	private final RandomCollection<ItemStack> tier1Barrel = new RandomCollection<>();
+	private final RandomCollection<ItemStack> tier2Barrel = new RandomCollection<>();
+	private final RandomCollection<ItemStack> tier3Barrel = new RandomCollection<>();
+
 	public Items() {
 
 		// C4
@@ -370,6 +374,62 @@ public class Items {
 		TierThreeSword.setItemMeta(TierThreeSwordMeta);
 
 		this.tier3Sword = TierThreeSword;
+
+		// Tier 1 Barrel
+
+		iron.setAmount(16);
+		tier1Barrel.add(0.1, iron);
+		wood.setAmount(16);
+		tier1Barrel.add(0.1, wood);
+		stone.setAmount(16);
+		tier1Barrel.add(0.1, stone);
+		sulfur.setAmount(16);
+		tier1Barrel.add(0.1, sulfur);
+		iron.setAmount(32);
+		tier1Barrel.add(0.15, iron);
+		wood.setAmount(32);
+		tier1Barrel.add(0.15, wood);
+		stone.setAmount(32);
+		tier1Barrel.add(0.15, stone);
+		sulfur.setAmount(32);
+		tier1Barrel.add(0.15, sulfur);
+
+		// Tier 2 Barrel
+
+		t1.setAmount(16);
+		tier2Barrel.add(0.15, t1);
+		cookedsulfur.setAmount(16);
+		tier2Barrel.add(0.15, cookedsulfur);
+		stone.setAmount(32);
+		tier2Barrel.add(0.15, stone);
+		sulfur.setAmount(32);
+		tier2Barrel.add(0.15, sulfur);
+		iron.setAmount(32);
+		tier2Barrel.add(0.1, iron);
+		t1.setAmount(32);
+		tier2Barrel.add(0.1, t1);
+		t2.setAmount(16);
+		tier2Barrel.add(0.1, t2);
+		tier2Barrel.add(0.05, tier3axe);
+		tier2Barrel.add(0.05, tier3pickaxe);
+
+		// Tier 3 Barrel
+
+		t2.setAmount(16);
+		tier3Barrel.add(0.15, t2);
+		cookedsulfur.setAmount(32);
+		tier3Barrel.add(0.15, cookedsulfur);
+		tier3Barrel.add(0.15, cookedsulfur);
+		tier3Barrel.add(0.15, TierOneSword);
+		tier3Barrel.add(0.05, TierThreeSword);
+		tier3Barrel.add(0.025, TierTwoHelmet);
+		tier3Barrel.add(0.025, TierTwoChestplate);
+		tier3Barrel.add(0.025, TierTwoLeggings);
+		tier3Barrel.add(0.025, TierTwoBoots);
+		t3.setAmount(64);
+		tier3Barrel.add(0.05, t3);
+		tier3Barrel.add(0.1, tier3axe);
+		tier3Barrel.add(0.1, tier3pickaxe);
 
 	}
 

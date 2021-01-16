@@ -149,7 +149,7 @@ public class Clans extends JavaPlugin implements Listener {
 		plm.registerEvents(new CoreBlockListener(), this);
 		plm.registerEvents(new CraftingListener(items, taskHandler), this);
 		plm.registerEvents(new ExplosiveListener(), this);
-		plm.registerEvents(new LootListner(items), this);
+		plm.registerEvents(new LootListner(items, playerCache), this);
 		plm.registerEvents(new MenuListener(), this);
 	}
 

@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class PlayerData {
 
-	private int level = 0;
+	private int level = 25;
 	private int xp = 0;
 	private int points = 0;
 
