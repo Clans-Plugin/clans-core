@@ -1,6 +1,6 @@
 package com.trophy.clans.lootbarrels;
 
-import com.trophy.clans.player.PlayerData;
+import com.trophy.clans.database.PlayerData;
 import com.trophy.clans.utility.Items;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -11,18 +11,12 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-import java.util.HashMap;
-import java.util.UUID;
 
-public class LootListner implements Listener {
+public class LootListener implements Listener {
 
-	private final Items items;
-	private final HashMap<UUID, PlayerData> playerCache;
 
-	public LootListner(final Items items, final HashMap<UUID, PlayerData> playerCache) {
-		this.items = items;
-		this.playerCache = playerCache;
-	}
+	private final Items items = new Items();
+
 
 	@EventHandler
 	private void onLootInteract(final PlayerInteractEvent event) {
@@ -32,12 +26,11 @@ public class LootListner implements Listener {
 		if (block != null) {
 
 			final Player player = event.getPlayer();
-
-			final PlayerData playerData = playerCache.get(player.getUniqueId());
+			final String pl = event.getPlayer().getUniqueId().toString();
 
 			if (block.getType().equals(Material.IRON_BLOCK)) {
 
-				if (playerData.getLevel() >= 5) {
+				if (PlayerData.getPlayerLevel(pl) >= 5) {
 
 					player.sendMessage("§cYou opened a §fLoot Barrel");
 					block.setType(Material.AIR);
@@ -49,7 +42,7 @@ public class LootListner implements Listener {
 				}
 
 			} else if (block.getType().equals(Material.GOLD_BLOCK)) {
-				if (playerData.getLevel() >= 15) {
+				if (PlayerData.getPlayerLevel(pl) >= 15) {
 
 					player.sendMessage("§cYou opened a §fLoot Barrel");
 					block.setType(Material.AIR);
@@ -60,7 +53,7 @@ public class LootListner implements Listener {
 					player.sendMessage(ChatColor.RED + "You need to be atleast " + ChatColor.YELLOW + "Level 15" + ChatColor.RED + " to open this barrel.");
 				}
 			} else if (block.getType().equals(Material.DIAMOND_BLOCK)) {
-				if (playerData.getLevel() >= 30) {
+				if (PlayerData.getPlayerLevel(pl) >= 30) {
 
 					player.sendMessage("§cYou opened a §fLoot Barrel");
 					block.setType(Material.AIR);

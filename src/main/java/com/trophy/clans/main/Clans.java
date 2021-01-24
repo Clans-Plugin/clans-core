@@ -1,5 +1,6 @@
 package com.trophy.clans.main;
 
+import com.trophy.clans.clansystem.ChatListener;
 import com.trophy.clans.clansystem.ClanCommands;
 import com.trophy.clans.clansystem.CoreBlockListener;
 import com.trophy.clans.clansystem.ExplosiveListener;
@@ -8,8 +9,8 @@ import com.trophy.clans.craftingsystem.CraftingTaskHandler;
 import com.trophy.clans.customarmour.ArmourListener;
 import com.trophy.clans.customore.ResourcesListener;
 import com.trophy.clans.database.FirstJoinListener;
-import com.trophy.clans.lootbarrels.LootListner;
-import com.trophy.clans.player.PlayerData;
+import com.trophy.clans.levelingsystem.LevelingCommands;
+import com.trophy.clans.lootbarrels.LootListener;
 import com.trophy.clans.utility.Items;
 import com.trophy.clans.utility.MenuListener;
 import org.bukkit.plugin.PluginManager;
@@ -19,8 +20,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.UUID;
 
 public class Clans extends JavaPlugin {
 
@@ -29,7 +28,6 @@ public class Clans extends JavaPlugin {
 	private int port;
 	private final Items items = new Items();
 
-	private final HashMap<UUID, PlayerData> playerCache = new HashMap<>();
 	private CraftingTaskHandler taskHandler;
 
 	public static Connection getConnection() {
@@ -46,11 +44,11 @@ public class Clans extends JavaPlugin {
 		registerListeners();
 
 
-		host = "eu01-sql.pebblehost.com";
+		host = "178.63.127.184";
 		port = 3306;
-		username = "customer_154510_clans";
-		password = "wxzXyGDfigj$p36DK@rg";
-		database = "customer_154510_clans";
+		username = "u5624_fY16jUyDAu";
+		password = "CCTtfGg0Ypj..s6nhmKvHB.1";
+		database = "s5624_trophy";
 
 		connectDatabase();
 
@@ -63,9 +61,12 @@ public class Clans extends JavaPlugin {
 
 	private void registerCMD() {
 		getCommand("clan").setExecutor(new ClanCommands(items));
+		getCommand("level").setExecutor(new LevelingCommands());
 	}
 
 	private void createTables() {
+
+		//BARREL DATA
 
 		try {
 			final PreparedStatement ps = Clans.getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS BarrelData (x varchar(20), y varchar(20), z varchar(20), tier int)");
@@ -74,22 +75,39 @@ public class Clans extends JavaPlugin {
 			final boolean rs = ps.execute();
 
 
-			System.out.println("Loaded BarrelData");
+			System.out.println("Clans --> Loaded BarrelData");
 
 
 		} catch (final SQLException e) {
 			e.printStackTrace();
 		}
 
+		//PLAYER DATA
 
 		try {
-			final PreparedStatement ps = Clans.getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS PlayerData (UUID varchar(64), Level int, XP int, Points int)");
+			final PreparedStatement ps = Clans.getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS PlayerData (UUID varchar(64), Level int, XP int, Points int, ClanName varchar(64))");
 
 
 			final boolean rs = ps.execute();
 
 
-			System.out.println("Loaded PlayerData");
+			System.out.println("Clans --> Loaded PlayerData");
+
+
+		} catch (final SQLException e) {
+			e.printStackTrace();
+		}
+
+		//CLANS DATA
+
+		try {
+			final PreparedStatement ps = Clans.getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS ClansData (clanName varchar(64), owner varchar(64), points int, homex int, homey int, homez int, claim varchar(20))");
+
+
+			final boolean rs = ps.execute();
+
+
+			System.out.println("Clans --> Loaded ClansData");
 
 
 		} catch (final SQLException e) {
@@ -102,7 +120,7 @@ public class Clans extends JavaPlugin {
 
 		try {
 			openConnection();
-			System.out.println("Connected to database: " + database);
+			System.out.println("Clans --> Connected to database: " + database);
 		} catch (
 				final SQLException x) {
 			x.printStackTrace();
@@ -118,9 +136,10 @@ public class Clans extends JavaPlugin {
 		plm.registerEvents(new CoreBlockListener(), this);
 		plm.registerEvents(new CraftingListener(items, taskHandler), this);
 		plm.registerEvents(new ExplosiveListener(), this);
-		plm.registerEvents(new LootListner(items, playerCache), this);
+		plm.registerEvents(new LootListener(), this);
 		plm.registerEvents(new MenuListener(), this);
-		plm.registerEvents(new FirstJoinListener(playerCache), this);
+		plm.registerEvents(new FirstJoinListener(), this);
+		plm.registerEvents(new ChatListener(), this);
 	}
 
 

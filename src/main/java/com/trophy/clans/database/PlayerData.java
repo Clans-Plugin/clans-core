@@ -6,16 +6,77 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class SQL {
+public class PlayerData {
 
+	//Check if player is in a clan
+
+	public static boolean checkPlayerInClan(final String uuid) {
+
+		try {
+			final PreparedStatement ps = Clans.getConnection().prepareStatement("SELECT ClanName FROM PlayerData WHERE UUID=?");
+
+			ps.setString(1, uuid);
+
+			final String solo = "Solo";
+			final String name;
+			final ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+				name = rs.getString("ClanName");
+				if (name.equalsIgnoreCase(solo)) {
+					return false;
+				}
+
+			}
+
+		} catch (final SQLException x) {
+			x.printStackTrace();
+		}
+		return true;
+	}
+
+	//Add player to Clan
+
+	public static void setPlayerClan(final String ClanName, final String uuid) {
+		try {
+			final PreparedStatement ps = Clans.getConnection().prepareStatement("UPDATE PlayerData SET ClanName=? WHERE UUID=?");
+			ps.setString(1, ClanName);
+			ps.setString(2, uuid);
+			ps.executeUpdate();
+		} catch (final SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	//Get player clan name
+
+	public static String getClanName(final String uuid) {
+		try {
+			final PreparedStatement ps = Clans.getConnection().prepareStatement("SELECT ClanName FROM PlayerData WHERE UUID = ?");
+			ps.setString(1, uuid);
+			final ResultSet rs = ps.executeQuery();
+			final String name;
+			if (rs.next()) {
+				name = rs.getString("ClanName");
+				return (name);
+			}
+		} catch (final SQLException x) {
+			x.printStackTrace();
+		}
+		return null;
+	}
+
+	// ADD player to database
 	public static void firstJoin(final String uuid) {
 		try {
-			final PreparedStatement ps = Clans.getConnection().prepareStatement("INSERT INTO PlayerData (UUID,Level,XP,Points) VALUES (?,?,?,?)");
+			final PreparedStatement ps = Clans.getConnection().prepareStatement("INSERT INTO PlayerData (UUID,Level,XP,Points,ClanName) VALUES (?,?,?,?,?)");
 
 			ps.setString(1, uuid);
 			ps.setInt(2, 0);
 			ps.setInt(3, 0);
 			ps.setInt(4, 0);
+			ps.setString(5, "Solo");
 			ps.executeUpdate();
 		} catch (final SQLException e) {
 			e.printStackTrace();

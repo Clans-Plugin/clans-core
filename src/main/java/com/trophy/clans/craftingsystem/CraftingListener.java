@@ -25,7 +25,7 @@ public class CraftingListener implements Listener {
 	@EventHandler
 	private void preventCrafting(final PrepareItemCraftEvent event) {
 		final Material itemType = event.getRecipe().getResult().getType();
-		if (itemType == Material.WORKBENCH) {
+		if (itemType != Material.WORKBENCH) {
 			event.getInventory().setResult(new ItemStack(Material.AIR));
 		}
 	}

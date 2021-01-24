@@ -1,4 +1,4 @@
-package com.trophy.clans.lootbarrels;
+package com.trophy.clans.database;
 
 import com.trophy.clans.main.Clans;
 import org.bukkit.Bukkit;
@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 
-public class LootBarrelDatabase {
+public class LootBarrelData {
 
 	//ADD loot barrel to database
 	public static void addBarrel(final String x, final String y, final String z, final Integer tier) {

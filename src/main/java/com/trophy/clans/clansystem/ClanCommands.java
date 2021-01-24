@@ -1,8 +1,9 @@
 package com.trophy.clans.clansystem;
 
+import com.trophy.clans.database.ClansData;
 import com.trophy.clans.database.LocalData;
+import com.trophy.clans.database.PlayerData;
 import com.trophy.clans.utility.Items;
-import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -18,10 +19,13 @@ public class ClanCommands implements CommandExecutor {
 		this.items = items;
 	}
 
+	private final String prefix = "§fClans §7> ";
+
 	@Override
 	public boolean onCommand(final CommandSender sender, final Command command, final String label, final String[] args) {
 
 		final Player player = (Player) sender;
+		final String uuid = player.getUniqueId().toString();
 
 		// /clan
 
@@ -44,14 +48,20 @@ public class ClanCommands implements CommandExecutor {
 
 			if (args[0].equalsIgnoreCase("give")) {
 
-				player.sendMessage("               §c§lList of available items");
+				player.sendMessage("§c§lList of available items");
 				player.sendMessage("§cRaiding § Base blocks: §fc4, wallt1, wallt2, wallt3, doort1, doort2, chest");
 				player.sendMessage("§cTools: §fupgradetool, pickt1, pickt2, pickt3, axet1, axet2, axet3");
 				player.sendMessage("§cResources: §fwood, stone, iron, fuel, sulfur, cookedsulfur");
 				player.sendMessage("§cArmour sets: §farmourt1, armourt2, armourt3");
 
-			}
+			} else if (args[0].equalsIgnoreCase("disband")) {
 
+				final int num = ClansData.memberNumber(PlayerData.getClanName(player.getUniqueId().toString()));
+
+				player.sendMessage("number: " + num);
+
+
+			}
 
 		} else
 
@@ -62,57 +72,54 @@ public class ClanCommands implements CommandExecutor {
 				if (args[0].equalsIgnoreCase("create")) {
 
 					final String clanName = args[1];
-					final Location home = player.getLocation();
 
-					//ADD check if player is already in a clan //DONE
-					//ADD check if clan with that name exists //DONE
 
-					try {
-						if (!LocalData.getClanName(player).equals("player_not_in_clan")) {
-							player.sendMessage("§cYou are already in a Clan!");
-							return false;
-						}
-					} catch (final IOException e1) {
-						e1.printStackTrace();
-					}
+					if (!PlayerData.checkPlayerInClan(uuid)) {
 
-					if (LocalData.existsClan(clanName)) {
-						player.sendMessage("§cThis Clanname is already given!");
-						return false;
-					}
+						if (args[1].length() < 12 && args[1].length() > 3) {
 
-					if (args[1].length() < 12 && args[1].length() > 3) {
+							if (!ClansData.checkClanExists(clanName)) {
 
-						try {
-							LocalData.init_clan(clanName, player, home);
-							player.sendMessage("§cClan §f§l" + clanName + "§c was created successfully!");
-							player.sendMessage("§cClan home has been set at your location!");
-							LocalData.giveCoreBlock(player, clanName);
-							player.sendMessage("§cPlace your core block to claim a chunk!");
-						} catch (final IOException e) {
-							e.printStackTrace();
+								ClansData.createClan(clanName, uuid, 0, 0, 0, 0, "0");
+								PlayerData.setPlayerClan(clanName, uuid);
+
+								player.sendMessage(prefix + "§cThe clan §6" + clanName + "§c has been created!");
+							} else {
+
+								player.sendMessage(prefix + "§cThe clan §6" + clanName + "§c already exists!");
+
+							}
+
+						} else {
+
+							player.sendMessage(prefix + "§cThe name of the clan has to be between§6 3 and 12 characters");
+
 						}
 
 					} else {
 
-						player.sendMessage("§cERROR: Clan name must be between 3 and 12 characters");
+						player.sendMessage(prefix + "§cYou are already in a clan: §6" + PlayerData.getClanName(uuid));
 
 					}
 
 
-				} else if (args[0].equalsIgnoreCase("disband")) {
-
-					//Need check to see if player is in a clan
-					player.sendMessage("Not implemented");
-
 				} else if (args[0].equalsIgnoreCase("sethome")) {
 
-					//Need check to see if player is in a clan
-					player.sendMessage("Not implemented");
+					if (PlayerData.checkPlayerInClan(uuid)) {
+
+						final int x = player.getLocation().getBlockX();
+						final int y = player.getLocation().getBlockY();
+						final int z = player.getLocation().getBlockZ();
+						//if()  player is clan owner
+						ClansData.setClanHome(PlayerData.getClanName(uuid), x, y, z);
+
+					}
+
+					player.sendMessage(prefix + "§cClan home has been set to your location for: §6" + PlayerData.getClanName(uuid));
 
 				} else if (args[0].equalsIgnoreCase("home")) {
 
-					//Need check to see if player is in a clan
+
 					player.sendMessage("Not implemented");
 
 				} else if (args[0].equalsIgnoreCase("menu")) {
