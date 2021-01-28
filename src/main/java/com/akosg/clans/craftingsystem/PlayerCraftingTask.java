@@ -1,6 +1,6 @@
-package com.trophy.clans.craftingsystem;
+package com.akosg.clans.craftingsystem;
 
-import com.trophy.clans.utility.Items;
+import com.akosg.clans.utility.Items;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.inventory.ItemStack;

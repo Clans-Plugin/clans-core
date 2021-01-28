@@ -1,4 +1,4 @@
-package com.trophy.clans.database;
+package com.akosg.clans.database;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.ConsoleCommandSender;
@@ -90,7 +90,7 @@ public class SQLInstance {
 		//CLANS DATA
 
 		try {
-			final PreparedStatement ps = getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS ClansData (clanName varchar(64), owner varchar(64), points int, homex int, homey int, homez int, claimx int, claimy int, claimz int)");
+			final PreparedStatement ps = getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS ClansData (clanName varchar(64), owner varchar(64), points int, homex int, homey int, homez int, claimx int, claimy int, claimz int, level int)");
 
 
 			final boolean rs = ps.execute();

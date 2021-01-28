@@ -1,4 +1,4 @@
-package com.trophy.clans.utility;
+package com.akosg.clans.utility;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -28,6 +28,6 @@ public class MenuListener implements Listener {
 		final InventoryHolder holder = event.getInventory().getHolder();
 		if (holder instanceof PlayerMenu) ((PlayerMenu) holder).onClose((Player) event.getPlayer());
 	}
-	
+
 
 }

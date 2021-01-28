@@ -1,6 +1,6 @@
-package com.trophy.clans.levelingsystem;
+package com.akosg.clans.levelingsystem;
 
-import com.trophy.clans.database.PlayerData;
+import com.akosg.clans.database.PlayerData;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

@@ -1,7 +1,7 @@
-package com.trophy.clans.customarmour;
+package com.akosg.clans.customarmour;
 
-import com.trophy.clans.main.Clans;
-import com.trophy.clans.utility.Items;
+import com.akosg.clans.main.Clans;
+import com.akosg.clans.utility.Items;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;

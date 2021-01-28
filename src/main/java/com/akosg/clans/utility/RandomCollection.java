@@ -1,4 +1,4 @@
-package com.trophy.clans.utility;
+package com.akosg.clans.utility;
 
 import java.util.NavigableMap;
 import java.util.Random;

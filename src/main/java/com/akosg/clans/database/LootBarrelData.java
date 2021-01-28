@@ -1,4 +1,4 @@
-package com.trophy.clans.database;
+package com.akosg.clans.database;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;

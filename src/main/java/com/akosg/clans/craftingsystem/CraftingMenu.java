@@ -1,7 +1,7 @@
-package com.trophy.clans.craftingsystem;
+package com.akosg.clans.craftingsystem;
 
-import com.trophy.clans.utility.Items;
-import com.trophy.clans.utility.PlayerMenu;
+import com.akosg.clans.utility.Items;
+import com.akosg.clans.utility.PlayerMenu;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;

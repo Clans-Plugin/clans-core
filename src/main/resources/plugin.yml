@@ -1,7 +1,8 @@
 name: Clans
 version: 1.0
+author: akosG
 api-version: 1.16
-main: com.trophy.clans.main.Clans
+main: com.akosg.clans.main.Clans
 commands:
   clan:
   level:

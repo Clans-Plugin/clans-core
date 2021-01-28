@@ -1,4 +1,4 @@
-package com.trophy.clans.utility;
+package com.akosg.clans.utility;
 
 import lombok.Getter;
 import org.bukkit.Material;

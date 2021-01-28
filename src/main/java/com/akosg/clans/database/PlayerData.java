@@ -1,4 +1,4 @@
-package com.trophy.clans.database;
+package com.akosg.clans.database;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

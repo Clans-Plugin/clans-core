@@ -1,7 +1,7 @@
-package com.trophy.clans.lootbarrels;
+package com.akosg.clans.lootbarrels;
 
-import com.trophy.clans.database.PlayerData;
-import com.trophy.clans.utility.Items;
+import com.akosg.clans.database.PlayerData;
+import com.akosg.clans.utility.Items;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
