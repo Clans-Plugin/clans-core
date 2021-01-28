@@ -127,12 +127,12 @@ public void DestroyEvent(final BlockBreakEvent event) {
 
 		 }
 
-		 else {
+		/* else {
 
 			p.sendMessage("§cYou can only break block inside of your territory");
 			event.setCancelled(true);
 
-		 }
+		 } */
 
 	  }
 

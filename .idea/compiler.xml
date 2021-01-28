@@ -7,11 +7,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="TrophyCore" />
+        <module name="ClansCore" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="TrophyCore" target="1.8" />
+      <module name="ClansCore" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

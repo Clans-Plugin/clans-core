@@ -174,252 +174,280 @@ public boolean onCommand(final CommandSender sender, final Command command, fina
 	  else
 		 if (args.length == 2) {
 
-			if (args[0].equalsIgnoreCase("kick")) {
+			if (args[0].equalsIgnoreCase("invite")) {
 
 			   final Player target = Bukkit.getPlayer(args[1]);
 
-			   if (uuid.equalsIgnoreCase(ClansData.getOwner(clanName))) {
+			   if (ClansData.getOwner(PlayerData.getClanName(player.getUniqueId().toString())).equalsIgnoreCase(player.getUniqueId().toString())) {
 
-				  if (PlayerData.getClanName(target.getUniqueId().toString()).equalsIgnoreCase(clanName)) {
+				  if (!PlayerData.checkPlayerInClan(target.getUniqueId().toString())) {
 
-					 PlayerData.setPlayerClan("Solo", target.getUniqueId().toString());
-					 player.sendMessage(prefix + "§cYou have kicked§6 " + target + " §cfrom your clan!");
-					 player.sendMessage(prefix + "§cYou have been kicked from: §6" + clanName);
+				     
 				  }
 				  else {
 
-					 player.sendMessage(prefix + "§6" + target + " §cis not a member of your clan!");
+					 player.sendMessage("target already in a clan");
 
 				  }
 
 			   }
 			   else {
 
-				  player.sendMessage(prefix + "§cYou are not the owner of: §6" + clanName);
+				  player.sendMessage("not owner");
 
 			   }
 
-
 			}
+
 			else
-			   if (args[0].equalsIgnoreCase("create")) {
+			   if (args[0].equalsIgnoreCase("kick")) {
 
-				  final String name = args[1];
+				  final Player target = Bukkit.getPlayer(args[1]);
 
+				  if (uuid.equalsIgnoreCase(ClansData.getOwner(clanName))) {
 
-				  if (!PlayerData.checkPlayerInClan(uuid)) {
+					 if (PlayerData.getClanName(target.getUniqueId().toString()).equalsIgnoreCase(clanName)) {
 
-					 if (args[1].length() < 12 && args[1].length() > 3) {
-
-						if (!ClansData.checkClanExists(name)) {
-
-						   ClansData.createClan(name, uuid, 0, 0, 0, 0, 0, 0, 0, 1);
-						   PlayerData.setPlayerClan(name, uuid);
-
-						   player.sendMessage(prefix + "§cThe clan §6" + name + "§c has been created!");
-
-						}
-						else {
-
-						   player.sendMessage(prefix + "§cThe clan §6" + name + "§c already exists!");
-
-						}
-
+						PlayerData.setPlayerClan("Solo", target.getUniqueId().toString());
+						player.sendMessage(prefix + "§cYou have kicked§6 " + target + " §cfrom your clan!");
+						player.sendMessage(prefix + "§cYou have been kicked from: §6" + clanName);
 					 }
 					 else {
 
-						player.sendMessage(prefix + "§cThe name of the clan has to be between§6 3 and 12 characters");
+						player.sendMessage(prefix + "§6" + target + " §cis not a member of your clan!");
 
 					 }
 
 				  }
+
+
 				  else {
 
-					 player.sendMessage(prefix + "§cYou are already in a clan: §6" + clanName);
+					 player.sendMessage(prefix + "§cYou are not the owner of: §6" + clanName);
 
 				  }
 
 
 			   }
 			   else
-				  if (args[0].equalsIgnoreCase("points")) {
+				  if (args[0].equalsIgnoreCase("create")) {
 
 					 final String name = args[1];
 
-					 if (ClansData.checkClanExists(name)) {
 
-						final int points = ClansData.getClanPoints(clanName);
+					 if (!PlayerData.checkPlayerInClan(uuid)) {
 
-						player.sendMessage(prefix + "§cThe clan §6" + clanName + " §chas §6" + points + "§cpoints!");
+						if (args[1].length() < 12 && args[1].length() > 3) {
+
+						   if (!ClansData.checkClanExists(name)) {
+
+							  ClansData.createClan(name, uuid, 0, 0, 0, 0, 0, 0, 0, 1);
+							  PlayerData.setPlayerClan(name, uuid);
+
+							  player.sendMessage(prefix + "§cThe clan §6" + name + "§c has been created!");
+
+						   }
+						   else {
+
+							  player.sendMessage(prefix + "§cThe clan §6" + name + "§c already exists!");
+
+						   }
+
+						}
+						else {
+
+						   player.sendMessage(prefix + "§cThe name of the clan has to be between§6 3 and 12 characters");
+
+						}
+
 					 }
 					 else {
 
-						player.sendMessage(prefix + "§cThe clan§6 " + name + " §cdoes not exist!");
+						player.sendMessage(prefix + "§cYou are already in a clan: §6" + clanName);
 
 					 }
+
 
 				  }
 				  else
-					 if (args[0].equalsIgnoreCase("menu")) {
+					 if (args[0].equalsIgnoreCase("points")) {
 
-						//Need check to see if player is in a clan
-						player.sendMessage("Not implemented");
+						final String name = args[1];
+
+						if (ClansData.checkClanExists(name)) {
+
+						   final int points = ClansData.getClanPoints(clanName);
+
+						   player.sendMessage(prefix + "§cThe clan §6" + clanName + " §chas §6" + points + "§cpoints!");
+						}
+						else {
+
+						   player.sendMessage(prefix + "§cThe clan§6 " + name + " §cdoes not exist!");
+
+						}
 
 					 }
 					 else
-						if (args[0].equalsIgnoreCase("give")) {
+						if (args[0].equalsIgnoreCase("menu")) {
 
-						   if (args[1].equalsIgnoreCase("c4")) {
+						   //Need check to see if player is in a clan
+						   player.sendMessage("Not implemented");
 
-							  items.giveCustomItem(player, items.getC4(), 4);
-							  player.sendMessage(items.getCraftTime(items.getTier1Boots(), 2).toString());
+						}
+						else
+						   if (args[0].equalsIgnoreCase("give")) {
 
+							  if (args[1].equalsIgnoreCase("c4")) {
 
-						   }
-						   else
-							  if (args[1].equalsIgnoreCase("wallt1")) {
+								 items.giveCustomItem(player, items.getC4(), 4);
+								 player.sendMessage(items.getCraftTime(items.getTier1Boots(), 2).toString());
 
-								 items.giveCustomItem(player, items.getTier1Wall(), 64);
 
 							  }
 							  else
-								 if (args[1].equalsIgnoreCase("wallt2")) {
+								 if (args[1].equalsIgnoreCase("wallt1")) {
 
-									items.giveCustomItem(player, items.getTier2Wall(), 64);
+									items.giveCustomItem(player, items.getTier1Wall(), 64);
 
 								 }
 								 else
-									if (args[1].equalsIgnoreCase("wallt3")) {
+									if (args[1].equalsIgnoreCase("wallt2")) {
 
-									   items.giveCustomItem(player, items.getTier3Wall(), 64);
+									   items.giveCustomItem(player, items.getTier2Wall(), 64);
 
 									}
 									else
-									   if (args[1].equalsIgnoreCase("doort1")) {
+									   if (args[1].equalsIgnoreCase("wallt3")) {
 
-										  items.giveCustomItem(player, items.getTier1Door(), 1);
+										  items.giveCustomItem(player, items.getTier3Wall(), 64);
 
 									   }
 									   else
-										  if (args[1].equalsIgnoreCase("doort2")) {
+										  if (args[1].equalsIgnoreCase("doort1")) {
 
-											 items.giveCustomItem(player, items.getTier2Door(), 1);
+											 items.giveCustomItem(player, items.getTier1Door(), 1);
 
 										  }
 										  else
-											 if (args[1].equalsIgnoreCase("chest")) {
+											 if (args[1].equalsIgnoreCase("doort2")) {
 
-												items.giveCustomItem(player, items.getChest(), 4);
+												items.giveCustomItem(player, items.getTier2Door(), 1);
 
 											 }
 											 else
-												if (args[1].equalsIgnoreCase("upgradetool")) {
+												if (args[1].equalsIgnoreCase("chest")) {
 
-												   items.giveCustomItem(player, items.getUpgradeTool(), 4);
-
+												   items.giveCustomItem(player, items.getChest(), 4);
 
 												}
 												else
-												   if (args[1].equalsIgnoreCase("pickt1")) {
+												   if (args[1].equalsIgnoreCase("upgradetool")) {
 
-													  items.giveCustomItem(player, items.getTier1Pickaxe(), 1);
+													  items.giveCustomItem(player, items.getUpgradeTool(), 4);
+
 
 												   }
 												   else
-													  if (args[1].equalsIgnoreCase("pickt2")) {
+													  if (args[1].equalsIgnoreCase("pickt1")) {
 
-														 items.giveCustomItem(player, items.getTier2Pickaxe(), 1);
+														 items.giveCustomItem(player, items.getTier1Pickaxe(), 1);
 
 													  }
 													  else
-														 if (args[1].equalsIgnoreCase("pickt3")) {
+														 if (args[1].equalsIgnoreCase("pickt2")) {
 
-															items.giveCustomItem(player, items.getTier3Pickaxe(), 1);
+															items.giveCustomItem(player, items.getTier2Pickaxe(), 1);
 
 														 }
 														 else
-															if (args[1].equalsIgnoreCase("axet1")) {
+															if (args[1].equalsIgnoreCase("pickt3")) {
 
-															   items.giveCustomItem(player, items.getTier1Axe(), 1);
+															   items.giveCustomItem(player, items.getTier3Pickaxe(), 1);
 
 															}
 															else
-															   if (args[1].equalsIgnoreCase("axet2")) {
+															   if (args[1].equalsIgnoreCase("axet1")) {
 
-																  items.giveCustomItem(player, items.getTier2Axe(), 1);
+																  items.giveCustomItem(player, items.getTier1Axe(), 1);
 
 															   }
 															   else
-																  if (args[1].equalsIgnoreCase("axet3")) {
+																  if (args[1].equalsIgnoreCase("axet2")) {
 
-																	 items.giveCustomItem(player, items.getTier3Axe(), 1);
+																	 items.giveCustomItem(player, items.getTier2Axe(), 1);
 
 																  }
 																  else
-																	 if (args[1].equalsIgnoreCase("wood")) {
+																	 if (args[1].equalsIgnoreCase("axet3")) {
 
-																		items.giveCustomItem(player, items.getWood(), 64);
+																		items.giveCustomItem(player, items.getTier3Axe(), 1);
 
 																	 }
 																	 else
-																		if (args[1].equalsIgnoreCase("stone")) {
+																		if (args[1].equalsIgnoreCase("wood")) {
 
-																		   items.giveCustomItem(player, items.getStone(), 64);
+																		   items.giveCustomItem(player, items.getWood(), 64);
 
 																		}
 																		else
-																		   if (args[1].equalsIgnoreCase("iron")) {
+																		   if (args[1].equalsIgnoreCase("stone")) {
 
-																			  items.giveCustomItem(player, items.getIron(), 64);
+																			  items.giveCustomItem(player, items.getStone(), 64);
 
 																		   }
 																		   else
-																			  if (args[1].equalsIgnoreCase("fuel")) {
+																			  if (args[1].equalsIgnoreCase("iron")) {
 
-																				 items.giveCustomItem(player, items.getFuel(), 64);
+																				 items.giveCustomItem(player, items.getIron(), 64);
 
 																			  }
 																			  else
-																				 if (args[1].equalsIgnoreCase("sulfur")) {
+																				 if (args[1].equalsIgnoreCase("fuel")) {
 
-																					items.giveCustomItem(player, items.getSulfur(), 64);
+																					items.giveCustomItem(player, items.getFuel(), 64);
 
 																				 }
 																				 else
-																					if (args[1].equalsIgnoreCase("cookedsulfur")) {
+																					if (args[1].equalsIgnoreCase("sulfur")) {
 
-																					   items.giveCustomItem(player, items.getCookedsulfur(), 64);
+																					   items.giveCustomItem(player, items.getSulfur(), 64);
 
 																					}
 																					else
-																					   if (args[1].equalsIgnoreCase("armourt1")) {
+																					   if (args[1].equalsIgnoreCase("cookedsulfur")) {
 
-																						  items.giveCustomItem(player, items.getTier1Helmet(), 1);
-																						  items.giveCustomItem(player, items.getTier1Chestplate(), 1);
-																						  items.giveCustomItem(player, items.getTier1Leggings(), 1);
-																						  items.giveCustomItem(player, items.getTier1Boots(), 1);
+																						  items.giveCustomItem(player, items.getCookedsulfur(), 64);
 
 																					   }
 																					   else
-																						  if (args[1].equalsIgnoreCase("armourt2")) {
+																						  if (args[1].equalsIgnoreCase("armourt1")) {
 
-																							 items.giveCustomItem(player, items.getTier2Helmet(), 1);
-																							 items.giveCustomItem(player, items.getTier2Helmet(), 1);
-																							 items.giveCustomItem(player, items.getTier2Chestplate(), 1);
-																							 items.giveCustomItem(player, items.getTier2Leggings(), 1);
-																							 items.giveCustomItem(player, items.getTier2Boots(), 1);
+																							 items.giveCustomItem(player, items.getTier1Helmet(), 1);
+																							 items.giveCustomItem(player, items.getTier1Chestplate(), 1);
+																							 items.giveCustomItem(player, items.getTier1Leggings(), 1);
+																							 items.giveCustomItem(player, items.getTier1Boots(), 1);
 
 																						  }
 																						  else
-																							 if (args[1].equalsIgnoreCase("armourt3")) {
+																							 if (args[1].equalsIgnoreCase("armourt2")) {
 
-																								items.giveCustomItem(player, items.getTier3Helmet(), 1);
-																								items.giveCustomItem(player, items.getTier3Chestplate(), 1);
-																								items.giveCustomItem(player, items.getTier3Leggings(), 1);
-																								items.giveCustomItem(player, items.getTier3Boots(), 1);
+																								items.giveCustomItem(player, items.getTier2Helmet(), 1);
+																								items.giveCustomItem(player, items.getTier2Helmet(), 1);
+																								items.giveCustomItem(player, items.getTier2Chestplate(), 1);
+																								items.giveCustomItem(player, items.getTier2Leggings(), 1);
+																								items.giveCustomItem(player, items.getTier2Boots(), 1);
 
 																							 }
-						}
+																							 else
+																								if (args[1].equalsIgnoreCase("armourt3")) {
+
+																								   items.giveCustomItem(player, items.getTier3Helmet(), 1);
+																								   items.giveCustomItem(player, items.getTier3Chestplate(), 1);
+																								   items.giveCustomItem(player, items.getTier3Leggings(), 1);
+																								   items.giveCustomItem(player, items.getTier3Boots(), 1);
+
+																								}
+						   }
 
 		 }
 

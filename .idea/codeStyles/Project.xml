@@ -1,8 +1,16 @@
 <component name="ProjectCodeStyleConfiguration">
   <code_scheme name="Project" version="173">
     <codeStyleSettings language="JAVA">
+      <option name="DO_NOT_INDENT_TOP_LEVEL_CLASS_MEMBERS" value="true" />
+      <option name="ELSE_ON_NEW_LINE" value="true" />
+      <option name="SPECIAL_ELSE_IF_TREATMENT" value="false" />
+      <option name="KEEP_SIMPLE_BLOCKS_IN_ONE_LINE" value="true" />
       <indentOptions>
+        <option name="INDENT_SIZE" value="3" />
+        <option name="CONTINUATION_INDENT_SIZE" value="12" />
         <option name="USE_TAB_CHARACTER" value="true" />
+        <option name="LABEL_INDENT_ABSOLUTE" value="true" />
+        <option name="USE_RELATIVE_INDENTS" value="true" />
       </indentOptions>
     </codeStyleSettings>
   </code_scheme>
