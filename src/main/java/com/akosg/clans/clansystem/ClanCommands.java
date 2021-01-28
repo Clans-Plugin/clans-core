@@ -1,15 +1,13 @@
 package com.trophy.clans.clansystem;
 
 import com.trophy.clans.database.ClansData;
-import com.trophy.clans.database.LocalData;
 import com.trophy.clans.database.PlayerData;
 import com.trophy.clans.utility.Items;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import java.io.IOException;
 
 public class ClanCommands implements CommandExecutor {
 
@@ -26,6 +24,7 @@ public class ClanCommands implements CommandExecutor {
 
 		final Player player = (Player) sender;
 		final String uuid = player.getUniqueId().toString();
+		final String clanName = PlayerData.getClanName(uuid);
 
 		// /clan
 
@@ -56,9 +55,79 @@ public class ClanCommands implements CommandExecutor {
 
 			} else if (args[0].equalsIgnoreCase("disband")) {
 
-				final int num = ClansData.memberNumber(PlayerData.getClanName(player.getUniqueId().toString()));
+				final int num = ClansData.memberNumber(clanName);
 
-				player.sendMessage("number: " + num);
+				if (uuid.equalsIgnoreCase(ClansData.getOwner(clanName))) {
+
+					if (num < 2) {
+
+
+						ClansData.removeClan(PlayerData.getClanName(uuid));
+
+						player.sendMessage(prefix + "§cYou have disbanded the clan: §6" + clanName);
+
+
+						PlayerData.setPlayerClan("Solo", uuid);
+
+
+					} else {
+
+						final int members = num - 1;
+
+						player.sendMessage(prefix + "§cYou must kick all §6" + members + "§c members before you can disband §6 " + clanName);
+
+
+					}
+
+				} else {
+
+					player.sendMessage(prefix + "§cYou are not the owner of: §6" + clanName);
+
+
+				}
+
+
+			} else if (args[0].equalsIgnoreCase("sethome")) {
+
+				if (PlayerData.checkPlayerInClan(uuid)) {
+
+					final int x = player.getLocation().getBlockX();
+					final int y = player.getLocation().getBlockY();
+					final int z = player.getLocation().getBlockZ();
+					//if()  player is clan owner
+					ClansData.setClanHome(clanName, x, y, z);
+
+				}
+
+				player.sendMessage(prefix + "§cClan home has been set to your location for: §6" + clanName);
+
+			} else if (args[0].equalsIgnoreCase("home")) {
+
+				player.teleport(ClansData.getClanHome(PlayerData.getClanName(uuid)));
+				player.sendMessage(prefix + "§cYou have been teleported to the Clan home of: §6" + clanName);
+
+
+			} else if (args[0].equalsIgnoreCase("kick")) {
+
+				player.sendMessage(prefix + "§cUsage: §6/clan kick player");
+
+
+			} else if (args[0].equalsIgnoreCase("points")) {
+
+				if (PlayerData.checkPlayerInClan(uuid)) {
+
+					final String points = ClansData.getClanPoints(clanName);
+
+					player.sendMessage(prefix + "§cYour clan §6" + clanName + " §chas §6" + points + " §cpoints");
+				} else {
+
+					player.sendMessage(prefix + "§cYou are not a member of any clan!");
+
+				}
+
+			} else if (args[0].equalsIgnoreCase("top")) {
+
+				player.sendMessage("not implemented yet");
 
 
 			}
@@ -69,24 +138,49 @@ public class ClanCommands implements CommandExecutor {
 
 			if (args.length == 2) {
 
-				if (args[0].equalsIgnoreCase("create")) {
+				if (args[0].equalsIgnoreCase("kick")) {
 
-					final String clanName = args[1];
+					Player target = Bukkit.getPlayer(args[1]);
+
+					if (uuid.equalsIgnoreCase(ClansData.getOwner(clanName))) {
+
+						if (PlayerData.getClanName(target.getUniqueId().toString()).equalsIgnoreCase(clanName)) {
+
+							PlayerData.setPlayerClan("Solo", target.getUniqueId().toString());
+							player.sendMessage(prefix + "§cYou have kicked§6 " + target + " §cfrom your clan!");
+							player.sendMessage(prefix + "§cYou have been kicked from: §6" + clanName);
+						} else {
+
+							player.sendMessage(prefix + "§6" + target + " §cis not a member of your clan!");
+
+						}
+
+					} else {
+
+						player.sendMessage(prefix + "§cYou are not the owner of: §6" + clanName);
+
+					}
+
+
+				} else if (args[0].equalsIgnoreCase("create")) {
+
+					final String name = args[1];
 
 
 					if (!PlayerData.checkPlayerInClan(uuid)) {
 
 						if (args[1].length() < 12 && args[1].length() > 3) {
 
-							if (!ClansData.checkClanExists(clanName)) {
+							if (!ClansData.checkClanExists(name)) {
 
-								ClansData.createClan(clanName, uuid, 0, 0, 0, 0, "0");
-								PlayerData.setPlayerClan(clanName, uuid);
+								ClansData.createClan(name, uuid, 0, 0, 0, 0, "0");
+								PlayerData.setPlayerClan(name, uuid);
 
-								player.sendMessage(prefix + "§cThe clan §6" + clanName + "§c has been created!");
+								player.sendMessage(prefix + "§cThe clan §6" + name + "§c has been created!");
+
 							} else {
 
-								player.sendMessage(prefix + "§cThe clan §6" + clanName + "§c already exists!");
+								player.sendMessage(prefix + "§cThe clan §6" + name + "§c already exists!");
 
 							}
 
@@ -98,29 +192,39 @@ public class ClanCommands implements CommandExecutor {
 
 					} else {
 
-						player.sendMessage(prefix + "§cYou are already in a clan: §6" + PlayerData.getClanName(uuid));
+						player.sendMessage(prefix + "§cYou are already in a clan: §6" + clanName);
 
 					}
 
 
-				} else if (args[0].equalsIgnoreCase("sethome")) {
+				} else if (args[0].equalsIgnoreCase("points")) {
 
-					if (PlayerData.checkPlayerInClan(uuid)) {
+					final String name = args[1];
 
-						final int x = player.getLocation().getBlockX();
-						final int y = player.getLocation().getBlockY();
-						final int z = player.getLocation().getBlockZ();
-						//if()  player is clan owner
-						ClansData.setClanHome(PlayerData.getClanName(uuid), x, y, z);
+					if (ClansData.checkClanExists(name)) {
+
+						final String points = ClansData.getClanPoints(clanName);
+
+						player.sendMessage(prefix + "§cThe clan §6" + clanName + " §chas §6" + points + "§cpoints");
+					} else {
+
+						player.sendMessage(prefix + "§cThe clan§6 " + name + " §cdoes not exist");
 
 					}
-
-					player.sendMessage(prefix + "§cClan home has been set to your location for: §6" + PlayerData.getClanName(uuid));
 
 				} else if (args[0].equalsIgnoreCase("home")) {
 
+					if (ClansData.checkClanExists(args[1])) {
 
-					player.sendMessage("Not implemented");
+						player.teleport(ClansData.getClanHome(args[1]));
+						player.sendMessage(prefix + "§cYou have been teleported to the Clan home of: §6" + args[1]);
+
+					} else {
+
+						player.sendMessage(prefix + "§cThat clan does not exist!");
+
+
+					}
 
 				} else if (args[0].equalsIgnoreCase("menu")) {
 
@@ -129,11 +233,8 @@ public class ClanCommands implements CommandExecutor {
 
 				} else if (args[0].equalsIgnoreCase("top")) {
 
-					try {
-						player.sendMessage(LocalData.getTopClans().toString());
-					} catch (final IOException e) {
-						e.printStackTrace();
-					}
+					//get top clans
+
 
 				} else if (args[0].equalsIgnoreCase("give")) {
 

@@ -1,7 +1,5 @@
 package com.trophy.clans.database;
 
-import com.trophy.clans.main.Clans;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,7 +11,7 @@ public class PlayerData {
 	public static boolean checkPlayerInClan(final String uuid) {
 
 		try {
-			final PreparedStatement ps = Clans.getConnection().prepareStatement("SELECT ClanName FROM PlayerData WHERE UUID=?");
+			final PreparedStatement ps = SQLInstance.getConnection().prepareStatement("SELECT ClanName FROM PlayerData WHERE UUID=?");
 
 			ps.setString(1, uuid);
 
@@ -39,7 +37,7 @@ public class PlayerData {
 
 	public static void setPlayerClan(final String ClanName, final String uuid) {
 		try {
-			final PreparedStatement ps = Clans.getConnection().prepareStatement("UPDATE PlayerData SET ClanName=? WHERE UUID=?");
+			final PreparedStatement ps = SQLInstance.getConnection().prepareStatement("UPDATE PlayerData SET ClanName=? WHERE UUID=?");
 			ps.setString(1, ClanName);
 			ps.setString(2, uuid);
 			ps.executeUpdate();
@@ -53,7 +51,7 @@ public class PlayerData {
 
 	public static String getClanName(final String uuid) {
 		try {
-			final PreparedStatement ps = Clans.getConnection().prepareStatement("SELECT ClanName FROM PlayerData WHERE UUID = ?");
+			final PreparedStatement ps = SQLInstance.getConnection().prepareStatement("SELECT ClanName FROM PlayerData WHERE UUID = ?");
 			ps.setString(1, uuid);
 			final ResultSet rs = ps.executeQuery();
 			final String name;
@@ -70,7 +68,7 @@ public class PlayerData {
 	// ADD player to database
 	public static void firstJoin(final String uuid) {
 		try {
-			final PreparedStatement ps = Clans.getConnection().prepareStatement("INSERT INTO PlayerData (UUID,Level,XP,Points,ClanName) VALUES (?,?,?,?,?)");
+			final PreparedStatement ps = SQLInstance.getConnection().prepareStatement("INSERT INTO PlayerData (UUID,Level,XP,Points,ClanName) VALUES (?,?,?,?,?)");
 
 			ps.setString(1, uuid);
 			ps.setInt(2, 0);
@@ -88,7 +86,7 @@ public class PlayerData {
 	public static boolean checkDatabaseExist(final String uuid) {
 
 		try {
-			final PreparedStatement ps = Clans.getConnection().prepareStatement("SELECT * FROM PlayerData WHERE UUID=?");
+			final PreparedStatement ps = SQLInstance.getConnection().prepareStatement("SELECT * FROM PlayerData WHERE UUID=?");
 
 			ps.setString(1, uuid);
 			final ResultSet rs = ps.executeQuery();
@@ -104,7 +102,7 @@ public class PlayerData {
 
 	public static void updateLevel(final int level, final String uuid) {
 		try {
-			final PreparedStatement ps = Clans.getConnection().prepareStatement("UPDATE PlayerData SET Level=? WHERE UUID=?");
+			final PreparedStatement ps = SQLInstance.getConnection().prepareStatement("UPDATE PlayerData SET Level=? WHERE UUID=?");
 			ps.setInt(1, level);
 			ps.setString(2, uuid);
 			ps.executeUpdate();
@@ -119,7 +117,7 @@ public class PlayerData {
 
 	public static void updateXP(final int xp, final String uuid) {
 		try {
-			final PreparedStatement ps = Clans.getConnection().prepareStatement("UPDATE PlayerData SET XP=? WHERE UUID=?");
+			final PreparedStatement ps = SQLInstance.getConnection().prepareStatement("UPDATE PlayerData SET XP=? WHERE UUID=?");
 
 			ps.setInt(1, xp);
 			ps.setString(2, uuid);
@@ -134,7 +132,7 @@ public class PlayerData {
 
 	public static void updatePoints(final int points, final String uuid) {
 		try {
-			final PreparedStatement ps = Clans.getConnection().prepareStatement("UPDATE PlayerData SET Points=? WHERE UUID=?");
+			final PreparedStatement ps = SQLInstance.getConnection().prepareStatement("UPDATE PlayerData SET Points=? WHERE UUID=?");
 			ps.setInt(1, points);
 			ps.setString(2, uuid);
 			ps.executeUpdate();
@@ -149,7 +147,7 @@ public class PlayerData {
 
 	public static int getPlayerLevel(final String uuid) {
 		try {
-			final PreparedStatement ps = Clans.getConnection().prepareStatement("SELECT Level FROM PlayerData WHERE UUID = ?");
+			final PreparedStatement ps = SQLInstance.getConnection().prepareStatement("SELECT Level FROM PlayerData WHERE UUID = ?");
 			ps.setString(1, uuid);
 			final ResultSet rs = ps.executeQuery();
 			final int level;
@@ -167,7 +165,7 @@ public class PlayerData {
 
 	public static int getPlayerXP(final String uuid) {
 		try {
-			final PreparedStatement ps = Clans.getConnection().prepareStatement("SELECT XP FROM PlayerData WHERE UUID = ?");
+			final PreparedStatement ps = SQLInstance.getConnection().prepareStatement("SELECT XP FROM PlayerData WHERE UUID = ?");
 			ps.setString(1, uuid);
 			final ResultSet rs = ps.executeQuery();
 			final int xp;
@@ -185,7 +183,7 @@ public class PlayerData {
 
 	public static int getPlayerPoints(final String uuid) {
 		try {
-			final PreparedStatement ps = Clans.getConnection().prepareStatement("SELECT Points FROM PlayerData WHERE UUID = ?");
+			final PreparedStatement ps = SQLInstance.getConnection().prepareStatement("SELECT Points FROM PlayerData WHERE UUID = ?");
 			ps.setString(1, uuid);
 			final ResultSet rs = ps.executeQuery();
 			final int points;

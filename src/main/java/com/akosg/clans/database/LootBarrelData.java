@@ -1,6 +1,5 @@
 package com.trophy.clans.database;
 
-import com.trophy.clans.main.Clans;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 
@@ -14,7 +13,7 @@ public class LootBarrelData {
 	//ADD loot barrel to database
 	public static void addBarrel(final String x, final String y, final String z, final Integer tier) {
 		try {
-			final PreparedStatement ps = Clans.getConnection().prepareStatement("INSERT INTO BarrelData (x,y,z,tier) VALUES (?,?,?,?)");
+			final PreparedStatement ps = SQLInstance.getConnection().prepareStatement("INSERT INTO BarrelData (x,y,z,tier) VALUES (?,?,?,?)");
 
 			ps.setString(1, x);
 			ps.setString(2, y);
@@ -29,7 +28,7 @@ public class LootBarrelData {
 	//REMOVE loot barrel from database
 	public static void removeBarrel(final String x, final String y, final String z) {
 		try {
-			final PreparedStatement ps = Clans.getConnection().prepareStatement("DELETE * FROM BarrelData WHERE (x,y,z) VALUES (?,?,?)");
+			final PreparedStatement ps = SQLInstance.getConnection().prepareStatement("DELETE * FROM BarrelData WHERE (x,y,z) VALUES (?,?,?)");
 
 			ps.setString(1, x);
 			ps.setString(2, y);
@@ -45,7 +44,7 @@ public class LootBarrelData {
 	public static int getLootBarrel(final String x, final String y, final String z) {
 
 		try {
-			final PreparedStatement ps = Clans.getConnection().prepareStatement("SELECT tier FROM BarrelData WHERE (x,y,z) VALUES (?,?,?)");
+			final PreparedStatement ps = SQLInstance.getConnection().prepareStatement("SELECT tier FROM BarrelData WHERE (x,y,z) VALUES (?,?,?)");
 
 			ps.setString(1, x);
 			ps.setString(2, y);
@@ -70,7 +69,7 @@ public class LootBarrelData {
 	public static HashMap<Location, Integer> getAllLootBarrel() {
 
 		try {
-			final PreparedStatement ps = Clans.getConnection().prepareStatement("SELECT * FROM BarrelData");
+			final PreparedStatement ps = SQLInstance.getConnection().prepareStatement("SELECT * FROM BarrelData");
 
 			final ResultSet rs = ps.executeQuery();
 			final HashMap<Location, Integer> list = new HashMap<>();
