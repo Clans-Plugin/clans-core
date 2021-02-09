@@ -64,7 +64,7 @@ private void registerTasks() {
 }
 
 private void registerCMD() {
-   getCommand("clan").setExecutor(new ClanCommands(items));
+   getCommand("clan").setExecutor(new ClanCommands(items, this));
    getCommand("level").setExecutor(new LevelingCommands());
 }
 
