@@ -20,6 +20,8 @@ import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Clans extends JavaPlugin {
@@ -60,15 +62,22 @@ public void reconnect() {
 	  @Override
 	  public void run() {
 		 try {
-			SQLInstance.getConnection().prepareStatement("SELECT 'Hello world'\n" +
-																	 "  FROM DUAL");
+			final PreparedStatement ps = SQLInstance.getConnection().prepareStatement("SELECT * FROM PlayerData");
 
-			console.sendMessage("\247c[\2476Clans\247c] \247bDatabase connection refreshed!");
+			final ResultSet rs = ps.executeQuery();
+			int total = 0;
+			while (rs.next()) {
+
+			   total++;
+
+			}
+
+			console.sendMessage("\247c[\2476Clans\247c] \247bReloaded the data of" + total + " unique players!");
 		 } catch (final SQLException e) {
 			e.printStackTrace();
 		 }
 	  }
-   }, (30 * 60 * 20L), 10);
+   }, (10 * 60 * 20L), (10 * 60 * 20L));
 }
 
 
