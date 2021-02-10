@@ -76,6 +76,7 @@ public class PlayerData {
 			ps.setInt(4, 0);
 			ps.setString(5, "Solo");
 			ps.executeUpdate();
+			System.out.println("ADDED TO DATABASE");
 		} catch (final SQLException e) {
 			e.printStackTrace();
 		}
@@ -90,12 +91,22 @@ public class PlayerData {
 
 			ps.setString(1, uuid);
 			final ResultSet rs = ps.executeQuery();
-			return !rs.next();
+
+			if (rs.next()) {
+
+				return true;
+				
+			} else {
+
+				return false;
+
+			}
 
 		} catch (final SQLException x) {
 			x.printStackTrace();
 		}
-		return true;
+
+		return false;
 	}
 
 	//Set player level.

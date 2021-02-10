@@ -10,7 +10,7 @@ import java.util.HashMap;
 
 public class CacheManager implements Listener {
 
-	private final HashMap<Player, PlayerCache> playerData;
+	public static HashMap<Player, PlayerCache> playerData;
 
 	public CacheManager(final HashMap<Player, PlayerCache> playerData) {
 		this.playerData = playerData;
@@ -32,10 +32,16 @@ public class CacheManager implements Listener {
 
 			playerData.put(player, new PlayerCache(clanName, level, xp, points));
 
+			System.out.println("Player is already database");
+
 		} else {
 			PlayerData.firstJoin(uuid);
+			System.out.println("First join");
 			playerData.put(player, new PlayerCache());
 		}
+
+		System.out.println("Data: " + playerData.toString());
+		System.out.println("Fuck");
 	}
 
 	@EventHandler
@@ -48,9 +54,13 @@ public class CacheManager implements Listener {
 		final PlayerCache playerCache = playerData.get(player);
 
 		final String clanName = playerCache.getClanName();
+		System.out.println("clanName: " + clanName);
 		final int level = playerCache.getLevel();
+		System.out.println("level: " + level);
 		final int xp = playerCache.getXp();
+		System.out.println("xp: " + xp);
 		final int points = playerCache.getPoints();
+		System.out.println("points: " + points);
 
 		PlayerData.setPlayerClan(clanName, uuid);
 		PlayerData.setLevel(level, uuid);
@@ -58,6 +68,9 @@ public class CacheManager implements Listener {
 		PlayerData.setPoints(points, uuid);
 
 		playerData.remove(player);
+
+		System.out.println("Data: " + playerData.toString());
+		System.out.println("Fuck you left");
 
 	}
 }
