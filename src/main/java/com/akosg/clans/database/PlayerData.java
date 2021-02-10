@@ -90,17 +90,17 @@ public class PlayerData {
 
 			ps.setString(1, uuid);
 			final ResultSet rs = ps.executeQuery();
-			return rs.next();
+			return !rs.next();
 
 		} catch (final SQLException x) {
 			x.printStackTrace();
 		}
-		return false;
+		return true;
 	}
 
 	//Set player level.
 
-	public static void updateLevel(final int level, final String uuid) {
+	public static void setLevel(final int level, final String uuid) {
 		try {
 			final PreparedStatement ps = SQLInstance.getConnection().prepareStatement("UPDATE PlayerData SET Level=? WHERE UUID=?");
 			ps.setInt(1, level);
@@ -115,7 +115,7 @@ public class PlayerData {
 	//Set player xp.
 
 
-	public static void updateXP(final int xp, final String uuid) {
+	public static void setXP(final int xp, final String uuid) {
 		try {
 			final PreparedStatement ps = SQLInstance.getConnection().prepareStatement("UPDATE PlayerData SET XP=? WHERE UUID=?");
 
@@ -130,7 +130,7 @@ public class PlayerData {
 
 	//Set player points.
 
-	public static void updatePoints(final int points, final String uuid) {
+	public static void setPoints(final int points, final String uuid) {
 		try {
 			final PreparedStatement ps = SQLInstance.getConnection().prepareStatement("UPDATE PlayerData SET Points=? WHERE UUID=?");
 			ps.setInt(1, points);
