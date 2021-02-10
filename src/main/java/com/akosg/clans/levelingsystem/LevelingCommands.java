@@ -44,37 +44,40 @@ public class LevelingCommands implements CommandExecutor {
 					player.sendMessage("no perm");
 
 				}
-			} else if (args.length == 4) {
+			} else
+				if (args.length == 4) {
 
-				if (args[0].equalsIgnoreCase("set")) {
+					if (args[0].equalsIgnoreCase("set")) {
 
-					if (args[1].equalsIgnoreCase("level")) {
+						if (args[1].equalsIgnoreCase("level")) {
 
-						final int value = Integer.valueOf(args[2]);
-						final Player target = Bukkit.getPlayer(args[3]);
+							final int value = Integer.parseInt(args[2]);
+							final Player target = Bukkit.getPlayer(args[3]);
 
-						PlayerData.updateLevel(value, target.getUniqueId().toString());
+							PlayerData.setLevel(value, target.getUniqueId().toString());
 
-					} else if (args[1].equalsIgnoreCase("xp")) {
+						} else
+							if (args[1].equalsIgnoreCase("xp")) {
 
-						final int value = Integer.valueOf(args[2]);
-						final Player target = Bukkit.getPlayer(args[3]);
+								final int value = Integer.parseInt(args[2]);
+								final Player target = Bukkit.getPlayer(args[3]);
 
-						PlayerData.updateXP(value, target.getUniqueId().toString());
+								PlayerData.setXP(value, target.getUniqueId().toString());
 
-					} else if (args[1].equalsIgnoreCase("points")) {
+							} else
+								if (args[1].equalsIgnoreCase("points")) {
 
-						final int value = Integer.valueOf(args[2]);
-						final Player target = Bukkit.getPlayer(args[3]);
+									final int value = Integer.parseInt(args[2]);
+									final Player target = Bukkit.getPlayer(args[3]);
 
-						PlayerData.updatePoints(value, target.getUniqueId().toString());
+									PlayerData.setPoints(value, target.getUniqueId().toString());
+
+								}
 
 					}
 
+
 				}
-
-
-			}
 
 		return false;
 	}
