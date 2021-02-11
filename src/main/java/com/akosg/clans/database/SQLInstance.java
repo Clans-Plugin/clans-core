@@ -74,7 +74,7 @@ public class SQLInstance {
 		//PLAYER DATA
 
 		try {
-			final PreparedStatement ps = getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS PlayerData (UUID varchar(64), Level int, XP int, Points int, ClanName varchar(64))");
+			final PreparedStatement ps = getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS PlayerData (UUID varchar(64), Donor varchar(64), Level int, XP int, Points int, ClanName varchar(64))");
 
 
 			final boolean rs = ps.execute();

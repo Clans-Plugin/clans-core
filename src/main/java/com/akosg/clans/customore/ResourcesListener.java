@@ -1,5 +1,7 @@
 package com.akosg.clans.customore;
 
+import com.akosg.clans.database.CacheManager;
+import com.akosg.clans.database.PlayerCache;
 import com.akosg.clans.main.Clans;
 import com.akosg.clans.utility.Items;
 import org.bukkit.Bukkit;
@@ -13,6 +15,8 @@ public class ResourcesListener implements Listener {
 
 	private final Clans plugin;
 	private final Items items;
+	private int multiplier;
+
 
 	public ResourcesListener(final Clans main, final Items items) {
 		this.plugin = main;
@@ -24,46 +28,53 @@ public class ResourcesListener implements Listener {
 
 		final Player player = event.getPlayer();
 
-		if (!player.hasPermission("clans.edit")) {
+		final PlayerCache playerCache = CacheManager.playerData.get(player);
 
-			event.setCancelled(true);
+		final Integer xp = playerCache.getXp();
 
-			int multiplier = 1;
+		if (!playerCache.getDonor().equalsIgnoreCase("true")) {
 
-			if (player.hasPermission("clan.donor")) {
-				multiplier = 2;
-			}
+			multiplier = 1;
 
-			final Material material = event.getBlock().getType();
+		} else {
+			multiplier = 2;
+		}
 
-			switch (material) {
+		final Material material = event.getBlock().getType();
 
-				case STONE:
-					respawnBlock(material, 120, event);
-					items.addItemToInventory(player, items.getStone(), 2 * multiplier);
-					break;
-				case COAL_ORE:
-					respawnBlock(material, 240, event);
-					items.addItemToInventory(player, items.getFuel(), 2 * multiplier);
-					break;
-				case IRON_ORE:
-					respawnBlock(material, 240, event);
-					items.addItemToInventory(player, items.getIron(), 2 * multiplier);
-					break;
-				case GOLD_ORE:
-					respawnBlock(material, 480, event);
-					items.addItemToInventory(player, items.getSulfur(), 2 * multiplier);
-					break;
-				case LOG:
-					respawnBlock(material, 120, event);
-					items.addItemToInventory(player, items.getWood(), 2 * multiplier);
-					break;
-				default:
-					player.sendMessage("§cYou can not mine this block!");
-					break;
-			}
+		switch (material) {
+
+			case STONE:
+				respawnBlock(material, 120, event);
+				items.addItemToInventory(player, items.getStone(), 2 * multiplier);
+				playerCache.setXp(xp + 4);
+				break;
+			case COAL_ORE:
+				respawnBlock(material, 240, event);
+				items.addItemToInventory(player, items.getFuel(), 2 * multiplier);
+				playerCache.setXp(xp + 6);
+				break;
+			case IRON_ORE:
+				respawnBlock(material, 240, event);
+				items.addItemToInventory(player, items.getIron(), 2 * multiplier);
+				playerCache.setXp(xp + 8);
+				break;
+			case GOLD_ORE:
+				respawnBlock(material, 480, event);
+				items.addItemToInventory(player, items.getSulfur(), 2 * multiplier);
+				playerCache.setXp(xp + 10);
+				break;
+			case LOG:
+				respawnBlock(material, 120, event);
+				items.addItemToInventory(player, items.getWood(), 2 * multiplier);
+				playerCache.setXp(xp + 5);
+				break;
+			default:
+				player.sendMessage("§cYou can not mine this block!");
+				break;
 		}
 	}
+
 
 	private void respawnBlock(final Material material, final Integer time, final BlockBreakEvent event) {
 

@@ -95,7 +95,7 @@ public class PlayerData {
 			if (rs.next()) {
 
 				return true;
-				
+
 			} else {
 
 				return false;
@@ -154,6 +154,21 @@ public class PlayerData {
 	}
 
 
+	//Set isDonor
+
+	public static void setDonor(final String value, final String uuid) {
+		try {
+			final PreparedStatement ps = SQLInstance.getConnection().prepareStatement("UPDATE PlayerData SET Donor=? WHERE UUID=?");
+			ps.setString(1, value);
+			ps.setString(2, uuid);
+			ps.executeUpdate();
+		} catch (final SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+
 	//Get players level. Requires UUID in a string format
 
 	public static int getPlayerLevel(final String uuid) {
@@ -170,6 +185,25 @@ public class PlayerData {
 			x.printStackTrace();
 		}
 		return 0;
+	}
+
+
+	//Get players level. Requires UUID in a string format
+
+	public static String isDonor(final String uuid) {
+		try {
+			final PreparedStatement ps = SQLInstance.getConnection().prepareStatement("SELECT Donor FROM PlayerData WHERE UUID = ?");
+			ps.setString(1, uuid);
+			final ResultSet rs = ps.executeQuery();
+			final String donor;
+			if (rs.next()) {
+				donor = rs.getString("Donor");
+				return (donor);
+			}
+		} catch (final SQLException x) {
+			x.printStackTrace();
+		}
+		return "null";
 	}
 
 	//Get players xp. Requires UUID in a string format

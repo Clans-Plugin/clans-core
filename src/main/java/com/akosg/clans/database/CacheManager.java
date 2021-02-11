@@ -26,22 +26,20 @@ public class CacheManager implements Listener {
 		if (PlayerData.checkDatabaseExist(uuid)) {
 
 			final String clanName = PlayerData.getClanName(uuid);
+			final String donor = PlayerData.isDonor(uuid);
 			final int level = PlayerData.getPlayerLevel(uuid);
 			final int xp = PlayerData.getPlayerXP(uuid);
 			final int points = PlayerData.getPlayerPoints(uuid);
 
-			playerData.put(player, new PlayerCache(clanName, level, xp, points));
+			playerData.put(player, new PlayerCache(clanName, donor, level, xp, points));
 
-			System.out.println("Player is already database");
 
 		} else {
 			PlayerData.firstJoin(uuid);
-			System.out.println("First join");
 			playerData.put(player, new PlayerCache());
 		}
 
-		System.out.println("Data: " + playerData.toString());
-		System.out.println("Fuck");
+
 	}
 
 	@EventHandler
@@ -54,23 +52,19 @@ public class CacheManager implements Listener {
 		final PlayerCache playerCache = playerData.get(player);
 
 		final String clanName = playerCache.getClanName();
-		System.out.println("clanName: " + clanName);
+		final String donor = playerCache.getDonor();
 		final int level = playerCache.getLevel();
-		System.out.println("level: " + level);
 		final int xp = playerCache.getXp();
-		System.out.println("xp: " + xp);
 		final int points = playerCache.getPoints();
-		System.out.println("points: " + points);
 
 		PlayerData.setPlayerClan(clanName, uuid);
+		PlayerData.setDonor(donor, uuid);
 		PlayerData.setLevel(level, uuid);
 		PlayerData.setXP(xp, uuid);
 		PlayerData.setPoints(points, uuid);
 
 		playerData.remove(player);
 
-		System.out.println("Data: " + playerData.toString());
-		System.out.println("Fuck you left");
 
 	}
 }

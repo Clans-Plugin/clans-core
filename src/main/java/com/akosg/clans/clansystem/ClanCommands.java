@@ -73,7 +73,7 @@ public class ClanCommands implements CommandExecutor {
 					case "leave":
 						if (!uuid.equals(ClansData.getOwner(clanName))) {
 							player.sendMessage("§cYou have left the clan §6" + clanName);
-							PlayerData.setPlayerClan("Solo", uuid);
+							playerCache.setClanName("Solo");
 						} else {
 							player.sendMessage("§cYou are the leader of this clan, use /clan disband");
 						}
@@ -91,7 +91,7 @@ public class ClanCommands implements CommandExecutor {
 								player.sendMessage(prefix + "§cYou have disbanded the clan: §6" + clanName);
 
 
-								PlayerData.setPlayerClan("Solo", uuid);
+								playerCache.setClanName("Solo");
 
 
 							} else {
@@ -112,7 +112,7 @@ public class ClanCommands implements CommandExecutor {
 						break;
 
 					case "sethome":
-						if (PlayerData.checkPlayerInClan(uuid)) {
+						if (!playerCache.getClanName().equalsIgnoreCase("Solo")) {
 
 							final int x = player.getLocation().getBlockX();
 							final int y = player.getLocation().getBlockY();
@@ -138,7 +138,7 @@ public class ClanCommands implements CommandExecutor {
 						break;
 
 					case "points":
-						if (PlayerData.checkPlayerInClan(uuid)) {
+						if (!playerCache.getClanName().equalsIgnoreCase("Solo")) {
 
 							final int points = ClansData.getClanPoints(clanName);
 
@@ -193,7 +193,7 @@ public class ClanCommands implements CommandExecutor {
 							if (ClansData.checkClanExists(clan)) {
 								if (invites.containsKey(player.getUniqueId().toString())) {
 									if (invites.containsValue(clan)) {
-										PlayerData.setPlayerClan(clan, player.getUniqueId().toString());
+										playerCache.setClanName(clan);
 										player.sendMessage("§cYou have joined §6" + clan);
 									}
 								}
@@ -203,7 +203,7 @@ public class ClanCommands implements CommandExecutor {
 							break;
 
 						case "invite":
-							final String inviterClanName = PlayerData.getClanName(player.getUniqueId().toString());
+							final String inviterClanName = playerCache.getClanName();
 							if (target != null) {
 
 								if (ClansData.getOwner(inviterClanName).equalsIgnoreCase(player.getUniqueId().toString())) {
@@ -244,6 +244,7 @@ public class ClanCommands implements CommandExecutor {
 							if (uuid.equalsIgnoreCase(ClansData.getOwner(clanName))) {
 
 								if (PlayerData.getClanName(target.getUniqueId().toString()).equalsIgnoreCase(clanName)) {
+
 
 									PlayerData.setPlayerClan("Solo", target.getUniqueId().toString());
 									player.sendMessage(prefix + "§cYou have kicked§6 " + target + " §cfrom your clan!");

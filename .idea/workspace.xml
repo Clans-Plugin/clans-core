@@ -9,11 +9,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cbb46c28-3362-4330-ba8b-e9dfc0e2c8e7" name="Default Changelist" comment="Added reconnect() which attempts to prevent SQL timeout exception">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="cbb46c28-3362-4330-ba8b-e9dfc0e2c8e7" name="Default Changelist" comment="Debugged Cache">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/akosg/clans/clansystem/ClanCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/akosg/clans/clansystem/ClanCommands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/akosg/clans/customore/ResourcesListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/akosg/clans/customore/ResourcesListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/akosg/clans/database/CacheManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/akosg/clans/database/CacheManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/akosg/clans/database/PlayerCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/akosg/clans/database/PlayerCache.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/akosg/clans/database/PlayerData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/akosg/clans/database/PlayerData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/akosg/clans/database/SQLInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/akosg/clans/database/SQLInstance.java" afterDir="false" />
+    </list>
+    <list id="0c07f17c-4d26-4f6c-bb49-f3351936022d" name="Changes by Maxwell" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/akosg/clans/clansystem/ClanCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/akosg/clans/clansystem/ClanCommands.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +68,20 @@
         <option value="$PROJECT_DIR$/src/main/java/com/akosg/clans/clansystem/ClanCommands.java" />
       </list>
     </option>
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/main/java/com/akosg/clans/clansystem/ClanCommands.java">
+      <ranges>
+        <range start1="75" end1="76" start2="75" end2="76" changelist="cbb46c28-3362-4330-ba8b-e9dfc0e2c8e7" />
+        <range start1="91" end1="92" start2="91" end2="91" changelist="0c07f17c-4d26-4f6c-bb49-f3351936022d" />
+        <range start1="93" end1="94" start2="92" end2="93" changelist="cbb46c28-3362-4330-ba8b-e9dfc0e2c8e7" />
+        <range start1="114" end1="115" start2="113" end2="114" changelist="cbb46c28-3362-4330-ba8b-e9dfc0e2c8e7" />
+        <range start1="140" end1="141" start2="139" end2="140" changelist="cbb46c28-3362-4330-ba8b-e9dfc0e2c8e7" />
+        <range start1="195" end1="196" start2="194" end2="195" changelist="cbb46c28-3362-4330-ba8b-e9dfc0e2c8e7" />
+        <range start1="205" end1="206" start2="204" end2="205" changelist="cbb46c28-3362-4330-ba8b-e9dfc0e2c8e7" />
+        <range start1="246" end1="246" start2="245" end2="246" changelist="cbb46c28-3362-4330-ba8b-e9dfc0e2c8e7" />
+      </ranges>
+    </file>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-10" />
@@ -193,13 +213,14 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.editor" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -233,7 +254,9 @@
       <workItem from="1612907053788" duration="7522000" />
       <workItem from="1612970046457" duration="2646000" />
       <workItem from="1612978023987" duration="1860000" />
-      <workItem from="1612986112546" duration="3123000" />
+      <workItem from="1612986112546" duration="3194000" />
+      <workItem from="1612989339575" duration="1149000" />
+      <workItem from="1612996572272" duration="3592000" />
     </task>
     <task id="LOCAL-00001" summary="SQL updated">
       <created>1610569292565</created>
@@ -312,7 +335,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612979138460</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Debugged Cache">
+      <created>1612989269508</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1612989269508</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -377,7 +407,8 @@
     <MESSAGE value="Clan invite added" />
     <MESSAGE value="Cache implementation" />
     <MESSAGE value="Added reconnect() which attempts to prevent SQL timeout exception" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added reconnect() which attempts to prevent SQL timeout exception" />
+    <MESSAGE value="Debugged Cache" />
+    <option name="LAST_COMMIT_MESSAGE" value="Debugged Cache" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/java/com/akosg/clans/utility/MenuListener.java">
