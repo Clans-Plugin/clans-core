@@ -361,20 +361,21 @@ public class ClansData {
 
 //Get top clans
 
-	public static ArrayList<String> getTopClans() {
+	public static HashMap<String, Integer> getTopClans() {
 
 		try {
-			final PreparedStatement ps = SQLInstance.getConnection().prepareStatement("SELECT clanName FROM ClansData ORDER BY points DESC");
+			final PreparedStatement ps = SQLInstance.getConnection().prepareStatement("SELECT clanName, points FROM ClansData ORDER BY points DESC");
 
 			final ResultSet rs = ps.executeQuery();
 
-			final ArrayList<String> topClans = new ArrayList<>();
+			final HashMap<String, Integer> topClans = new HashMap<>();
 
 			while (rs.next()) {
 
 				final String name = rs.getString("clanName");
+				final int points = rs.getInt("points");
 
-				topClans.add(name);
+				topClans.put(name, points);
 
 
 			}

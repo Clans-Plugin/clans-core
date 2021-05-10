@@ -17,7 +17,7 @@ public class ChatListener implements Listener {
 
 		final PlayerCache playerCache = CacheManager.playerData.get(player);
 
-		e.setFormat("§7" + playerCache.getClanName() + " " + player.getDisplayName() + ": " + message);
+		e.setFormat("§7" + playerCache.getClanName() + " §f" + player.getDisplayName() + "§7» " + message);
 	}
 
 }

@@ -12,7 +12,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ClanCommands implements CommandExecutor {
@@ -153,22 +152,22 @@ public class ClanCommands implements CommandExecutor {
 					case "top":
 
 						//<editor-fold desc="Send player list of top clans">
-						final ArrayList<String> topClans = ClansData.getTopClans();
+						final HashMap<String, Integer> topClans = ClansData.getTopClans();
 
 						assert topClans != null;
 						int rank = 0;
 
 						player.sendMessage("      §c§lTOP CLANS");
 						player.sendMessage(" ");
-						for (final String name : topClans) {
+						for (final HashMap.Entry<String, Integer> entry : topClans.entrySet()) {
+
 
 							rank++;
 
-							player.sendMessage("§c§l" + rank + ". §6" + name);
+							player.sendMessage("§c§l" + rank + ". §6" + entry.getKey() + " " + entry.getValue());
 
 
 						}
-						//</editor-fold>
 						break;
 
 					default:

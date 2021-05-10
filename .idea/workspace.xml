@@ -9,14 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cbb46c28-3362-4330-ba8b-e9dfc0e2c8e7" name="Default Changelist" comment="Debugged Cache">
+    <list default="true" id="cbb46c28-3362-4330-ba8b-e9dfc0e2c8e7" name="Default Changelist" comment="Refactored bunsh of useless shit and added XP for mining ores">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/akosg/clans/clansystem/ChatListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/akosg/clans/clansystem/ChatListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/akosg/clans/clansystem/ClanCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/akosg/clans/clansystem/ClanCommands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/akosg/clans/customore/ResourcesListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/akosg/clans/customore/ResourcesListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/akosg/clans/database/CacheManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/akosg/clans/database/CacheManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/akosg/clans/database/PlayerCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/akosg/clans/database/PlayerCache.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/akosg/clans/database/PlayerData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/akosg/clans/database/PlayerData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/akosg/clans/database/SQLInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/akosg/clans/database/SQLInstance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/akosg/clans/database/ClansData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/akosg/clans/database/ClansData.java" afterDir="false" />
     </list>
     <list id="0c07f17c-4d26-4f6c-bb49-f3351936022d" name="Changes by Maxwell" comment="">
       <change beforePath="$PROJECT_DIR$/src/main/java/com/akosg/clans/clansystem/ClanCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/akosg/clans/clansystem/ClanCommands.java" afterDir="false" />
@@ -72,14 +69,12 @@
   <component name="LineStatusTrackerManager">
     <file path="$PROJECT_DIR$/src/main/java/com/akosg/clans/clansystem/ClanCommands.java">
       <ranges>
-        <range start1="75" end1="76" start2="75" end2="76" changelist="cbb46c28-3362-4330-ba8b-e9dfc0e2c8e7" />
-        <range start1="91" end1="92" start2="91" end2="91" changelist="0c07f17c-4d26-4f6c-bb49-f3351936022d" />
-        <range start1="93" end1="94" start2="92" end2="93" changelist="cbb46c28-3362-4330-ba8b-e9dfc0e2c8e7" />
-        <range start1="114" end1="115" start2="113" end2="114" changelist="cbb46c28-3362-4330-ba8b-e9dfc0e2c8e7" />
-        <range start1="140" end1="141" start2="139" end2="140" changelist="cbb46c28-3362-4330-ba8b-e9dfc0e2c8e7" />
-        <range start1="195" end1="196" start2="194" end2="195" changelist="cbb46c28-3362-4330-ba8b-e9dfc0e2c8e7" />
-        <range start1="205" end1="206" start2="204" end2="205" changelist="cbb46c28-3362-4330-ba8b-e9dfc0e2c8e7" />
-        <range start1="246" end1="246" start2="245" end2="246" changelist="cbb46c28-3362-4330-ba8b-e9dfc0e2c8e7" />
+        <range start1="14" end1="15" start2="14" end2="14" changelist="cbb46c28-3362-4330-ba8b-e9dfc0e2c8e7" />
+        <range start1="92" end1="93" start2="91" end2="91" changelist="0c07f17c-4d26-4f6c-bb49-f3351936022d" />
+        <range start1="155" end1="156" start2="153" end2="154" changelist="cbb46c28-3362-4330-ba8b-e9dfc0e2c8e7" />
+        <range start1="162" end1="163" start2="160" end2="162" changelist="cbb46c28-3362-4330-ba8b-e9dfc0e2c8e7" />
+        <range start1="166" end1="167" start2="165" end2="166" changelist="cbb46c28-3362-4330-ba8b-e9dfc0e2c8e7" />
+        <range start1="170" end1="171" start2="169" end2="169" changelist="cbb46c28-3362-4330-ba8b-e9dfc0e2c8e7" />
       </ranges>
     </file>
   </component>
@@ -227,19 +222,6 @@
       <recent name="com.trophy.clans.database" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
@@ -256,7 +238,19 @@
       <workItem from="1612978023987" duration="1860000" />
       <workItem from="1612986112546" duration="3194000" />
       <workItem from="1612989339575" duration="1149000" />
-      <workItem from="1612996572272" duration="3592000" />
+      <workItem from="1612996572272" duration="3855000" />
+      <workItem from="1613066334993" duration="3515000" />
+      <workItem from="1613074718362" duration="4000" />
+      <workItem from="1613075203434" duration="615000" />
+      <workItem from="1613082130711" duration="218000" />
+      <workItem from="1613169611569" duration="97000" />
+      <workItem from="1613172490091" duration="472000" />
+      <workItem from="1613173293450" duration="391000" />
+      <workItem from="1613224563734" duration="1733000" />
+      <workItem from="1615301082434" duration="2096000" />
+      <workItem from="1615803933369" duration="272000" />
+      <workItem from="1615829595216" duration="607000" />
+      <workItem from="1620500398568" duration="53000" />
     </task>
     <task id="LOCAL-00001" summary="SQL updated">
       <created>1610569292565</created>
@@ -342,7 +336,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612989269508</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Refactored bunsh of useless shit and added XP for mining ores">
+      <created>1613001820242</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1613001820242</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -408,7 +409,8 @@
     <MESSAGE value="Cache implementation" />
     <MESSAGE value="Added reconnect() which attempts to prevent SQL timeout exception" />
     <MESSAGE value="Debugged Cache" />
-    <option name="LAST_COMMIT_MESSAGE" value="Debugged Cache" />
+    <MESSAGE value="Refactored bunsh of useless shit and added XP for mining ores" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored bunsh of useless shit and added XP for mining ores" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/java/com/akosg/clans/utility/MenuListener.java">
